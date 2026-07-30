@@ -12,7 +12,6 @@ const entries = [
   "favicon.svg",
   "css",
   "js",
-  "assets",
 ];
 
 await rm(output, { recursive: true, force: true });
@@ -21,3 +20,6 @@ await mkdir(output, { recursive: true });
 for (const entry of entries) {
   await cp(resolve(root, entry), resolve(output, entry), { recursive: true });
 }
+
+await mkdir(resolve(output, "assets"), { recursive: true });
+await cp(resolve(root, "assets", "og.png"), resolve(output, "assets", "og.png"));

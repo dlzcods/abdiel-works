@@ -5,3 +5,10 @@ dist/
 .wrangler/
 .DS_Store
 *.tgz
+.claude/
+content-research/
+skills/
+GITHUB_PROFILE_README*.md
+COPY.md
+assets/github-readme/
+scripts/generate-readme-loop.mjs
