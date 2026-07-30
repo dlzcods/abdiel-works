@@ -69,6 +69,18 @@
           "https://www.instagram.com/hfz.abdiel/",
           "https://dev.to/dlzcods"
         ]
+      },
+      {
+        "@type": "SoftwareSourceCode",
+        "@id": "https://abdiel.works/#awam",
+        "name": "AWAM",
+        "alternateName": "Accessible Wisdom for Law & Advocacy Matters",
+        "description": "An Indonesian legal RAG system that reformulates everyday questions into legal terminology before retrieving and reranking source material.",
+        "codeRepository": "https://github.com/dlzcods/awam",
+        "url": "https://ask-awam.vercel.app/",
+        "programmingLanguage": ["Python", "TypeScript"],
+        "runtimePlatform": "Web",
+        "author": { "@id": "https://abdiel.works/#person" }
       }
     ]
   }
@@ -320,26 +332,28 @@
             <summary>
               <span class="work-index cap">01 / Language</span>
               <span class="work-heading">
-                <span class="row-title">AWAM: legal RAG that can say “I don't know”</span>
-                <span class="work-thesis">A wrong legal answer is liability wearing a confident tone.</span>
+                <span class="row-title">AWAM: everyday questions, legal language</span>
+                <span class="work-thesis">Accessible Wisdom for Law &amp; Advocacy Matters</span>
               </span>
               <span class="work-toggle cap" aria-hidden="true"></span>
             </summary>
             <div class="row-body work-body">
               <div class="work-story prose">
-                <p><span class="sftl cap">Situation</span> Indonesian legal questions need answers grounded in the documents, not the model's confidence.</p>
-                <p><span class="sftl cap">Friction</span> Standard retrieval found passages that looked relevant for edge cases, then produced fluent answers from the wrong context.</p>
-                <p><span class="sftl cap">Turn</span> I added query reformulation before retrieval. The system restates the question in language closer to the legal corpus before it searches.</p>
-                <p><span class="sftl cap">Landing</span> The safer failure became no answer instead of a persuasive wrong one. The implementation remains private. The working interaction is available in the demo.</p>
+                <p><span class="sftl cap">Situation</span> People describe a wage cut as “my boss cut my salary,” while legal documents describe the same problem through formal terms and regulations.</p>
+                <p><span class="sftl cap">Friction</span> A direct search can return text that looks relevant while missing the regulation the person actually needs.</p>
+                <p><span class="sftl cap">Turn</span> AWAM retrieves initial context, reformulates the question into legal terminology, then searches again and reranks the evidence.</p>
+                <p><span class="sftl cap">Landing</span> The product, retrieval pipeline, and original research are public. The architecture has changed since the published evaluation, so those scores stay historical until the current build is evaluated again.</p>
               </div>
               <aside class="evidence" aria-label="Legal RAG evaluation record">
                 <div><span>System</span><strong>Indonesian legal RAG</strong></div>
-                <div><span>Intervention</span><strong>Query reformulation</strong></div>
-                <div><span>Review target</span><strong>Grounded answers</strong></div>
-                <div><span>Source</span><strong>Private repository</strong></div>
+                <div><span>Core</span><strong>Double-hop reformulation</strong></div>
+                <div><span>Citation path</span><strong>Deterministic source matching</strong></div>
+                <div><span>Status</span><strong>Public · re-evaluation due</strong></div>
               </aside>
               <div class="project-links">
-                <a href="https://awam-3rogb0s2h-dlzcods-projects.vercel.app/" target="_blank" rel="noopener">Open access-controlled demo ↗</a>
+                <a href="https://ask-awam.vercel.app/" target="_blank" rel="noopener">Try AWAM ↗</a>
+                <a href="https://github.com/dlzcods/awam" target="_blank" rel="noopener">Inspect source ↗</a>
+                <a href="https://acsit.org/index.php/jiite/article/view/113" target="_blank" rel="noopener">Read published research ↗</a>
               </div>
             </div>
           </details>

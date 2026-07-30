@@ -9,6 +9,7 @@ dist/
 content-research/
 skills/
 GITHUB_PROFILE_README*.md
+GITHUB_PROFILE_ACTIONS.md
 COPY.md
 assets/github-readme/
 scripts/generate-readme-loop.mjs
