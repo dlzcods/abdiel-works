@@ -1,0 +1,125 @@
+{
+  "schema_version": "1.0.0",
+  "name": "Abdiel voice style",
+  "updated_at": "2026-07-29",
+  "purpose": "A durable writing reference for Abdiel's LinkedIn, Instagram, portfolio, and personal-brand content.",
+  "source_priority": [
+    "Abdiel's newest direct corrections and approved wording",
+    "Abdiel's verbatim published posts",
+    "Observed post metrics and audience response",
+    "Existing personal-brand guidance",
+    "Generic platform advice"
+  ],
+  "core_voice": {
+    "register": "Conversational Indonesian with natural English technical and professional terms.",
+    "pronouns": "Preserve gue or gw according to the surrounding source material. Do not formalize automatically.",
+    "tone": [
+      "direct",
+      "self-aware",
+      "specific",
+      "technically credible",
+      "lightly humorous",
+      "personal without performing vulnerability",
+      "confident without pretending certainty"
+    ],
+    "rhythm": [
+      "Prefer one longer spoken sentence that carries context, detail, and tension together.",
+      "Use paragraph breaks to control pacing.",
+      "Use short standalone sentences only after the narrative has earned the emphasis.",
+      "Avoid stacking short dramatic fragments as a synthetic LinkedIn hook.",
+      "Do not force every sentence into polished copywriting symmetry."
+    ]
+  },
+  "approved_learning_from_2026_07_29": {
+    "user_correction": "The opening 'M1-A selesai. Dashboard hidup. 71 produk masuk HITL.' felt too cliche and too engineered as a LinkedIn trailer.",
+    "approved_direction": "Keep reverse chronology, but express it as a natural conversational sentence with the achievement and doubt living inside the same breath.",
+    "approved_example": "Setelah hampir enam bulan, milestone yang kami pegang bareng client dari Prancis akhirnya diterima dan semua hasil implementasinya sudah gue handover ke developer berikutnya, tapi kalau project yang sama datang lagi besok, gue nggak akan mulai dari codebase.",
+    "approved_following_paragraph": "Awalnya gue masuk ke project ini sebagai pengalaman pertama gue kerja lebih dekat dengan global market. Timeline awalnya maksimal tiga bulan. Gue belum tahu kalau bagian tersulitnya bukan bikin modelnya jalan, tapi memastikan semua orang sedang membicarakan input, output, dan definisi “selesai” yang sama."
+  },
+  "narrative_principles": [
+    "Start from the personal truth of the project, not from a content formula.",
+    "Let technical detail prove why the personal change happened.",
+    "Acknowledge Abdiel's own mistaken assumptions or process responsibility when true.",
+    "Credit collaborators precisely.",
+    "Do not manufacture a single cinematic epiphany when understanding emerged gradually.",
+    "Do not turn a retrospective into a numbered lesson list.",
+    "End with an earned observation, not generic advice.",
+    "Allow unresolved or imperfect details when they are honest.",
+    "Vary narrative devices across posts instead of reskinning the best-performing hook."
+  ],
+  "hook_guidance": {
+    "avoid": [
+      "Automatic 'gue kira X, ternyata Y' openings",
+      "Time-marker openings reused only because they performed before",
+      "Trailer fragments such as 'Dashboard hidup. Sistem shipped. Client happy.'",
+      "Clickbait",
+      "Generic contrarian claims",
+      "A hook that contains metrics without human meaning"
+    ],
+    "available_devices": [
+      "Reverse chronology expressed conversationally",
+      "A real object carrying the story",
+      "An inventory with one important missing element",
+      "Dialogue or a real message",
+      "A counterfactual about what Abdiel would do differently",
+      "A scene from execution",
+      "Two interpretations of the same event",
+      "A quiet contradiction embedded inside a longer sentence"
+    ],
+    "selection_rule": "Choose the device that best expresses the specific experience. Do not choose solely from historical engagement data."
+  },
+  "technical_writing": {
+    "principle": "Technical terms should explain stakes, decisions, or constraints. They should not function as a credibility inventory.",
+    "include": [
+      "Specific models, tools, metrics, or system behavior when they materially explain what changed",
+      "One plain-language explanation before dense mechanics",
+      "Limitations and uncertainty",
+      "The difference between what Abdiel's team built and what a client supplied"
+    ],
+    "avoid": [
+      "Listing every component in the architecture",
+      "Overclaiming production readiness",
+      "Treating HITL as model failure",
+      "Presenting a system-level result as if one model caused it",
+      "Inventing confidence or causal explanations not supported by evidence"
+    ]
+  },
+  "client_safe_writing": [
+    "Separate internal labels from public descriptions.",
+    "Use anonymized descriptions such as 'client dari Prancis' when requested.",
+    "Do not publish ratings, private communication, credentials, private repositories, internal folder paths, or proprietary data.",
+    "Share responsibility fairly when the handoff and Abdiel's own preflight were both incomplete.",
+    "Frame accepted handoff to another developer as normal project completion unless evidence supports another interpretation."
+  ],
+  "visual_style": {
+    "principle": "Use the real artifact that carries or proves the story.",
+    "preferred": [
+      "Candid team or workspace photographs",
+      "An anonymized product dashboard",
+      "A real system output",
+      "A readable comparison artifact",
+      "A handoff or acceptance artifact when public"
+    ],
+    "avoid": [
+      "Generic AI illustrations",
+      "Dense screenshots that cannot be read on mobile",
+      "Symbolic images that dramatize without proving",
+      "Designed quote cards",
+      "Memes that become more memorable than the work"
+    ]
+  },
+  "style_checks_before_delivery": [
+    "Would Abdiel say this sentence aloud?",
+    "Does the opening sound like a person recounting something or a copywriter manufacturing a hook?",
+    "Did we overfit to one of Abdiel's successful posts?",
+    "Is the personal observation specific to Abdiel?",
+    "Does each technical detail earn its place?",
+    "Did we preserve informal wording instead of cleaning away the personality?",
+    "Did we avoid unnecessary dashes and em dashes?",
+    "Did we keep one dominant story?"
+  ],
+  "related_context": [
+    "content-research/linkedin-latest-posts-analysis-2026-07-29.json",
+    "content-research/enom-france-client-post-structure.md"
+  ]
+}

@@ -1,0 +1,7 @@
+node_modules/
+dist/
+.next/
+.sites-public/
+.wrangler/
+.DS_Store
+*.tgz

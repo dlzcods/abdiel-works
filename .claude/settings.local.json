@@ -1,0 +1,9 @@
+{
+  "permissions": {
+    "allow": [
+      "Read(//Users/dwicompany/.claude/**)",
+      "Bash(find / -type d -name \"*abdiel-brand*\" -maxdepth 6)",
+      "mcp__visualize__read_me"
+    ]
+  }
+}

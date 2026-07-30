@@ -1,0 +1,17 @@
+{
+  "name": "Hafiz Abdiel",
+  "short_name": "Abdiel",
+  "description": "AI Project Manager and AI/ML Engineer building evaluated, human-owned AI systems.",
+  "start_url": "/",
+  "display": "minimal-ui",
+  "background_color": "#f7f7f5",
+  "theme_color": "#f7f7f5",
+  "icons": [
+    {
+      "src": "/favicon.svg",
+      "sizes": "any",
+      "type": "image/svg+xml",
+      "purpose": "any"
+    }
+  ]
+}

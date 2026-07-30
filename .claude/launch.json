@@ -1,0 +1,23 @@
+{
+  "version": "0.0.1",
+  "configurations": [
+    {
+      "name": "portfolio",
+      "runtimeExecutable": "python3",
+      "runtimeArgs": ["-m", "http.server", "4173"],
+      "port": 4173
+    },
+    {
+      "name": "portfolio-preview",
+      "runtimeExecutable": "python3",
+      "runtimeArgs": ["-m", "http.server", "4174"],
+      "port": 4174
+    },
+    {
+      "name": "mockup-preview",
+      "runtimeExecutable": "python3",
+      "runtimeArgs": ["-m", "http.server", "4175", "--directory", "/private/tmp/claude-501/-Users-dwicompany-Coding-and-Development-portfolio/1274c5d7-4849-4b87-948f-096d9c75d03a/scratchpad"],
+      "port": 4175
+    }
+  ]
+}
