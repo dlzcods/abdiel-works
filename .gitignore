@@ -6,6 +6,7 @@ dist/
 .DS_Store
 *.tgz
 .claude/
+.openai/
 content-research/
 skills/
 GITHUB_PROFILE_README*.md
