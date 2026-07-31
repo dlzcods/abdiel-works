@@ -51,8 +51,58 @@
     sweep();
   }
 
-  // --- Smooth review records; only one row open at a time ---
+  // --- Smooth review records; one open row per ledger, with reading-position anchoring ---
   const rows = document.querySelectorAll("details.row");
+  let rowNavigationFrame = null;
+
+  function rowsInSameLedger(d) {
+    const ledger = d.closest(".work-ledger");
+    return Array.from(rows).filter((row) => row.closest(".work-ledger") === ledger);
+  }
+
+  function stopRowNavigation() {
+    if (rowNavigationFrame !== null) {
+      window.cancelAnimationFrame(rowNavigationFrame);
+      rowNavigationFrame = null;
+    }
+    document.documentElement.classList.remove("row-navigation-active");
+  }
+
+  function navigateToOpenedRow(d) {
+    const summary = d.querySelector("summary");
+    if (!summary) return;
+
+    stopRowNavigation();
+    document.documentElement.classList.add("row-navigation-active");
+    const startedAt = performance.now();
+    const duration = 560;
+
+    function positionRow(now) {
+      const readingTop = window.matchMedia("(max-width: 900px)").matches ? 60 : 24;
+      const distance = summary.getBoundingClientRect().top - readingTop;
+      const elapsed = now - startedAt;
+      const progress = Math.min(elapsed / duration, 1);
+      const correction = 0.08 + (progress * 0.16);
+
+      if (Math.abs(distance) > 0.5) {
+        window.scrollBy(0, distance * correction);
+      }
+
+      if (elapsed < duration) {
+        rowNavigationFrame = window.requestAnimationFrame(positionRow);
+        return;
+      }
+
+      window.scrollBy(0, distance);
+      stopRowNavigation();
+    }
+
+    rowNavigationFrame = window.requestAnimationFrame(positionRow);
+  }
+
+  window.addEventListener("wheel", stopRowNavigation, { passive: true });
+  window.addEventListener("touchstart", stopRowNavigation, { passive: true });
+
   function reviewPass(d) {
     window.clearTimeout(d._reviewTimer);
     d.classList.remove("review-pass");
@@ -98,7 +148,11 @@
   rows.forEach((d) => {
     if (reduceMotion) {
       d.addEventListener("toggle", () => {
-        if (d.open) rows.forEach((other) => { if (other !== d) other.open = false; });
+        if (!d.open) return;
+        rowsInSameLedger(d).forEach((other) => {
+          if (other !== d) other.open = false;
+        });
+        d.querySelector("summary")?.scrollIntoView({ block: "start" });
       });
       return;
     }
@@ -108,11 +162,127 @@
       event.preventDefault();
       const shouldOpen = !d.open;
       if (shouldOpen) {
-        rows.forEach((other) => {
+        rowsInSameLedger(d).forEach((other) => {
           if (other !== d && other.open) animateRow(other, false);
         });
       }
       animateRow(d, shouldOpen);
+      if (shouldOpen) navigateToOpenedRow(d);
     });
+  });
+
+  // --- Documentary carousels: auto-run only while visible, with touch controls ---
+  const carousels = document.querySelectorAll("[data-carousel]");
+  carousels.forEach((carousel) => {
+    const track = carousel.querySelector(".speaker-track");
+    const slides = Array.from(carousel.querySelectorAll(".speaker-slide"));
+    const previous = carousel.querySelector("[data-carousel-prev]");
+    const next = carousel.querySelector("[data-carousel-next]");
+    const status = carousel.querySelector("[data-carousel-status]");
+    if (!track || slides.length < 2 || !previous || !next || !status) return;
+
+    let index = 0;
+    let timer = null;
+    let visible = false;
+    let paused = false;
+    let touchStartX = null;
+    const statusLines = slides.map((slide, slideIndex) => {
+      const line = document.createElement("span");
+      line.className = "speaker-status-line";
+      line.textContent = `${String(slideIndex + 1).padStart(2, "0")} / ${String(slides.length).padStart(2, "0")} · ${slide.dataset.caption}`;
+      line.setAttribute("aria-hidden", "true");
+      return line;
+    });
+    status.replaceChildren(...statusLines);
+
+    function render(nextIndex, announce) {
+      index = (nextIndex + slides.length) % slides.length;
+      track.style.transform = `translate3d(${-index * 100}%, 0, 0)`;
+      slides.forEach((slide, slideIndex) => {
+        slide.setAttribute("aria-hidden", slideIndex === index ? "false" : "true");
+      });
+      status.setAttribute("aria-live", announce ? "polite" : "off");
+      statusLines.forEach((line, lineIndex) => {
+        const active = lineIndex === index;
+        line.classList.toggle("is-active", active);
+        line.setAttribute("aria-hidden", active ? "false" : "true");
+      });
+    }
+
+    function stop() {
+      window.clearTimeout(timer);
+      timer = null;
+    }
+
+    function schedule(delay) {
+      stop();
+      if (reduceMotion || !visible || paused || document.hidden) return;
+      timer = window.setTimeout(() => {
+        render(index + 1, false);
+        schedule(5200);
+      }, delay || 5200);
+    }
+
+    function move(direction) {
+      render(index + direction, true);
+      schedule(7200);
+    }
+
+    previous.addEventListener("click", () => move(-1));
+    next.addEventListener("click", () => move(1));
+
+    carousel.addEventListener("mouseenter", () => {
+      paused = true;
+      stop();
+    });
+    carousel.addEventListener("mouseleave", () => {
+      paused = false;
+      schedule(2200);
+    });
+    carousel.addEventListener("focusin", () => {
+      paused = true;
+      stop();
+    });
+    carousel.addEventListener("focusout", () => {
+      window.setTimeout(() => {
+        if (!carousel.contains(document.activeElement)) {
+          paused = false;
+          schedule(2200);
+        }
+      }, 0);
+    });
+
+    carousel.addEventListener("touchstart", (event) => {
+      touchStartX = event.changedTouches[0].clientX;
+      paused = true;
+      stop();
+    }, { passive: true });
+    carousel.addEventListener("touchend", (event) => {
+      if (touchStartX === null) return;
+      const distance = event.changedTouches[0].clientX - touchStartX;
+      touchStartX = null;
+      if (Math.abs(distance) > 45) render(index + (distance < 0 ? 1 : -1), true);
+      paused = false;
+      schedule(3200);
+    }, { passive: true });
+
+    if ("IntersectionObserver" in window) {
+      const observer = new IntersectionObserver((entries) => {
+        visible = entries[0].isIntersecting;
+        if (visible) schedule(2200);
+        else stop();
+      }, { threshold: 0.35 });
+      observer.observe(carousel);
+    } else {
+      visible = true;
+      schedule(2200);
+    }
+
+    document.addEventListener("visibilitychange", () => {
+      if (document.hidden) stop();
+      else schedule(2200);
+    });
+
+    render(0, false);
   });
 })();
