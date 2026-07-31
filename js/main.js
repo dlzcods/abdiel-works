@@ -186,6 +186,7 @@
     let visible = false;
     let paused = false;
     let touchStartX = null;
+    let movementTimer = null;
     const statusLines = slides.map((slide, slideIndex) => {
       const line = document.createElement("span");
       line.className = "speaker-status-line";
@@ -197,7 +198,12 @@
 
     function render(nextIndex, announce) {
       index = (nextIndex + slides.length) % slides.length;
+      window.clearTimeout(movementTimer);
+      track.classList.add("is-moving");
       track.style.transform = `translate3d(${-index * 100}%, 0, 0)`;
+      movementTimer = window.setTimeout(() => {
+        track.classList.remove("is-moving");
+      }, 760);
       slides.forEach((slide, slideIndex) => {
         slide.setAttribute("aria-hidden", slideIndex === index ? "false" : "true");
       });

@@ -23,6 +23,9 @@
   var runN = 47;
   var shipped = 132, rejected = 23;
   var spawnsSinceAbdiel = 0;
+  var boardVisible = false;
+  var tickTimer = null;
+  var maintainTimer = null;
   var tShipped = document.getElementById("t-shipped");
   var tRejected = document.getElementById("t-rejected");
 
@@ -136,7 +139,8 @@
     updateCounts();
     // keep shipped column shallow: fade out, then slide the column closed
     var done = colEls.shipped.querySelectorAll(".card");
-    if (done.length > 4) {
+    var shippedLimit = window.matchMedia("(max-width: 620px)").matches ? 2 : 4;
+    if (done.length > shippedLimit) {
       var oldest = done[0];
       oldest.classList.add("fadeout");
       setTimeout(function () {
@@ -195,6 +199,38 @@
   colEls.shipped.querySelector(".cards").appendChild(seedRun);
   updateCounts();
 
-  setInterval(tick, 2400);
-  setInterval(maintain, 5100);
+  function stopLoop() {
+    window.clearInterval(tickTimer);
+    window.clearInterval(maintainTimer);
+    tickTimer = null;
+    maintainTimer = null;
+    board.dataset.motion = "paused";
+  }
+
+  function startLoop() {
+    if (!boardVisible || document.hidden || tickTimer || maintainTimer) return;
+    tickTimer = window.setInterval(tick, 2400);
+    maintainTimer = window.setInterval(maintain, 5100);
+    board.dataset.motion = "running";
+  }
+
+  function syncLoop() {
+    if (boardVisible && !document.hidden) startLoop();
+    else stopLoop();
+  }
+
+  stopLoop();
+
+  if ("IntersectionObserver" in window) {
+    var boardObserver = new IntersectionObserver(function (entries) {
+      boardVisible = entries[0].isIntersecting;
+      syncLoop();
+    }, { threshold: 0.01, rootMargin: "160px 0px" });
+    boardObserver.observe(board);
+  } else {
+    boardVisible = true;
+    startLoop();
+  }
+
+  document.addEventListener("visibilitychange", syncLoop);
 })();
