@@ -655,23 +655,6 @@ html.js .log .ln:nth-child(4) .st { animation-delay: 4.8s; }
     font-weight: 600;
     letter-spacing: -0.01em;
 }
-.fit-reject {
-    display: grid;
-    grid-template-columns: 8rem minmax(0, 1fr);
-    gap: 1rem;
-    max-width: 48rem;
-    margin-top: 1.35rem;
-    padding-top: 1rem;
-    border-top: 1px solid var(--signal);
-    color: var(--signal);
-    font-size: 0.88rem;
-    line-height: 1.55;
-}
-.fit-reject-label {
-    color: var(--signal);
-    font-weight: 600;
-}
-
 /* ============ Gates ============ */
 .gate {
     display: flex;
@@ -887,10 +870,6 @@ html:not(.js) .gate-dot { opacity: 1; transform: scale(1); }
         padding: 1rem 0;
     }
     .fit-row p { font-size: 0.92rem; }
-    .fit-reject {
-        grid-template-columns: 1fr;
-        gap: 0.35rem;
-    }
     .row summary, .row-link {
         flex-direction: column;
         gap: 0.3rem;
