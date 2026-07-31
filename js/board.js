@@ -214,9 +214,25 @@
     board.dataset.motion = "running";
   }
 
+  function freezeBoardGeometry() {
+    if (board.style.height) return;
+    board.style.height = board.getBoundingClientRect().height + "px";
+    board.style.overflow = "hidden";
+  }
+
+  function releaseBoardGeometry() {
+    board.style.height = "";
+    board.style.overflow = "";
+  }
+
   function syncLoop() {
-    if (boardVisible && !document.hidden) startLoop();
-    else stopLoop();
+    if (boardVisible && !document.hidden) {
+      releaseBoardGeometry();
+      startLoop();
+    } else {
+      freezeBoardGeometry();
+      stopLoop();
+    }
   }
 
   stopLoop();

@@ -242,8 +242,7 @@ a { color: inherit; }
     flex-direction: column;
     gap: 0.55rem;
     padding: 0.65rem 0.55rem 0.9rem;
-    height: 21rem;
-    overflow: hidden;
+    min-height: 21rem;
 }
 .card {
     border: 1px solid var(--ink);
@@ -994,6 +993,7 @@ html:not(.js) .gate-dot { opacity: 1; transform: scale(1); }
     .col:nth-child(3) { border-left: none; }
     .col { border-top: 1px solid var(--line); }
     .col:nth-child(-n+2) { border-top: none; }
+    .cards { min-height: 12rem; }
 }
 @media (max-width: 620px) {
     .wrap { padding-inline: 1.15rem; }
@@ -1033,7 +1033,7 @@ html:not(.js) .gate-dot { opacity: 1; transform: scale(1); }
         padding: 0.75rem 0.65rem;
     }
     .cards {
-        height: 10.75rem;
+        min-height: 5rem;
         padding: 0.65rem;
     }
     .card { font-size: 0.64rem; }
