@@ -26,3 +26,4 @@ for (const entry of entries) {
 }
 
 await cp(resolve(root, "assets", "og.png"), resolve(output, "assets", "og.png"));
+await cp(resolve(root, "assets", "og-v2.png"), resolve(output, "assets", "og-v2.png"));
