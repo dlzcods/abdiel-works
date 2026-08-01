@@ -400,12 +400,13 @@ html.js .log .ln:nth-child(4) .st { animation-delay: 4.8s; }
     cursor: pointer;
     list-style: none;
     text-decoration: none;
-    transition: padding-left 0.3s var(--ease);
+    transition: padding-left 0.3s var(--ease), background 0.25s ease, box-shadow 0.25s ease;
 }
 .row summary::-webkit-details-marker { display: none; }
 .row summary:focus-visible {
     outline: none;
-    box-shadow: none;
+    background: rgba(38, 34, 77, 0.05);
+    box-shadow: inset 3px 0 0 var(--ink);
 }
 .row summary:focus-visible .work-toggle {
     outline: 2px solid var(--ink);
@@ -451,7 +452,13 @@ html.js .log .ln:nth-child(4) .st { animation-delay: 4.8s; }
     gap: 1.4rem;
     padding: 1.35rem 0 1.4rem;
 }
-.work-record summary:hover { padding-left: 0; }
+.work-record summary:hover,
+.work-record summary:active,
+.work-record[open] summary {
+    padding-left: 0.7rem;
+    background: rgba(38, 34, 77, 0.05);
+    box-shadow: inset 3px 0 0 var(--ink);
+}
 .work-index { padding-top: 0.12rem; color: var(--ink); }
 .work-heading { display: grid; gap: 0.28rem; }
 .work-heading .row-title {
@@ -465,13 +472,26 @@ html.js .log .ln:nth-child(4) .st { animation-delay: 4.8s; }
     line-height: 1.5;
     max-width: 58ch;
 }
+.work-proof {
+    width: fit-content;
+    color: var(--ink);
+    font-size: 0.62rem;
+    letter-spacing: 0.05em;
+}
 .work-toggle {
     justify-self: end;
     padding-top: 0.2rem;
     color: var(--ink);
+    font-size: 0.68rem;
+    font-weight: 600;
+    letter-spacing: 0.04em;
 }
-.work-toggle::after { content: "inspect"; }
-.work-record[open] .work-toggle::after { content: "close"; }
+.work-toggle::after { content: "inspect +"; }
+.work-record[open] .work-toggle::after { content: "close −"; }
+.field-entry .work-toggle::after { content: "open archive +"; }
+.field-entry[open] .work-toggle::after { content: "close archive −"; }
+.speaker-entry .work-toggle::after { content: "view sessions +"; }
+.speaker-entry[open] .work-toggle::after { content: "close sessions −"; }
 .work-record[open] summary { border-bottom: 1px solid var(--line); }
 .work-record.is-animating { will-change: height; }
 .work-record.review-pass .row-body::before {
