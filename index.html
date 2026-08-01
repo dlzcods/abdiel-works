@@ -104,7 +104,7 @@
 
   <link rel="preconnect" href="https://api.fontshare.com" />
   <link href="https://api.fontshare.com/v2/css?f[]=switzer@400,500,600,700&amp;display=swap" rel="stylesheet" />
-  <link rel="stylesheet" href="css/style.css?v=20260731e" />
+  <link rel="stylesheet" href="css/style.css?v=20260801a" />
 
   <script>document.documentElement.classList.add("js");</script>
 </head>
@@ -113,7 +113,7 @@
   <div class="progress-bar" aria-hidden="true"><span id="progress-fill"></span></div>
   <aside class="rail" aria-hidden="true">
     <span class="rail-word">Abdiel · 2026</span>
-    <span class="rail-status"><span class="dot"></span><span id="rail-count">0/8</span></span>
+    <span class="rail-status"><span class="dot"></span><span id="rail-count">0/5</span></span>
   </aside>
 
   <!-- ============ HERO ============ -->
@@ -129,11 +129,9 @@
         <span class="h-line h-line-2 reveal delay-1">Teams that don't either.</span>
       </h1>
       <p class="manifesto reveal delay-2">
-        I'm Abdiel. I manage AI projects at PERFECT10 AI, and two years in AI/ML engineering
-        still shape how I read scope, technical risk, and evaluation. My team ships with AI in
-        every loop and a human at every gate: RAG systems, vision models, and evaluation harnesses.
-        Everything measured, because it-feels-right is not an evaluation. The board below is how
-        we actually run. Watch the eval column.
+        I'm Abdiel, an AI Project Manager at PERFECT10 AI with two years in AI/ML engineering.
+        I manage teams building RAG, vision, and evaluation systems where AI drafts, humans own
+        decisions, and nothing ships without evidence.
       </p>
 
       <p class="client-proof cap reveal delay-3">
@@ -176,102 +174,27 @@
         </div>
       </div>
 
-      <a class="scroll-cue cap reveal delay-3" href="#situation">Scroll ↓</a>
+      <a class="scroll-cue cap reveal delay-3" href="#turn">Scroll ↓</a>
     </div>
   </header>
 
   <main>
-    <!-- ============ 01 SITUATION ============ -->
-    <section class="block chapter" id="situation">
-      <div class="wrap">
-        <div class="split">
-          <div class="split-head">
-            <p class="cap accent reveal">01 · The situation</p>
-            <h2 class="reveal">Make AI work where it isn't supposed to.</h2>
-          </div>
-          <div class="split-body prose">
-            <p class="reveal">
-              That's been the job for the past two years. Scanned Indonesian legal documents that
-              off-the-shelf OCR refused to read, so I <span class="proof">fine-tuned PaddleOCR</span>
-              until it read them. Stamps, smudges and all. Retrieval systems (RAG) that answered
-              legal questions confidently and wrongly, so I built
-              <span class="proof">query reformulation</span>: restate the question in the language
-              the documents actually use, and retrieval stops guessing.
-            </p>
-            <p class="reveal">
-              When a client needed document extraction they could defend in an audit, I made the
-              unfashionable call: no GenAI in the pipeline at all. Fine-tuned OCR, deterministic
-              rules, and a <span class="proof">human in the loop</span> for anything below a
-              confidence threshold. Boring. Deterministic. Correct.
-            </p>
-            <p class="reveal">
-              The work traveled further than I planned. Clients in
-              <span class="proof">Singapore and Australia</span>. Three competition placements
-              with Jaya Koding. Invitations to speak at universities across Indonesia about how
-              these systems actually get built.
-            </p>
-            <p class="statement reveal">
-              Many engineers can call an API. I build the systems that make those APIs reliable.
-            </p>
-          </div>
-        </div>
-        <div class="gate reveal">
-          <span class="gate-line"></span>
-          <span class="gate-label">Section reviewed · passed</span>
-          <span class="gate-dot"></span>
-        </div>
-      </div>
-    </section>
-
-    <!-- ============ 02 FRICTION ============ -->
-    <section class="block chapter" id="friction">
-      <div class="wrap">
-        <div class="split">
-          <div class="split-head">
-            <p class="cap accent reveal">02 · The friction</p>
-            <h2 class="reveal">Then AI got good at my job.</h2>
-          </div>
-          <div class="split-body prose">
-            <p class="reveal">
-              Not the whole job. Just the typing part. Models now write code faster than any team
-              I've worked with, and most of it even runs. Which is exactly the problem.
-            </p>
-            <p class="reveal">
-              Speed was never the bottleneck. The bottleneck is knowing what's true: whether the
-              output is correct, whether it should ship, and how you'd know either way. AI made
-              code cheap and <span class="proof">judgment expensive</span>.
-            </p>
-            <p class="reveal">
-              I watched review queues grow faster than the velocity charts. Teams celebrated
-              output while shipping slop at scale. The conclusion was obvious: the most useful
-              place for an engineer who hates slop is no longer inside the editor.
-              It's above the pipeline.
-            </p>
-          </div>
-        </div>
-        <div class="gate reveal">
-          <span class="gate-line"></span>
-          <span class="gate-label">Section reviewed · passed</span>
-          <span class="gate-dot"></span>
-        </div>
-      </div>
-    </section>
-
-    <!-- ============ 03 THE TURN ============ -->
+    <!-- ============ 01 THE TURN ============ -->
     <section class="block chapter" id="turn">
       <div class="wrap">
-        <p class="cap accent reveal">03 · The turn</p>
+        <p class="cap accent reveal">01 · The turn</p>
         <h2 class="turn-heading reveal">
           <span class="turn-context">AI made code cheap.</span>
           <span class="turn-shift">Judgment&nbsp;got expensive.</span>
           <span class="turn-decision">I moved where judgment lives.</span>
         </h2>
-        <div class="prose">
+        <div class="prose turn-story">
           <p class="reveal">
-            As a project manager I don't write most of the code anymore. AI drafts it, my
-            engineers direct it. My job is the system around that: who owns which decision,
-            what gets measured, and where a human must be in the loop. Every card on the board
-            above runs this exact sequence:
+            Two years building AI systems taught me that producing an answer is easy; deciding
+            whether it can be trusted is the work. I moved from writing most of the code to managing
+            scope, technical risk, evaluation, and human review. The engineering judgment stayed:
+            on one audit-sensitive extraction project, I rejected GenAI for fine-tuned OCR,
+            deterministic rules, and a human threshold.
           </p>
         </div>
 
@@ -289,63 +212,23 @@
 
         <div class="gate reveal">
           <span class="gate-line"></span>
-          <span class="gate-label">Section reviewed · passed</span>
+          <span class="gate-label">Operating model · reviewed</span>
           <span class="gate-dot"></span>
         </div>
       </div>
     </section>
 
-    <!-- ============ 04 PRINCIPLES ============ -->
-    <section class="block chapter" id="principles">
-      <div class="wrap">
-        <div class="split">
-          <div class="split-head">
-            <p class="cap accent reveal">04 · Operating principles</p>
-            <h2 class="reveal">Three rules I don't negotiate.</h2>
-          </div>
-          <div class="split-body">
-            <div class="principles">
-              <article class="principle reveal">
-                <span class="cap">i</span>
-                <h3>No slop.</h3>
-                <p>If it reads like it was generated, it gets regenerated. By a human.
-                   Output volume is not output.</p>
-              </article>
-              <article class="principle reveal delay-1">
-                <span class="cap">ii</span>
-                <h3>Human in the loop.</h3>
-                <p>Not a compliance checkbox. It's how a system stays honest when the
-                   model is confidently wrong.</p>
-              </article>
-              <article class="principle reveal delay-2">
-                <span class="cap">iii</span>
-                <h3>Measured, or it didn't happen.</h3>
-                <p>Every AI feature we ship has an evaluation behind it.
-                   "It feels smarter" is not a metric.</p>
-              </article>
-            </div>
-          </div>
-        </div>
-        <div class="gate reveal">
-          <span class="gate-line"></span>
-          <span class="gate-label">Section reviewed · passed</span>
-          <span class="gate-dot"></span>
-        </div>
-      </div>
-    </section>
-
-    <!-- ============ 05 SELECTED WORK ============ -->
+    <!-- ============ 02 SELECTED WORK ============ -->
     <section class="block chapter" id="work">
       <div class="wrap">
-        <p class="cap accent reveal">05 · Selected work</p>
+        <p class="cap accent reveal">02 · Selected work</p>
         <h2 class="reveal">Three places where an average can lie.</h2>
         <p class="work-intro reveal">
-          Language, judgment, and vision. Different models, same responsibility: find where the
-          output breaks before someone else depends on it.
+          Three systems, one recurring question: where does the output stop being trustworthy?
         </p>
 
         <div class="work-ledger reveal">
-          <details class="row work-record" open>
+          <details class="row work-record">
             <summary>
               <span class="work-index cap">01 / Language</span>
               <span class="work-heading">
@@ -356,10 +239,8 @@
             </summary>
             <div class="row-body work-body">
               <div class="work-story prose">
-                <p><span class="sftl cap">Situation</span> People describe a wage cut as “my boss cut my salary,” while legal documents describe the same problem through formal terms and regulations.</p>
-                <p><span class="sftl cap">Friction</span> A direct search can return text that looks relevant while missing the regulation the person actually needs.</p>
-                <p><span class="sftl cap">Turn</span> AWAM retrieves initial context, reformulates the question into legal terminology, then searches again and reranks the evidence.</p>
-                <p><span class="sftl cap">Landing</span> The product, retrieval pipeline, and original research are public. The architecture has changed since the published evaluation, so those scores stay historical until the current build is evaluated again.</p>
+                <p><span class="sftl cap">Risk</span> Everyday questions and legal documents use different language. A direct search can return plausible text while missing the regulation someone actually needs.</p>
+                <p><span class="sftl cap">Decision</span> I built double-hop retrieval: gather context, reformulate the question in legal terms, search again, then rerank. The product and research are public; earlier scores remain historical until the current architecture is evaluated again.</p>
               </div>
               <div class="work-evidence-stack">
                 <a class="project-artifact" href="https://ask-awam.vercel.app/" target="_blank" rel="noopener">
@@ -393,10 +274,8 @@
             </summary>
             <div class="row-body work-body">
               <div class="work-story prose">
-                <p><span class="sftl cap">Situation</span> I tested whether LLMs could score IELTS-like essays consistently enough to support human graders.</p>
-                <p><span class="sftl cap">Friction</span> Both models returned convincing scores. Repeating the judgment exposed different levels of stability, bias, and review workload.</p>
-                <p><span class="sftl cap">Turn</span> I scored 150 essays with two models, five independent runs per essay, then tested agreement, variability, format validity, and human review flags.</p>
-                <p><span class="sftl cap">Landing</span> GPT was more consistent. Qwen scored 74 of 95 matched essays higher and sent 92.2% of outputs to human review. The recommendation was simple: do not mix models within one cohort.</p>
+                <p><span class="sftl cap">Risk</span> Two LLM judges produced convincing essay scores, but repeating the judgment exposed different stability, bias, and review workload.</p>
+                <p><span class="sftl cap">Decision</span> I tested 150 essays with two models across five runs. GPT was more consistent; Qwen scored 74 of 95 matched essays higher and sent 92.2% to human review. Do not mix models within one cohort.</p>
               </div>
               <div class="work-evidence-stack">
                 <a class="project-artifact" href="https://dlzcods.github.io/llm-awe-reliability-fairness/scrolly-report.html" target="_blank" rel="noopener">
@@ -429,10 +308,8 @@
             </summary>
             <div class="row-body work-body">
               <div class="work-story prose">
-                <p><span class="sftl cap">Situation</span> Jaya Koding built a browser-based screening prototype for cataract, diabetic retinopathy, glaucoma, and normal retinal images.</p>
-                <p><span class="sftl cap">Friction</span> One accuracy number hid the class that needed the most scrutiny. Glaucoma recall was 80.33%, below the other three conditions.</p>
-                <p><span class="sftl cap">Turn</span> I fine tuned EfficientNetB0, evaluated precision and recall per class, then integrated the model into the team's web product.</p>
-                <p><span class="sftl cap">Landing</span> The prototype placed first at INVFEST X ISF 9.0 and second at PROXOCORIS International 2025. Strong competition proof, not a claim of clinical validation.</p>
+                <p><span class="sftl cap">Risk</span> Overall accuracy reached 90.64%, but that average hid glaucoma recall at 80.33%.</p>
+                <p><span class="sftl cap">Decision</span> I fine-tuned EfficientNetB0, reviewed precision and recall per class, then integrated it into Jaya Koding's web prototype. The work earned competition placements, not clinical validation.</p>
               </div>
               <div class="work-evidence-stack">
                 <a class="project-artifact" href="https://know-your-sight.vercel.app/" target="_blank" rel="noopener">
@@ -460,27 +337,25 @@
           <span class="work-index cap">Research note / Explainability</span>
           <div>
             <h3>What Grad-CAM showed me about Alzheimer's predictions</h3>
-            <p>A model can be right for the wrong reason. I used Grad-CAM to inspect which image regions influenced a prediction, then wrote down what the heatmap can and cannot prove.</p>
           </div>
           <a href="https://dev.to/dlzcods/how-grad-cam-helped-me-explain-alzheimers-predictions-14n3" target="_blank" rel="noopener">Read note ↗</a>
         </div>
 
         <div class="gate reveal">
           <span class="gate-line"></span>
-          <span class="gate-label">Section reviewed · passed</span>
+          <span class="gate-label">Evidence · inspected</span>
           <span class="gate-dot"></span>
         </div>
       </div>
     </section>
 
-    <!-- ============ 06 FIELD RECORD ============ -->
+    <!-- ============ 03 FIELD RECORD ============ -->
     <section class="block chapter" id="field-record">
       <div class="wrap">
-        <p class="cap accent reveal">06 · Field record</p>
-        <h2 class="reveal">The work had to survive more than a benchmark.</h2>
+        <p class="cap accent reveal">03 · Field record</p>
+        <h2 class="reveal">Built under pressure. Explained in public.</h2>
         <p class="work-intro reveal">
-          Competitions tested how we built under pressure. Invited sessions tested whether I could
-          explain the decisions without hiding behind model jargon.
+          Competitions tested the team. Invited sessions tested whether I could explain the decisions without hiding behind model jargon.
         </p>
 
         <div class="work-ledger field-ledger reveal">
@@ -489,7 +364,7 @@
               <span class="work-index cap">Team execution</span>
               <span class="work-heading">
                 <span class="row-title">Three placements with Jaya Koding</span>
-                <span class="work-thesis">Two first places. One second place. The useful proof is how the team kept shipping under a deadline.</span>
+                <span class="work-thesis">Two first places. One second place. One team shipping against the clock.</span>
               </span>
               <span class="work-toggle cap" aria-hidden="true"></span>
             </summary>
@@ -617,7 +492,7 @@
               <span class="work-index cap">Public communication</span>
               <span class="work-heading">
                 <span class="row-title">Two invited university sessions</span>
-                <span class="work-thesis">A technical decision is not useful if only the person who built it can understand it.</span>
+                <span class="work-thesis">Two university sessions on AI systems, creativity, and manipulation.</span>
               </span>
               <span class="work-toggle cap" aria-hidden="true"></span>
             </summary>
@@ -709,20 +584,17 @@
 
         <div class="gate reveal">
           <span class="gate-line"></span>
-          <span class="gate-label">Section reviewed · passed</span>
+          <span class="gate-label">Field proof · verified</span>
           <span class="gate-dot"></span>
         </div>
       </div>
     </section>
 
-    <!-- ============ 07 WORKING FIT ============ -->
+    <!-- ============ 04 WORKING FIT ============ -->
     <section class="block chapter" id="working-fit">
       <div class="wrap">
-        <p class="cap accent reveal">07 · Working fit</p>
+        <p class="cap accent reveal">04 · Working fit</p>
         <h2 class="reveal">Bring me in when output is moving faster than judgment.</h2>
-        <p class="work-intro fit-intro reveal">
-          A useful engagement usually begins with one of these conditions.
-        </p>
 
         <div class="fit-ledger reveal" aria-label="Conditions where working together is likely to be useful">
           <div class="fit-row">
@@ -735,39 +607,32 @@
           </div>
           <div class="fit-row">
             <span class="fit-index cap">03</span>
-            <p><strong>The demo looks convincing.</strong> You still want evaluation criteria before calling it done.</p>
-          </div>
-          <div class="fit-row">
-            <span class="fit-index cap">04</span>
-            <p><strong>The architecture is still open.</strong> You can accept that GenAI may not be the right tool.</p>
+            <p><strong>The demo looks convincing.</strong> You want evidence before calling it done and can accept that GenAI may not be the right tool.</p>
           </div>
         </div>
 
         <div class="gate reveal">
           <span class="gate-line"></span>
-          <span class="gate-label">Section reviewed · passed</span>
+          <span class="gate-label">Working fit · clear</span>
           <span class="gate-dot"></span>
         </div>
       </div>
     </section>
 
-    <!-- ============ 08 MODEL CARD / CONTACT ============ -->
+    <!-- ============ 05 MODEL CARD / CONTACT ============ -->
     <footer class="block chapter" id="contact">
       <div class="wrap">
-        <p class="cap accent reveal">08 · Model card</p>
+        <p class="cap accent reveal">05 · Model card</p>
         <h2 class="reveal">Documented like everything else I ship.</h2>
         <p class="contact-cta reveal">
           Building with AI and want it to hold up under scrutiny? Talk to me.
-          I answer email written by humans faster.
         </p>
 
         <div class="spec reveal">
-          <div class="sl"><span class="k">name</span><span class="v">Abdiel</span></div>
-          <div class="sl"><span class="k">version</span><span class="v">2.0, the project manager release. 1.0 was the engineer</span></div>
-          <div class="sl"><span class="k">built</span><span class="v">reliable systems across language, judgment, and vision. 2 years in</span></div>
-          <div class="sl"><span class="k">proof</span><span class="v">clients in Singapore and Australia · 3 competition placements with Jaya Koding · published evaluation research</span></div>
-          <div class="sl"><span class="k">status</span><span class="v">shipping, humans in every loop</span></div>
-          <div class="sl"><span class="k">known flaws</span><span class="v">allergic to unmeasured claims. will ask "how do you know?"</span></div>
+          <div class="sl"><span class="k">role</span><span class="v">AI Project Manager @ PERFECT10 AI</span></div>
+          <div class="sl"><span class="k">training</span><span class="v">AI/ML engineer · 2 years</span></div>
+          <div class="sl"><span class="k">operating mode</span><span class="v">AI drafts · humans own decisions · evaluation decides</span></div>
+          <div class="sl"><span class="k">proof</span><span class="v">Singapore and Australia · 3 competition placements · published research</span></div>
           <div class="sl"><span class="k">contact</span><span class="v"><a href="mailto:hafd324@gmail.com">hafd324@gmail.com</a></span></div>
         </div>
 
@@ -784,20 +649,19 @@
 
         <div class="site-foot reveal">
           <div class="diff">
-            <div class="rm"><span class="mk">-</span>made with ❤️ and the latest AI models</div>
             <div class="ad"><span class="mk">+</span>drafted by AI. argued with, corrected, and shipped by a human.</div>
           </div>
           <div class="foot-line">
-            <span>© 2026 <b>Abdiel</b> · v2.0</span>
-            <span>shipped: everything above · rejected: the parts you'll never see</span>
+            <span>© 2026 <b>Muhammad Abdiel Al Hafiz</b></span>
+            <span>abdiel.works</span>
           </div>
         </div>
       </div>
     </footer>
   </main>
 
-  <script src="js/board.js?v=20260731e" defer></script>
-  <script src="js/main.js?v=20260731e" defer></script>
+  <script src="js/board.js?v=20260801b" defer></script>
+  <script src="js/main.js?v=20260801a" defer></script>
   <!-- Cloudflare Web Analytics -->
   <script
     type="module"

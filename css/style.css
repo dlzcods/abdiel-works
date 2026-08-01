@@ -104,7 +104,7 @@ a { color: inherit; }
     margin-bottom: 1.4rem;
 }
 
-/* §03 is a three-beat argument, not one paragraph-sized headline. */
+/* The transition stays a three-beat argument, not one paragraph-sized headline. */
 #turn .turn-heading {
     max-width: none;
     margin: 0 0 2rem;
@@ -134,6 +134,13 @@ a { color: inherit; }
     font-weight: 500;
     line-height: 1.12;
     letter-spacing: -0.025em;
+}
+.turn-story {
+    max-width: 64rem;
+}
+.turn-story p {
+    max-width: 62ch;
+    margin-bottom: 0;
 }
 .prose p {
     max-width: 58ch;
@@ -314,7 +321,7 @@ a { color: inherit; }
 .tally b { color: var(--ink); font-weight: 600; }
 .tally .rejected-n { color: var(--signal); font-weight: 700; }
 
-/* ============ Pipeline log (§03) ============ */
+/* ============ Pipeline log ============ */
 .log {
     font-family: var(--mono);
     font-size: 0.78rem;
@@ -368,24 +375,7 @@ html.js .log .ln:nth-child(4) .st { animation-delay: 4.8s; }
 .diff .ad { opacity: 0.85; }
 .diff .ad .mk { opacity: 0.6; margin-right: 0.5rem; }
 
-/* ============ Principles (§04) ============ */
-.principles { display: grid; gap: 2rem; }
-.principle { border-top: 1px solid var(--line); padding-top: 1.1rem; }
-.principle .cap { display: block; margin-bottom: 0.6rem; }
-.principle h3 {
-    font-size: 1.25rem;
-    font-weight: 600;
-    letter-spacing: -0.015em;
-    margin-bottom: 0.45rem;
-}
-.principle p {
-    font-size: 0.9rem;
-    line-height: 1.6;
-    color: var(--mid);
-    max-width: 44ch;
-}
-
-/* ============ Work ledger (§05) ============ */
+/* ============ Work ledger ============ */
 .index-table { margin-top: 2rem; }
 .work-intro {
     max-width: 55ch;
@@ -633,7 +623,7 @@ html.js .log .ln:nth-child(4) .st { animation-delay: 4.8s; }
     letter-spacing: 0.04em;
 }
 
-/* ============ Field record (§06) ============ */
+/* ============ Field record ============ */
 .field-body { padding: 0 0 0.2rem; }
 .field-item {
     display: grid;
@@ -796,11 +786,10 @@ html.js .log .ln:nth-child(4) .st { animation-delay: 4.8s; }
 }
 .speaker-copy a:hover { color: var(--mid); transform: translateX(3px); }
 
-/* ============ Working fit (§07) ============ */
-.fit-intro { margin-top: -0.35rem; }
+/* ============ Working fit ============ */
 .fit-ledger {
     max-width: 48rem;
-    margin-top: 2.5rem;
+    margin-top: 1.4rem;
     border-top: 2px solid var(--ink);
 }
 .fit-row {
@@ -868,7 +857,7 @@ html:not(.js) .gate-label { opacity: 1; }
 html.js .gate.passed .gate-dot,
 html:not(.js) .gate-dot { opacity: 1; transform: scale(1); }
 
-/* ============ Model card (§07) ============ */
+/* ============ Model card ============ */
 .contact-cta {
     max-width: 52ch;
     font-size: 0.97rem;

@@ -225,6 +225,11 @@
     board.style.overflow = "";
   }
 
+  function boardIsOnScreen() {
+    var rect = board.getBoundingClientRect();
+    return rect.bottom > 0 && rect.top < window.innerHeight;
+  }
+
   function syncLoop() {
     if (boardVisible && !document.hidden) {
       releaseBoardGeometry();
@@ -235,18 +240,40 @@
     }
   }
 
-  stopLoop();
+  function checkBoardVisibility() {
+    var nextVisible = boardIsOnScreen();
+    if (nextVisible === boardVisible) return;
+    boardVisible = nextVisible;
+    syncLoop();
+  }
+
+  var visibilityFrame = null;
+  function scheduleVisibilityCheck() {
+    if (visibilityFrame !== null) return;
+    visibilityFrame = window.requestAnimationFrame(function () {
+      visibilityFrame = null;
+      checkBoardVisibility();
+    });
+  }
+
+  boardVisible = boardIsOnScreen();
+  syncLoop();
 
   if ("IntersectionObserver" in window) {
     var boardObserver = new IntersectionObserver(function (entries) {
       boardVisible = entries[0].isIntersecting;
       syncLoop();
-    }, { threshold: 0.01, rootMargin: "160px 0px" });
+    }, { threshold: 0, rootMargin: "0px" });
     boardObserver.observe(board);
-  } else {
-    boardVisible = true;
-    startLoop();
   }
 
+  window.addEventListener("scroll", scheduleVisibilityCheck, { passive: true });
+  window.addEventListener("resize", function () {
+    if (!boardVisible) {
+      releaseBoardGeometry();
+      freezeBoardGeometry();
+    }
+    scheduleVisibilityCheck();
+  });
   document.addEventListener("visibilitychange", syncLoop);
 })();
