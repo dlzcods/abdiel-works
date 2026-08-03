@@ -111,9 +111,10 @@
     d._reviewTimer = window.setTimeout(() => d.classList.remove("review-pass"), 900);
   }
 
-  function animateRow(d, shouldOpen) {
+  function animateRow(d, shouldOpen, options) {
     const summary = d.querySelector("summary");
     if (!summary) return;
+    const silent = options && options.silent;
 
     let startHeight = d.getBoundingClientRect().height;
     if (d._rowAnimation) {
@@ -133,7 +134,7 @@
       { duration: 440, easing: "cubic-bezier(0.22, 1, 0.36, 1)" }
     );
     d._rowAnimation = animation;
-    if (shouldOpen) reviewPass(d);
+    if (shouldOpen && !silent) reviewPass(d);
 
     animation.finished.then(() => {
       if (d._rowAnimation !== animation) return;
@@ -160,6 +161,8 @@
     const summary = d.querySelector("summary");
     summary.addEventListener("click", (event) => {
       event.preventDefault();
+      const interactionScope = d.closest(".field-entry") || d.closest(".work-ledger");
+      if (interactionScope) interactionScope.dataset.userInteracted = "true";
       const shouldOpen = !d.open;
       if (shouldOpen) {
         rowsInSameLedger(d).forEach((other) => {
@@ -170,6 +173,57 @@
       if (shouldOpen) navigateToOpenedRow(d);
     });
   });
+
+  // Passive readers should see one useful record without needing to guess
+  // that the ledger is interactive. Auto-opening is scoped to each ledger
+  // entry, happens once, never scrolls the page, and yields to user intent.
+  const autoOpenGroups = [
+    {
+      root: document.querySelector("#work .work-ledger"),
+      target: document.querySelector("#work .work-ledger > details.row")
+    },
+    {
+      root: document.querySelector("#field-record .championship-entry"),
+      target: document.querySelector("#field-record .championship-entry")
+    },
+    {
+      root: document.querySelector("#field-record .speaker-entry"),
+      target: document.querySelector("#field-record .speaker-entry")
+    }
+  ].filter((group) => group.root && group.target);
+
+  function autoOpenGroup(group) {
+    if (group.root.dataset.autoOpened || group.root.dataset.userInteracted) return;
+    const rect = group.root.getBoundingClientRect();
+    if (rect.top >= window.innerHeight * 0.78 || rect.bottom <= 0) return;
+
+    group.root.dataset.autoOpened = "true";
+    window.setTimeout(() => {
+      if (!group.root.dataset.userInteracted && !group.target.open) {
+        if (reduceMotion) group.target.open = true;
+        else animateRow(group.target, true, { silent: true });
+      }
+    }, 180);
+  }
+
+  if ("IntersectionObserver" in window) {
+    const autoOpenObserver = new IntersectionObserver((entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          const group = autoOpenGroups.find((candidate) => candidate.root === entry.target);
+          if (group) autoOpenGroup(group);
+        }
+      });
+    }, { rootMargin: "0px 0px -22% 0px", threshold: 0.08 });
+    autoOpenGroups.forEach((group) => autoOpenObserver.observe(group.root));
+  }
+
+  // Position fallback keeps the behavior reliable in embedded/throttled tabs.
+  const autoOpenSweep = () => autoOpenGroups.forEach(autoOpenGroup);
+  window.addEventListener("scroll", autoOpenSweep, { passive: true });
+  window.addEventListener("resize", autoOpenSweep);
+  window.setInterval(autoOpenSweep, 700);
+  autoOpenSweep();
 
   // --- Documentary carousels: auto-run only while visible, with touch controls ---
   const carousels = document.querySelectorAll("[data-carousel]");
