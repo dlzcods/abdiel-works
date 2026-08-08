@@ -60,7 +60,6 @@
         "alternateName": "Abdiel",
         "jobTitle": ["AI Project Manager", "AI/ML Engineer"],
         "description": "AI Project Manager and AI/ML Engineer running teams where AI drafts, humans direct, and nothing ships unmeasured.",
-        "email": "mailto:hafd324@gmail.com",
         "url": "https://abdiel.works/",
         "worksFor": {
           "@type": "Organization",
@@ -729,8 +728,41 @@
           <div class="sl"><span class="k">training</span><span class="v">AI/ML engineer · 2 years</span></div>
           <div class="sl"><span class="k">operating mode</span><span class="v">AI drafts · humans own decisions · evaluation decides</span></div>
           <div class="sl"><span class="k">proof</span><span class="v">Singapore and Australia · 3 competition placements · published research</span></div>
-          <div class="sl"><span class="k">contact</span><span class="v"><a href="mailto:hafd324@gmail.com">hafd324@gmail.com</a></span></div>
+          <div class="sl"><span class="k">contact</span><span class="v">Brief form below · direct email kept off the page</span></div>
         </div>
+
+        <form class="contact-form reveal" id="contact-form" action="/api/contact" method="post" novalidate>
+          <div class="contact-form-head">
+            <p class="cap">Start a conversation</p>
+            <p>Tell me what you are building, where the uncertainty is, and what needs to be decided.</p>
+          </div>
+
+          <div class="contact-fields">
+            <label>
+              <span class="cap">Your name</span>
+              <input name="name" type="text" autocomplete="name" maxlength="80" required />
+            </label>
+            <label>
+              <span class="cap">Your email</span>
+              <input name="email" type="email" autocomplete="email" maxlength="254" required />
+            </label>
+            <label class="contact-message">
+              <span class="cap">What are you working on?</span>
+              <textarea name="message" rows="5" maxlength="3000" required></textarea>
+            </label>
+          </div>
+
+          <label class="contact-honeypot" aria-hidden="true">
+            <span>Leave this empty</span>
+            <input name="website" type="text" tabindex="-1" autocomplete="off" />
+          </label>
+
+          <div class="contact-turnstile" id="contact-turnstile" aria-label="Spam protection"></div>
+          <div class="contact-form-actions">
+            <button class="contact-submit" type="submit">Send the context <span aria-hidden="true">↗</span></button>
+            <p class="contact-status" id="contact-status" aria-live="polite"></p>
+          </div>
+        </form>
 
         <div class="index-table contact-table reveal">
           <a class="row row-link" href="https://www.linkedin.com/in/muhammad-abdiel-al-hafiz/" target="_blank" rel="noopener">
@@ -758,6 +790,7 @@
 
   <script src="js/board.js?v=20260801b" defer></script>
   <script src="js/main.js?v=20260803a" defer></script>
+  <script src="js/contact.js?v=20260808a" defer></script>
   <!-- Cloudflare Web Analytics -->
   <script
     type="module"

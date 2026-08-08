@@ -5,6 +5,7 @@ dist/
 .wrangler/
 .DS_Store
 *.tgz
+*.tsbuildinfo
 .claude/
 .openai/
 content-research/
