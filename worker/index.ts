@@ -76,8 +76,10 @@ async function verifyTurnstile(token: string, request: Request, env: Env) {
   return payload.success === true;
 }
 
-async function sendContactEmail(name: string, email: string, message: string, env: Env) {
-  if (!env.CONTACT_FROM_EMAIL || !env.CONTACT_TO_EMAIL) return false;
+type ContactDelivery = { ok: true } | { ok: false; code?: string };
+
+async function sendContactEmail(name: string, email: string, message: string, env: Env): Promise<ContactDelivery> {
+  if (!env.CONTACT_FROM_EMAIL || !env.CONTACT_TO_EMAIL) return { ok: false, code: "CONTACT_CONFIGURATION_MISSING" };
 
   try {
     await env.EMAIL.send({
@@ -87,10 +89,13 @@ async function sendContactEmail(name: string, email: string, message: string, en
       subject: `Portfolio contact from ${name}`,
       text: `Name: ${name}\nEmail: ${email}\n\n${message}`,
     });
-    return true;
+    return { ok: true };
   } catch (error) {
-    console.error("Contact email could not be delivered.", error);
-    return false;
+    const code = error && typeof error === "object" && "code" in error && typeof error.code === "string"
+      ? error.code
+      : undefined;
+    console.error("Contact email could not be delivered.", { code, error });
+    return { ok: false, code };
   }
 }
 
@@ -115,8 +120,13 @@ async function handleContact(request: Request, url: URL, env: Env) {
   if (!(await verifyTurnstile(turnstileToken, request, env))) {
     return responseJson({ error: "Spam protection could not verify this submission. Please try again." }, 403);
   }
-  if (!(await sendContactEmail(name, email, message, env))) {
-    return responseJson({ error: "The message could not be delivered. Please try again shortly." }, 502);
+  const delivery = await sendContactEmail(name, email, message, env);
+  if (!delivery.ok) {
+    return responseJson({
+      error: delivery.code
+        ? `Email delivery is not configured yet (${delivery.code}).`
+        : "The message could not be delivered. Please try again shortly.",
+    }, 502);
   }
 
   return responseJson({ ok: true, message: "Context received. I will get back to you soon." });
