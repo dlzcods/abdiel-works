@@ -2,21 +2,11 @@ interface AssetBinding {
   fetch(request: Request): Promise<Response>;
 }
 
-interface EmailBinding {
-  send(message: {
-    to: string;
-    from: string;
-    subject: string;
-    text: string;
-    replyTo?: string;
-  }): Promise<{ messageId: string }>;
-}
-
 interface Env {
   ASSETS: AssetBinding;
-  EMAIL: EmailBinding;
   TURNSTILE_SECRET_KEY?: string;
   TURNSTILE_SITE_KEY?: string;
+  RESEND_API_KEY?: string;
   CONTACT_FROM_EMAIL?: string;
   CONTACT_TO_EMAIL?: string;
 }
@@ -79,16 +69,29 @@ async function verifyTurnstile(token: string, request: Request, env: Env) {
 type ContactDelivery = { ok: true } | { ok: false; code?: string };
 
 async function sendContactEmail(name: string, email: string, message: string, env: Env): Promise<ContactDelivery> {
-  if (!env.CONTACT_FROM_EMAIL || !env.CONTACT_TO_EMAIL) return { ok: false, code: "CONTACT_CONFIGURATION_MISSING" };
+  if (!env.RESEND_API_KEY || !env.CONTACT_FROM_EMAIL || !env.CONTACT_TO_EMAIL) {
+    return { ok: false, code: "CONTACT_CONFIGURATION_MISSING" };
+  }
 
   try {
-    await env.EMAIL.send({
-      from: env.CONTACT_FROM_EMAIL,
-      to: env.CONTACT_TO_EMAIL,
-      replyTo: email,
-      subject: `Portfolio contact from ${name}`,
-      text: `Name: ${name}\nEmail: ${email}\n\n${message}`,
+    const response = await fetch("https://api.resend.com/emails", {
+      method: "POST",
+      headers: {
+        Authorization: `Bearer ${env.RESEND_API_KEY}`,
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        from: env.CONTACT_FROM_EMAIL,
+        to: [env.CONTACT_TO_EMAIL],
+        reply_to: email,
+        subject: `Portfolio contact from ${name}`,
+        text: `Name: ${name}\nEmail: ${email}\n\n${message}`,
+      }),
     });
+    if (!response.ok) {
+      const payload = (await response.json().catch(() => ({}))) as { name?: string };
+      return { ok: false, code: payload.name || `RESEND_${response.status}` };
+    }
     return { ok: true };
   } catch (error) {
     const code = error && typeof error === "object" && "code" in error && typeof error.code === "string"
