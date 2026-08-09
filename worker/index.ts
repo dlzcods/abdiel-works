@@ -57,18 +57,22 @@ function sameOrigin(request: Request, url: URL) {
 async function verifyTurnstile(token: string, request: Request, env: Env) {
   if (!env.TURNSTILE_SECRET_KEY) return false;
 
+  const formData = new URLSearchParams({
+    secret: env.TURNSTILE_SECRET_KEY,
+    response: token,
+  });
+  const remoteIp = request.headers.get("CF-Connecting-IP");
+  if (remoteIp) formData.set("remoteip", remoteIp);
+
   const result = await fetch("https://challenges.cloudflare.com/turnstile/v0/siteverify", {
     method: "POST",
-    headers: { "Content-Type": "application/json" },
-    body: JSON.stringify({
-      secret: env.TURNSTILE_SECRET_KEY,
-      response: token,
-      remoteip: request.headers.get("CF-Connecting-IP") || undefined,
-    }),
+    headers: { "Content-Type": "application/x-www-form-urlencoded" },
+    body: formData,
   });
 
   if (!result.ok) return false;
-  const payload = (await result.json()) as { success?: boolean };
+  const payload = (await result.json()) as { success?: boolean; "error-codes"?: string[] };
+  if (!payload.success) console.error("Turnstile verification failed.", payload["error-codes"] || []);
   return payload.success === true;
 }
 

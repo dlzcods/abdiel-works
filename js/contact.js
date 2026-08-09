@@ -14,6 +14,11 @@
     status.classList.toggle("is-success", type === "success");
   }
 
+  function resetTurnstile() {
+    turnstileToken = "";
+    if (window.turnstile) window.turnstile.reset();
+  }
+
   function loadTurnstile(siteKey) {
     if (!siteKey) {
       turnstileTarget.innerHTML = "<p class='contact-turnstile-note'>Spam protection activates when the live form is configured.</p>";
@@ -29,8 +34,8 @@
         sitekey: siteKey,
         theme: "light",
         callback: function (token) { turnstileToken = token; },
-        "expired-callback": function () { turnstileToken = ""; },
-        "error-callback": function () { turnstileToken = ""; },
+        "expired-callback": resetTurnstile,
+        "error-callback": resetTurnstile,
       });
     };
     document.head.appendChild(script);
@@ -66,10 +71,13 @@
       .then(function (result) {
         if (!result.ok) throw new Error(result.body.error || "Unable to send the message.");
         form.reset();
-        turnstileToken = "";
+        resetTurnstile();
         setStatus(result.body.message || "Context received. I will get back to you soon.", "success");
       })
-      .catch(function (error) { setStatus(error.message || "Unable to send the message.", "error"); })
+      .catch(function (error) {
+        resetTurnstile();
+        setStatus(error.message || "Unable to send the message.", "error");
+      })
       .finally(function () { submit.disabled = false; });
   });
 })();
