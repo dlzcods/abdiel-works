@@ -768,6 +768,9 @@ html.js .log .ln:nth-child(4) .st { animation-delay: 4.8s; }
     color: var(--ink);
     text-decoration: none;
 }
+.project-artifact--status {
+    border-bottom: 1px solid var(--line);
+}
 .artifact-head {
     display: flex;
     justify-content: space-between;
@@ -793,6 +796,31 @@ html.js .log .ln:nth-child(4) .st { animation-delay: 4.8s; }
 .project-artifact:focus-visible {
     outline: 2px solid var(--ink);
     outline-offset: 4px;
+}
+.awam-current-state {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0.7rem;
+    max-width: 29rem;
+    margin-top: 1.75rem;
+    padding: 0.95rem 0 0.15rem;
+    border-top: 1px solid var(--ink);
+}
+.awam-current-state > span { color: var(--mid); }
+.awam-current-state strong {
+    max-width: 23ch;
+    font-size: clamp(1.12rem, 1.75vw, 1.35rem);
+    line-height: 1.08;
+    letter-spacing: -0.035em;
+}
+.awam-current-state > span:last-child {
+    color: var(--mid);
+    font-family: var(--mono);
+    font-size: 0.6rem;
+    line-height: 1.4;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
 }
 .evidence {
     align-self: start;
@@ -1469,6 +1497,7 @@ html:not(.js) .gate-dot { opacity: 1; transform: scale(1); }
     .work-evidence-stack { grid-row: 1; }
     .work-story { grid-row: 2; }
     .work-body .project-links { grid-row: 3; }
+    .awam-current-state { max-width: none; margin-top: 1.5rem; }
     .evidence { grid-column: 1; }
     .project-links { grid-column: 1; flex-direction: column; align-items: flex-start; }
     .research-note { grid-template-columns: 1fr; gap: 0.75rem; margin-top: 2.2rem; }

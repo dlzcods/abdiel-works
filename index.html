@@ -84,18 +84,6 @@
           "https://www.instagram.com/hfz.abdiel/",
           "https://dev.to/dlzcods"
         ]
-      },
-      {
-        "@type": "SoftwareSourceCode",
-        "@id": "https://abdiel.works/#awam",
-        "name": "AWAM",
-        "alternateName": "Accessible Wisdom for Law & Advocacy Matters",
-        "description": "An Indonesian legal RAG system that reformulates everyday questions into legal terminology before retrieving and reranking source material.",
-        "codeRepository": "https://github.com/dlzcods/awam",
-        "url": "https://ask-awam.vercel.app/",
-        "programmingLanguage": ["Python", "TypeScript"],
-        "runtimePlatform": "Web",
-        "author": { "@id": "https://abdiel.works/#person" }
       }
     ]
   }
@@ -103,7 +91,7 @@
 
   <link rel="preconnect" href="https://api.fontshare.com" />
   <link href="https://api.fontshare.com/v2/css?f[]=switzer@400,500,600,700&amp;display=swap" rel="stylesheet" />
-  <link rel="stylesheet" href="css/style.css?v=20260803i" />
+  <link rel="stylesheet" href="css/style.css?v=20260811a" />
 
   <script>document.documentElement.classList.add("js");</script>
 </head>
@@ -325,32 +313,35 @@
             <summary>
               <span class="work-index cap">01 / Language</span>
               <span class="work-heading">
-                <span class="row-title">AWAM: everyday questions, legal language</span>
+                <span class="row-title">AWAM: legal questions need sources, not confidence</span>
                 <span class="work-thesis">Accessible Wisdom for Law &amp; Advocacy Matters</span>
               </span>
               <span class="work-toggle cap" aria-hidden="true"></span>
             </summary>
             <div class="row-body work-body">
               <div class="work-story prose">
-                <p><span class="sftl cap">Risk</span> Everyday questions and legal documents use different language. A direct search can return plausible text while missing the regulation someone actually needs.</p>
-                <p><span class="sftl cap">Decision</span> I built double-hop retrieval: gather context, reformulate the question in legal terms, search again, then rerank. The product and research are public; earlier scores remain historical until the current architecture is evaluated again.</p>
+                <p><span class="sftl cap">Risk</span> A legal answer can sound useful while resting on a source the person reading it cannot inspect.</p>
+                <p><span class="sftl cap">Decision</span> AWAM maps everyday questions into legal language, retrieves cited material, and leaves the final judgment outside the model. I am rebuilding the corpus around official and permission-reviewed materials before reopening it.</p>
+                <div class="awam-current-state">
+                  <span class="cap">Current state</span>
+                  <strong>Sources stay inspectable. Answers stay provisional.</strong>
+                  <span>Corpus rebuilding · not legal advice</span>
+                </div>
               </div>
               <div class="work-evidence-stack">
-                <a class="project-artifact" href="https://ask-awam.vercel.app/" target="_blank" rel="noopener">
-                  <span class="artifact-head cap"><span>Public artifact</span><span>Open product ↗</span></span>
+                <div class="project-artifact project-artifact--status" aria-label="AWAM source review status">
+                  <span class="artifact-head cap"><span>Historical prototype interface</span><span>Not live</span></span>
                   <img src="assets/img-project/awam-1.jpg" width="1280" height="726" loading="lazy" decoding="async"
-                       alt="AWAM interface showing an everyday employment question answered with a cited Indonesian legal source." />
-                </a>
+                       alt="Historical AWAM prototype interface. The current source corpus is under provenance review." />
+                </div>
                 <aside class="evidence" aria-label="Legal RAG evaluation record">
-                  <div><span>System</span><strong>Indonesian legal RAG</strong></div>
-                  <div><span>Core</span><strong>Double-hop reformulation</strong></div>
-                  <div><span>Citation path</span><strong>Deterministic source matching</strong></div>
-                  <div><span>Status</span><strong>Public · re-evaluation due</strong></div>
+                  <div><span>System</span><strong>Legal-information prototype</strong></div>
+                  <div><span>Core</span><strong>Query reformulation + retrieval</strong></div>
+                  <div><span>Output</span><strong>Source path stays visible</strong></div>
+                  <div><span>Status</span><strong>Corpus under provenance review</strong></div>
                 </aside>
               </div>
               <div class="project-links">
-                <a href="https://ask-awam.vercel.app/" target="_blank" rel="noopener">Try AWAM ↗</a>
-                <a href="https://github.com/dlzcods/awam" target="_blank" rel="noopener">Inspect source ↗</a>
                 <a href="https://acsit.org/index.php/jiite/article/view/113" target="_blank" rel="noopener">Read published research ↗</a>
               </div>
             </div>
