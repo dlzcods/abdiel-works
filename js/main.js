@@ -5,6 +5,35 @@
 (function () {
   const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
 
+  // --- Human ownership marker: animate only while the hero is visible ---
+  const humanMark = document.querySelector(".human-mark");
+  const hero = document.getElementById("hero");
+  let humanMarkTimer = null;
+
+  function showReviewedState() {
+    if (!humanMark || reduceMotion) return;
+    window.clearTimeout(humanMarkTimer);
+    humanMark.classList.add("is-reviewed");
+    humanMarkTimer = window.setTimeout(() => humanMark.classList.remove("is-reviewed"), 1500);
+  }
+
+  if (humanMark && !humanMark.hidden && hero) {
+    humanMark.addEventListener("click", showReviewedState);
+
+    if (!reduceMotion && "IntersectionObserver" in window) {
+      const humanMarkObserver = new IntersectionObserver((entries) => {
+        humanMark.classList.toggle("is-visible", entries[0].isIntersecting);
+        if (!entries[0].isIntersecting) {
+          window.clearTimeout(humanMarkTimer);
+          humanMark.classList.remove("is-reviewed");
+        }
+      }, { threshold: 0.2 });
+      humanMarkObserver.observe(hero);
+    } else if (!reduceMotion) {
+      humanMark.classList.add("is-visible");
+    }
+  }
+
   // --- Scroll progress bar ---
   const fill = document.getElementById("progress-fill");
   function updateProgress() {
