@@ -13,6 +13,7 @@ const entries = [
   "css",
   "js",
   "assets/img-project",
+  "assets/portrait",
   "assets/championships-web",
   "assets/speaker-web",
 ];
