@@ -7,7 +7,7 @@
   "use strict";
   var reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
   var board = document.getElementById("board");
-  if (!board || reduceMotion) return; // static seeded state stays
+  if (!board || board.closest("[hidden]") || reduceMotion) return;
 
   var colEls = {};
   board.querySelectorAll(".col").forEach(function (c) { colEls[c.dataset.col] = c; });
