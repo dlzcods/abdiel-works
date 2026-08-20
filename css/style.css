@@ -328,8 +328,9 @@ a { color: inherit; }
 .human-mark { display: none; }
 .human-mark[hidden] { display: none !important; }
 .scroll-cue {
-    display: inline-block;
-    margin-top: 2.4rem;
+    display: block;
+    width: fit-content;
+    margin: 3.8rem auto 0;
     text-decoration: none;
     color: var(--mid);
 }
