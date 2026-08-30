@@ -434,60 +434,6 @@ a { color: inherit; }
 .tally b { color: var(--ink); font-weight: 600; }
 .tally .rejected-n { color: var(--signal); font-weight: 700; }
 
-/* ============ Pipeline log ============ */
-.log {
-    font-family: var(--mono);
-    font-size: 0.78rem;
-    margin-top: 1.6rem;
-    border-top: 1px solid var(--line);
-    max-width: 44rem;
-}
-.log .ln {
-    display: flex;
-    align-items: baseline;
-    gap: 0.55rem;
-    padding: 0.55rem 0;
-    border-bottom: 1px dashed var(--line);
-}
-.log .tg { color: var(--mid); width: 1rem; flex-shrink: 0; }
-.log .nm { flex-shrink: 0; white-space: nowrap; }
-.log .nm i { font-style: normal; color: var(--mid); }
-.log .ld {
-    flex: 1;
-    border-bottom: 1px dotted var(--mid);
-    opacity: 0.45;
-    transform: translateY(-0.3em);
-    margin: 0 0.3rem;
-    min-width: 1.5rem;
-}
-.log .st { flex-shrink: 0; color: var(--mid); white-space: nowrap; }
-html.js .log .st {
-    opacity: 0.4;
-    animation: stPulse 6.4s ease-in-out infinite;
-}
-html.js .log .ln:nth-child(2) .st { animation-delay: 1.6s; }
-html.js .log .ln:nth-child(3) .st { animation-delay: 3.2s; }
-html.js .log .ln:nth-child(4) .st { animation-delay: 4.8s; }
-@keyframes stPulse {
-    0% { opacity: 0.4; color: var(--mid); }
-    3% { opacity: 1; color: var(--ink); }
-    22% { opacity: 1; color: var(--ink); }
-    30% { opacity: 0.4; color: var(--mid); }
-    100% { opacity: 0.4; color: var(--mid); }
-}
-
-/* ============ Diff blocks ============ */
-.diff {
-    font-family: var(--mono);
-    font-size: 0.78rem;
-    margin-top: 1.2rem;
-    line-height: 1.9;
-}
-.diff .rm { color: var(--signal); }
-.diff .rm .mk { opacity: 0.75; margin-right: 0.5rem; }
-.diff .ad { opacity: 0.85; }
-.diff .ad .mk { opacity: 0.6; margin-right: 0.5rem; }
-
 /* ============ Work ledger ============ */
 .index-table { margin-top: 2rem; }
 .work-intro {
@@ -601,10 +547,22 @@ html.js .log .ln:nth-child(4) .st { animation-delay: 4.8s; }
 }
 .work-toggle::after { content: "inspect +"; }
 .work-record[open] .work-toggle::after { content: "close −"; }
+#work .work-toggle::after { content: "view record +"; }
+#work .work-record[open] .work-toggle::after { content: "close record −"; }
+#work .work-record:first-child .work-toggle::after { content: "start here ↓"; }
+#work .work-record:first-child[open] .work-toggle::after { content: "close case −"; }
 .field-entry .work-toggle::after { content: "open archive +"; }
 .field-entry[open] .work-toggle::after { content: "close archive −"; }
+.championship-entry .work-toggle::after { content: "view placements +"; }
+.championship-entry[open] .work-toggle::after { content: "close placements −"; }
 .speaker-entry .work-toggle::after { content: "view sessions +"; }
 .speaker-entry[open] .work-toggle::after { content: "close sessions −"; }
+/* The field record has two distinct acts. Give public communication a real
+   editorial break so it is not read as a fourth competition entry. */
+.speaker-entry {
+    margin-top: clamp(2.75rem, 6vw, 4.5rem);
+    border-top: 2px solid var(--ink);
+}
 .work-record[open] summary { border-bottom: 1px solid var(--line); }
 .work-record.is-animating { will-change: height; }
 .work-record.review-pass .row-body::before {
@@ -1044,6 +1002,7 @@ html.js .log .ln:nth-child(4) .st { animation-delay: 4.8s; }
     border-bottom: 1px dashed var(--line);
 }
 .speaker-event:last-child { border-bottom: 0; }
+.championship-event { padding-block: 1.75rem; }
 .speaker-carousel { min-width: 0; }
 .speaker-viewport {
     position: relative;
@@ -1352,7 +1311,14 @@ html:not(.js) .gate-dot { opacity: 1; transform: scale(1); }
     border-top: 2px solid var(--ink);
     padding: 1.4rem 0 3rem;
 }
-.site-foot .diff { margin-top: 0; }
+.site-foot .diff {
+    margin-top: 0;
+    font-family: var(--mono);
+    font-size: 0.78rem;
+    line-height: 1.9;
+}
+.site-foot .diff .ad { opacity: 0.85; }
+.site-foot .diff .mk { opacity: 0.6; margin-right: 0.5rem; }
 .site-foot .diff .rm {
     text-decoration: line-through;
     text-decoration-thickness: 1px;
@@ -1783,13 +1749,6 @@ html:not(.js) .gate-dot { opacity: 1; transform: scale(1); }
     .spec .sl { flex-direction: column; gap: 0.15rem; }
     .spec .k { width: auto; }
     .foot-line { flex-direction: column; gap: 0.5rem; }
-    /* pipeline log: labels wrap, glosses drop to their own line, no leaders,
-       status always on its own right-aligned line */
-    .log .ln { flex-wrap: wrap; row-gap: 0.15rem; }
-    .log .nm { white-space: normal; flex: 1 1 auto; min-width: 0; }
-    .log .nm i { display: block; }
-    .log .ld { display: none; }
-    .log .st { flex-basis: 100%; text-align: right; }
     .sftl { display: block; width: auto; margin-bottom: 0.15rem; }
     .work-record summary {
         display: grid;
@@ -1816,6 +1775,8 @@ html:not(.js) .gate-dot { opacity: 1; transform: scale(1); }
         gap: 0.9rem;
         padding: 1.25rem 0 1.4rem;
     }
+    .speaker-entry { margin-top: 2.5rem; }
+    .championship-event { padding-block: 1.45rem; }
     .speaker-copy { padding-top: 0; }
     .speaker-status {
         padding-right: 0.3rem;
@@ -1865,7 +1826,6 @@ html:not(.js) .gate-dot { opacity: 1; transform: scale(1); }
     html.js .gate-line { transform: scaleX(1); transition: none; }
     html.js .gate-label { opacity: 1; transition: none; }
     html.js .gate-dot { opacity: 1; transform: scale(1); transition: none; }
-    html.js .log .st { animation: none; opacity: 1; }
     .card, .card::after { transition: none !important; }
     .row summary, .row-link { transition: none; }
     .work-record.review-pass .row-body::before,
