@@ -329,7 +329,77 @@
         <div class="work-ledger reveal">
           <details class="row work-record">
             <summary>
-              <span class="work-index cap">01 / Language</span>
+              <span class="work-index cap">01 / Published research</span>
+              <span class="work-heading">
+                <span class="row-title">When two LLM judges disagreed</span>
+                <span class="work-thesis">A score is only useful when it survives being repeated.</span>
+              </span>
+              <span class="work-toggle cap" aria-hidden="true"></span>
+            </summary>
+            <div class="row-body work-body">
+              <div class="work-story prose">
+                <p><span class="sftl cap">Risk</span> Two LLM judges produced convincing essay scores, but repeating the judgment exposed different stability, bias, and review workload.</p>
+                <p><span class="sftl cap">Decision</span> I compared GPT OSS 120B and Qwen3-32B across five runs of 150 IELTS-like essays, then tested reliability, score variation, and confidence-based routing before deciding where human review still had to stay.</p>
+              </div>
+              <div class="work-evidence-stack">
+                <a class="project-artifact" href="https://ejurnal.umri.ac.id/index.php/SEIS/article/view/11478" target="_blank" rel="noopener">
+                  <span class="artifact-head cap"><span>Published research</span><span>Read paper ↗</span></span>
+                  <img src="assets/img-project/research-llm.jpg" width="1280" height="726" loading="lazy" decoding="async"
+                       alt="Visual research report asking whether human review can mitigate bias in LLM essay scoring." />
+                </a>
+                <aside class="evidence" aria-label="Published essay scoring evaluation record">
+                  <div><span>Corpus</span><strong>150 IELTS-like essays</strong></div>
+                  <div><span>Protocol</span><strong>2 models × 5 runs</strong></div>
+                  <div><span>GPT OSS 120B</span><strong>ICC 0.94</strong></div>
+                  <div><span>Qwen3-32B</span><strong>ICC 0.84</strong></div>
+                </aside>
+              </div>
+              <div class="project-links">
+                <a href="https://ejurnal.umri.ac.id/index.php/SEIS/article/view/11478" target="_blank" rel="noopener">Read published paper ↗</a>
+                <a href="https://dlzcods.github.io/llm-awe-reliability-fairness/scrolly-report.html" target="_blank" rel="noopener">Open visual report ↗</a>
+                <a href="https://github.com/dlzcods/llm-awe-reliability-fairness" target="_blank" rel="noopener">Inspect research repository ↗</a>
+              </div>
+            </div>
+          </details>
+
+          <details class="row work-record">
+            <summary>
+              <span class="work-index cap">02 / Vision</span>
+              <span class="work-heading">
+                <span class="row-title">Know Your Sight: accuracy was not the final review</span>
+                <span class="work-thesis">90.64% looked good. Glaucoma recall told us where it was not enough.</span>
+              </span>
+              <span class="work-toggle cap" aria-hidden="true"></span>
+            </summary>
+            <div class="row-body work-body">
+              <div class="work-story prose">
+                <p><span class="sftl cap">Risk</span> Overall accuracy reached 90.64%, but that average hid glaucoma recall at 80.33%.</p>
+                <p><span class="sftl cap">Decision</span> I fine-tuned EfficientNetB0, reviewed precision and recall per class, then integrated it into Jaya Koding's web prototype. The work earned competition placements, not clinical validation.</p>
+              </div>
+              <div class="work-evidence-stack">
+                <a class="project-artifact" href="https://know-your-sight.vercel.app/" target="_blank" rel="noopener">
+                  <span class="artifact-head cap"><span>Public artifact</span><span>Open product ↗</span></span>
+                  <img src="assets/img-project/sight.jpg" width="1280" height="726" loading="lazy" decoding="async"
+                       alt="Know Your Sight interface presenting an AI-assisted eye disease screening prototype." />
+                </a>
+                <aside class="evidence" aria-label="Know Your Sight evaluation record">
+                  <div><span>Dataset</span><strong>4,217 images</strong></div>
+                  <div><span>Held-out test</span><strong>844 images</strong></div>
+                  <div><span>Accuracy</span><strong>90.64%</strong></div>
+                  <div><span>Glaucoma recall</span><strong>80.33%</strong></div>
+                </aside>
+              </div>
+              <div class="project-links">
+                <a href="https://know-your-sight.vercel.app/" target="_blank" rel="noopener">Open product ↗</a>
+                <a href="https://github.com/dlzcods/eye-disease-classification" target="_blank" rel="noopener">Inspect repository ↗</a>
+                <a href="https://github.com/dlzcods/eye-disease-classification/blob/main/notebook/eye_diseases_classification_4x.ipynb" target="_blank" rel="noopener">Read notebook ↗</a>
+              </div>
+            </div>
+          </details>
+
+          <details class="row work-record">
+            <summary>
+              <span class="work-index cap">03 / Language</span>
               <span class="work-heading">
                 <span class="row-title">AWAM: legal questions need sources, not confidence</span>
                 <span class="work-thesis">Accessible Wisdom for Law &amp; Advocacy Matters</span>
@@ -361,75 +431,6 @@
               </div>
               <div class="project-links">
                 <a href="https://acsit.org/index.php/jiite/article/view/113" target="_blank" rel="noopener">Read published research ↗</a>
-              </div>
-            </div>
-          </details>
-
-          <details class="row work-record">
-            <summary>
-              <span class="work-index cap">02 / Judgment</span>
-              <span class="work-heading">
-                <span class="row-title">When two LLM judges disagreed</span>
-                <span class="work-thesis">A score is only useful when it survives being repeated.</span>
-              </span>
-              <span class="work-toggle cap" aria-hidden="true"></span>
-            </summary>
-            <div class="row-body work-body">
-              <div class="work-story prose">
-                <p><span class="sftl cap">Risk</span> Two LLM judges produced convincing essay scores, but repeating the judgment exposed different stability, bias, and review workload.</p>
-                <p><span class="sftl cap">Decision</span> I tested 150 essays with two models across five runs. GPT was more consistent; Qwen scored 74 of 95 matched essays higher and sent 92.2% to human review. Do not mix models within one cohort.</p>
-              </div>
-              <div class="work-evidence-stack">
-                <a class="project-artifact" href="https://dlzcods.github.io/llm-awe-reliability-fairness/scrolly-report.html" target="_blank" rel="noopener">
-                  <span class="artifact-head cap"><span>Public artifact</span><span>Open report ↗</span></span>
-                  <img src="assets/img-project/research-llm.jpg" width="1280" height="726" loading="lazy" decoding="async"
-                       alt="Visual research report asking whether human review can mitigate bias in LLM essay scoring." />
-                </a>
-                <aside class="evidence" aria-label="Essay scoring evaluation record">
-                  <div><span>Corpus</span><strong>150 essays</strong></div>
-                  <div><span>Protocol</span><strong>2 models × 5 runs</strong></div>
-                  <div><span>GPT consistency</span><strong>ICC 0.943</strong></div>
-                  <div><span>Qwen consistency</span><strong>ICC 0.844</strong></div>
-                </aside>
-              </div>
-              <div class="project-links">
-                <a href="https://dlzcods.github.io/llm-awe-reliability-fairness/scrolly-report.html" target="_blank" rel="noopener">Open visual report ↗</a>
-                <a href="https://github.com/dlzcods/llm-awe-reliability-fairness" target="_blank" rel="noopener">Inspect research repository ↗</a>
-              </div>
-            </div>
-          </details>
-
-          <details class="row work-record">
-            <summary>
-              <span class="work-index cap">03 / Vision</span>
-              <span class="work-heading">
-                <span class="row-title">Know Your Sight: accuracy was not the final review</span>
-                <span class="work-thesis">90.64% looked good. Glaucoma recall told us where it was not enough.</span>
-              </span>
-              <span class="work-toggle cap" aria-hidden="true"></span>
-            </summary>
-            <div class="row-body work-body">
-              <div class="work-story prose">
-                <p><span class="sftl cap">Risk</span> Overall accuracy reached 90.64%, but that average hid glaucoma recall at 80.33%.</p>
-                <p><span class="sftl cap">Decision</span> I fine-tuned EfficientNetB0, reviewed precision and recall per class, then integrated it into Jaya Koding's web prototype. The work earned competition placements, not clinical validation.</p>
-              </div>
-              <div class="work-evidence-stack">
-                <a class="project-artifact" href="https://know-your-sight.vercel.app/" target="_blank" rel="noopener">
-                  <span class="artifact-head cap"><span>Public artifact</span><span>Open product ↗</span></span>
-                  <img src="assets/img-project/sight.jpg" width="1280" height="726" loading="lazy" decoding="async"
-                       alt="Know Your Sight interface presenting an AI-assisted eye disease screening prototype." />
-                </a>
-                <aside class="evidence" aria-label="Know Your Sight evaluation record">
-                  <div><span>Dataset</span><strong>4,217 images</strong></div>
-                  <div><span>Held-out test</span><strong>844 images</strong></div>
-                  <div><span>Accuracy</span><strong>90.64%</strong></div>
-                  <div><span>Glaucoma recall</span><strong>80.33%</strong></div>
-                </aside>
-              </div>
-              <div class="project-links">
-                <a href="https://know-your-sight.vercel.app/" target="_blank" rel="noopener">Open product ↗</a>
-                <a href="https://github.com/dlzcods/eye-disease-classification" target="_blank" rel="noopener">Inspect repository ↗</a>
-                <a href="https://github.com/dlzcods/eye-disease-classification/blob/main/notebook/eye_diseases_classification_4x.ipynb" target="_blank" rel="noopener">Read notebook ↗</a>
               </div>
             </div>
           </details>
