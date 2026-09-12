@@ -17,3 +17,5 @@ COPY.md
 assets/github-readme/
 scripts/generate-readme-loop.mjs
 assets/banner-concepts
+cv/
+tmp/

@@ -212,6 +212,10 @@
       target: document.querySelector("#work .work-ledger > details.row")
     },
     {
+      root: document.querySelector("#client-delivery .delivery-ledger"),
+      target: document.querySelector("#client-delivery .delivery-ledger > details.row")
+    },
+    {
       root: document.querySelector("#field-record .championship-entry"),
       target: document.querySelector("#field-record .championship-entry")
     },

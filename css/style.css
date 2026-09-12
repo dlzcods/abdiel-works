@@ -551,6 +551,8 @@ a { color: inherit; }
 #work .work-record[open] .work-toggle::after { content: "close record −"; }
 #work .work-record:first-child .work-toggle::after { content: "start here ↓"; }
 #work .work-record:first-child[open] .work-toggle::after { content: "close case −"; }
+.delivery-record .work-toggle::after { content: "open delivery +"; }
+.delivery-record[open] .work-toggle::after { content: "close delivery −"; }
 .field-entry .work-toggle::after { content: "open archive +"; }
 .field-entry[open] .work-toggle::after { content: "close archive −"; }
 .championship-entry .work-toggle::after { content: "view placements +"; }
@@ -946,6 +948,97 @@ a { color: inherit; }
     font-size: 0.67rem;
     text-transform: uppercase;
     letter-spacing: 0.04em;
+}
+
+/* ============ Client delivery ============ */
+.delivery-intro {
+    display: grid;
+    grid-template-columns: minmax(0, 0.8fr) minmax(0, 1.2fr);
+    gap: 2rem;
+    padding: 1rem 0 1.15rem;
+    border-top: 1px solid var(--ink);
+    border-bottom: 1px solid var(--line);
+    color: var(--mid);
+    font-family: var(--mono);
+    font-size: 0.7rem;
+    line-height: 1.55;
+    letter-spacing: 0.035em;
+}
+.delivery-ledger { margin-top: 2.25rem; }
+.delivery-period {
+    display: block;
+    margin-top: 0.25rem;
+    color: var(--mid);
+    font-size: 0.59rem;
+    line-height: 1.4;
+}
+.delivery-body {
+    display: grid;
+    grid-template-columns: minmax(0, 1.65fr) minmax(13rem, 0.85fr);
+    gap: 3rem;
+    padding: 1.8rem 0 2.1rem;
+}
+.delivery-story > p:first-child { margin-bottom: 1.5rem; }
+.delivery-led {
+    margin-top: 1.6rem;
+    padding-top: 0.9rem;
+    border-top: 1px solid var(--line);
+}
+.delivery-led h3 { margin-bottom: 0.75rem; color: var(--ink); }
+.delivery-led ul {
+    display: grid;
+    gap: 0.7rem;
+    padding-left: 1rem;
+    color: var(--ink);
+    font-size: 0.87rem;
+    line-height: 1.6;
+}
+.delivery-impact {
+    display: grid;
+    gap: 0.45rem;
+    margin-top: 1.6rem !important;
+    padding-top: 1rem;
+    border-top: 1px solid var(--ink);
+    font-weight: 500;
+}
+.delivery-impact .cap { color: var(--mid); }
+.delivery-flow {
+    align-self: start;
+    border-top: 1px solid var(--ink);
+    font-family: var(--mono);
+}
+.delivery-flow > .cap {
+    display: block;
+    padding: 0.55rem 0;
+    border-bottom: 1px solid var(--line);
+    color: var(--ink);
+}
+.delivery-flow ol { list-style: none; counter-reset: flow; }
+.delivery-flow li {
+    position: relative;
+    counter-increment: flow;
+    padding: 0.7rem 0 0.7rem 2rem;
+    border-bottom: 1px dashed var(--line);
+    color: var(--mid);
+    font-size: 0.67rem;
+    line-height: 1.45;
+}
+.delivery-flow li::before {
+    position: absolute;
+    left: 0;
+    color: var(--ink);
+    content: counter(flow, decimal-leading-zero);
+    font-variant-numeric: tabular-nums;
+}
+.delivery-flow li:not(:last-child)::after {
+    position: absolute;
+    bottom: -0.5rem;
+    left: 0.38rem;
+    z-index: 1;
+    width: 1px;
+    height: 0.5rem;
+    background: var(--ink);
+    content: "";
 }
 
 /* ============ Field record ============ */
@@ -1763,6 +1856,13 @@ html:not(.js) .gate-dot { opacity: 1; transform: scale(1); }
     .work-evidence-stack { grid-row: 1; }
     .work-story { grid-row: 2; }
     .work-body .project-links { grid-row: 3; }
+    .delivery-intro { grid-template-columns: 1fr; gap: 0.55rem; font-size: 0.62rem; }
+    .delivery-ledger { margin-top: 1.6rem; }
+    .delivery-period { font-size: 0.55rem; }
+    .delivery-body { grid-template-columns: 1fr; gap: 1.5rem; padding-top: 1.4rem; }
+    .delivery-flow { grid-row: 1; }
+    .delivery-story { grid-row: 2; }
+    .delivery-led ul { font-size: 0.86rem; }
     .awam-current-state { max-width: none; margin-top: 1.5rem; }
     .evidence { grid-column: 1; }
     .project-links { grid-column: 1; flex-direction: column; align-items: flex-start; }
