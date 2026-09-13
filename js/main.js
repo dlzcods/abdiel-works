@@ -249,7 +249,7 @@
   window.setInterval(autoOpenSweep, 700);
   autoOpenSweep();
 
-  // --- Documentary carousels: manual swipe, drag, and keyboard navigation ---
+  // --- Documentary carousels: quiet auto-play with manual swipe, drag, and keyboard navigation ---
   const carousels = document.querySelectorAll("[data-carousel]");
   carousels.forEach((carousel) => {
     const track = carousel.querySelector(".speaker-track");
@@ -259,6 +259,9 @@
     if (!track || !viewport || slides.length < 2 || !status) return;
 
     let index = 0;
+    let timer = null;
+    let visible = false;
+    let paused = false;
     let touchStartX = null;
     let pointerStartX = null;
     let pointerId = null;
@@ -284,20 +287,61 @@
       status.textContent = `${String(index + 1).padStart(2, "0")} of ${String(slides.length).padStart(2, "0")}. ${slides[index].dataset.caption}`;
     }
 
+    function stop() {
+      window.clearTimeout(timer);
+      timer = null;
+    }
+
+    function schedule(delay) {
+      stop();
+      if (reduceMotion || !visible || paused || document.hidden) return;
+      timer = window.setTimeout(() => {
+        render(index + 1, false);
+        schedule(5200);
+      }, delay || 5200);
+    }
+
+    carousel.addEventListener("mouseenter", () => {
+      paused = true;
+      stop();
+    });
+    carousel.addEventListener("mouseleave", () => {
+      paused = false;
+      schedule(2200);
+    });
+    carousel.addEventListener("focusin", () => {
+      paused = true;
+      stop();
+    });
+    carousel.addEventListener("focusout", () => {
+      window.setTimeout(() => {
+        if (!carousel.contains(document.activeElement)) {
+          paused = false;
+          schedule(2200);
+        }
+      }, 0);
+    });
+
     carousel.addEventListener("touchstart", (event) => {
       touchStartX = event.changedTouches[0].clientX;
+      paused = true;
+      stop();
     }, { passive: true });
     carousel.addEventListener("touchend", (event) => {
       if (touchStartX === null) return;
       const distance = event.changedTouches[0].clientX - touchStartX;
       touchStartX = null;
       if (Math.abs(distance) > 45) render(index + (distance < 0 ? 1 : -1), true);
+      paused = false;
+      schedule(3200);
     }, { passive: true });
 
     viewport.addEventListener("pointerdown", (event) => {
       if (event.pointerType === "touch" || event.button !== 0) return;
       pointerStartX = event.clientX;
       pointerId = event.pointerId;
+      paused = true;
+      stop();
       carousel.classList.add("is-dragging");
       track.classList.add("is-dragging");
       viewport.setPointerCapture(pointerId);
@@ -317,6 +361,8 @@
       pointerStartX = null;
       pointerId = null;
       render(index + (Math.abs(distance) > 45 ? (distance < 0 ? 1 : -1) : 0), true);
+      paused = false;
+      schedule(3200);
     }
 
     viewport.addEventListener("pointerup", endPointerDrag);
@@ -327,6 +373,23 @@
         event.preventDefault();
         render(index + (event.key === "ArrowLeft" ? -1 : 1), true);
       }
+    });
+
+    if ("IntersectionObserver" in window) {
+      const observer = new IntersectionObserver((entries) => {
+        visible = entries[0].isIntersecting;
+        if (visible) schedule(2200);
+        else stop();
+      }, { threshold: 0.35 });
+      observer.observe(carousel);
+    } else {
+      visible = true;
+      schedule(2200);
+    }
+
+    document.addEventListener("visibilitychange", () => {
+      if (document.hidden) stop();
+      else schedule(2200);
     });
 
     render(0, false);
