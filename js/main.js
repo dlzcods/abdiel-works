@@ -203,18 +203,9 @@
     });
   });
 
-  // Passive readers should see one useful record without needing to guess
-  // that the ledger is interactive. Auto-opening is scoped to each ledger
-  // entry, happens once, never scrolls the page, and yields to user intent.
+  // Field records are visual evidence, so their first archive may open when
+  // viewed. Work and client-delivery ledgers stay scan-first until selected.
   const autoOpenGroups = [
-    {
-      root: document.querySelector("#work .work-ledger"),
-      target: document.querySelector("#work .work-ledger > details.row")
-    },
-    {
-      root: document.querySelector("#client-delivery .delivery-ledger"),
-      target: document.querySelector("#client-delivery .delivery-ledger > details.row")
-    },
     {
       root: document.querySelector("#field-record .championship-entry"),
       target: document.querySelector("#field-record .championship-entry")
@@ -266,7 +257,8 @@
     const previous = carousel.querySelector("[data-carousel-prev]");
     const next = carousel.querySelector("[data-carousel-next]");
     const status = carousel.querySelector("[data-carousel-status]");
-    if (!track || slides.length < 2 || !previous || !next || !status) return;
+    const count = carousel.querySelector("[data-carousel-count]");
+    if (!track || slides.length < 2 || !previous || !next || !status || !count) return;
 
     let index = 0;
     let timer = null;
@@ -288,6 +280,7 @@
       window.clearTimeout(movementTimer);
       track.classList.add("is-moving");
       track.style.transform = `translate3d(${-index * 100}%, 0, 0)`;
+      count.textContent = `${String(index + 1).padStart(2, "0")} / ${String(slides.length).padStart(2, "0")}`;
       movementTimer = window.setTimeout(() => {
         track.classList.remove("is-moving");
       }, 760);
