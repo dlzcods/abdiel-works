@@ -1107,12 +1107,19 @@ a { color: inherit; }
     touch-action: pan-y;
     contain: layout paint;
     isolation: isolate;
+    cursor: grab;
+}
+.speaker-carousel.is-dragging .speaker-viewport { cursor: grabbing; }
+.speaker-carousel:focus-visible .speaker-viewport {
+    outline: 2px solid var(--ink);
+    outline-offset: 3px;
 }
 .speaker-track {
     display: flex;
     transition: transform 0.68s var(--ease);
 }
 .speaker-track.is-moving { will-change: transform; }
+.speaker-track.is-dragging { transition: none; }
 .speaker-slide {
     min-width: 100%;
     flex: 0 0 100%;
@@ -1126,44 +1133,6 @@ a { color: inherit; }
     height: auto;
     aspect-ratio: 16 / 9;
     object-fit: cover;
-}
-.speaker-controls {
-    position: absolute;
-    right: 0.55rem;
-    bottom: 0.55rem;
-    display: flex;
-    border: 1px solid var(--ink);
-    background: rgba(247, 247, 245, 0.94);
-}
-.speaker-count {
-    display: grid;
-    min-width: 3.65rem;
-    height: 2.75rem;
-    place-items: center;
-    border-right: 1px solid var(--ink);
-    color: var(--ink);
-    font-size: 0.58rem;
-    font-variant-numeric: tabular-nums;
-}
-.speaker-controls button {
-    appearance: none;
-    width: 2.75rem;
-    height: 2.75rem;
-    border: 0;
-    border-right: 1px solid var(--ink);
-    border-radius: 0;
-    background: transparent;
-    color: var(--ink);
-    font: 500 1rem/1 var(--mono);
-    cursor: pointer;
-    transition: background 0.2s ease, color 0.2s ease;
-}
-.speaker-controls button:last-child { border-right: 0; }
-.speaker-controls button:hover,
-.speaker-controls button:focus-visible {
-    background: var(--ink);
-    color: var(--paper);
-    outline: none;
 }
 .speaker-status {
     position: absolute;
@@ -1933,7 +1902,6 @@ html:not(.js) .gate-dot { opacity: 1; transform: scale(1); }
     .work-record.review-pass .evidence div strong,
     .work-record.review-pass .field-item strong { animation: none; }
     .speaker-track { transition: none; }
-    .speaker-status-line { transition: none; }
     .career-state-line::after { animation: none; transform: scaleX(1); }
     .career-state-node.current .career-state-mark::after,
     .career-state-processing i { animation: none; }
@@ -1941,8 +1909,7 @@ html:not(.js) .gate-dot { opacity: 1; transform: scale(1); }
     .research-note a,
     .field-item a,
     .speaker-copy a,
-    .project-artifact img,
-    .speaker-controls button { transition: none; }
+    .project-artifact img { transition: none; }
 }
 
 @media (max-width: 620px) and (prefers-reduced-motion: reduce) {
