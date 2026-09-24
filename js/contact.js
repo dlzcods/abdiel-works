@@ -33,6 +33,7 @@
       window.turnstile.render(turnstileTarget, {
         sitekey: siteKey,
         theme: "light",
+        appearance: "interaction-only",
         callback: function (token) { turnstileToken = token; },
         "expired-callback": resetTurnstile,
         "error-callback": resetTurnstile,

@@ -27,6 +27,7 @@ body {
     padding-left: var(--rail-w);
     -webkit-font-smoothing: antialiased;
 }
+h1, h2, h3 { font-weight: 500; }
 ::selection { background: var(--ink); color: var(--paper); }
 a { color: inherit; }
 .wrap { max-width: 880px; margin: 0 auto; padding: 0 1.4rem; }
@@ -99,6 +100,7 @@ a { color: inherit; }
 .chapter .cap.accent { display: block; margin-bottom: 0.9rem; }
 .chapter h2 {
     font-size: clamp(1.5rem, 3.2vw, 2.1rem);
+    font-weight: 500;
     letter-spacing: -0.015em;
     line-height: 1.15;
     max-width: 24ch;
@@ -125,7 +127,7 @@ a { color: inherit; }
 }
 .turn-shift {
     font-size: clamp(2.55rem, 6.1vw, 4.2rem);
-    font-weight: 700;
+    font-weight: 500;
     line-height: 0.98;
     letter-spacing: -0.045em;
 }
@@ -203,7 +205,7 @@ a { color: inherit; }
     font-size: clamp(2.1rem, 5.6vw, 3.6rem);
     line-height: 1.06;
     letter-spacing: -0.02em;
-    font-weight: 700;
+    font-weight: 500;
     text-wrap: balance;
 }
 .hero .h-line { display: block; }
@@ -481,7 +483,7 @@ a { color: inherit; }
 }
 .row summary:hover,
 .row-link:hover { padding-left: 0.7rem; }
-.row-title { font-weight: 600; font-size: 0.98rem; }
+.row-title { font-weight: 500; font-size: 0.98rem; }
 .row-tag { white-space: nowrap; font-variant-numeric: tabular-nums; }
 .row summary .row-tag::after {
     content: " +";
@@ -630,7 +632,7 @@ a { color: inherit; }
     font-size: clamp(1.8rem, 4vw, 2.75rem);
     line-height: 1;
     letter-spacing: -0.05em;
-    font-weight: 700;
+    font-weight: 600;
 }
 .career-proof .cap,
 .career-date,
@@ -725,6 +727,7 @@ a { color: inherit; }
 .career-state-node h3 {
     margin: 0;
     font-size: clamp(1.25rem, 2.5vw, 1.85rem);
+    font-weight: 600;
     letter-spacing: -0.04em;
     line-height: 1.05;
 }
