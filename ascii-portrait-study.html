@@ -1,0 +1,136 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="robots" content="noindex">
+  <title>Abdiel · ASCII portrait study</title>
+  <link href="https://api.fontshare.com/v2/css?f[]=switzer@400,500,600,700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/style.css">
+  <style>
+    .reveal { opacity: 1; transform: none; }
+    .study-bar { display:flex; justify-content:space-between; gap:1rem; padding:1rem 0; border-bottom:1px solid var(--line); }
+    .study-bar a { text-decoration:none; }
+    .study-bar a:hover { color:var(--ink); }
+    .hero-portrait-frame { position:relative; background:var(--paper); }
+    .hero-portrait-frame img { object-fit:contain; object-position:center bottom; }
+    .hero-portrait-frame canvas { position:absolute; inset:0; width:100%; height:100%; opacity:0; pointer-events:none; transition:opacity 400ms var(--ease); }
+    .hero-portrait-frame picture { transition:opacity 400ms var(--ease); }
+    .hero-portrait-frame[data-render="ascii"] canvas { opacity:1; }
+    .hero-portrait-frame[data-render="ascii"] picture { opacity:0; }
+    .portrait-controls { display:flex; justify-content:center; margin-top:1rem; gap:0.3rem; }
+    .portrait-controls button { appearance:none; padding:0.5rem 0.9rem; min-height:42px; border:1px solid transparent; background:transparent; color:var(--mid); font:inherit; font-family:var(--mono); font-size:0.66rem; cursor:pointer; border-radius:3px; }
+    .portrait-controls button[aria-pressed="true"] { color:var(--ink); border-color:var(--line); background:rgba(16,16,16,0.035); }
+    .portrait-controls button:focus-visible { outline:2px solid var(--active); outline-offset:3px; }
+    .portrait-controls button:disabled { opacity:0.4; cursor:wait; }
+    .study-hint { margin-top:0.6rem; text-align:center; font:0.6rem/1.6 var(--mono); color:var(--mid); }
+    @media (min-width:901px) {
+      .hero-blur-bridge { display:block; position:absolute; left:0; right:0; bottom:1.8rem; height:7rem; background:linear-gradient(to bottom,transparent,var(--paper)); backdrop-filter:blur(10px); mask-image:linear-gradient(to bottom,transparent,#000 85%); pointer-events:none; }
+      .hero-identity figcaption { position:relative; z-index:3; }
+      .hero-portrait-frame picture, .hero-portrait-frame canvas { mask-image:linear-gradient(to bottom,#000 0 78%,transparent 100%); }
+    }
+    @media (max-width:900px) {
+      .hero-portrait-frame { position:absolute; }
+      .hero-portrait-frame img { animation:none; }
+      .hero-portrait-frame canvas { mask-image:linear-gradient(to bottom,#000 0 84%,transparent 100%); }
+      .study-bar { font-size:0.55rem; }
+    }
+    @media (prefers-reduced-motion:reduce) {
+      .hero-portrait-frame canvas, .hero-portrait-frame picture { transition:none; }
+    }
+  </style>
+</head>
+<body>
+  <aside class="rail" aria-hidden="true"><span class="rail-word">Abdiel · portrait study</span><span class="rail-status">01</span></aside>
+  <div class="wrap"><div class="study-bar cap"><span>Portrait experiment · photo / ASCII</span><a href="index.html#hero">Back to portfolio ↗</a></div></div>
+  <header class="block hero">
+    <div class="wrap">
+      <div class="meta-row cap"><span>AI Project Manager · IDN / SEA</span></div>
+      <div class="hero-intro-grid">
+        <div class="hero-copy">
+          <h1><span class="h-line">Systems that don't hallucinate.</span><span class="h-line h-line-2">Teams that don't either.</span></h1>
+          <p class="manifesto">At <a href="https://perfect10.id/about">PERFECT10 AI ↗</a>, I manage teams building RAG, vision, and evaluation systems, backed by two years in AI/ML engineering. AI drafts, humans own decisions, and nothing ships without evidence.</p>
+        </div>
+        <figure class="hero-identity">
+          <div class="hero-portrait-stage">
+            <div class="hero-portrait-frame" data-render="photo">
+              <picture><img id="portrait" src="assets/portrait/abdiel-speaking-cutout.webp" width="720" height="901" alt="Muhammad Abdiel Al Hafiz speaking at a university session."></picture>
+              <canvas aria-hidden="true"></canvas>
+            </div>
+            <div class="hero-blur-bridge" aria-hidden="true"></div>
+            <figcaption><strong>Muhammad Abdiel Al Hafiz</strong></figcaption>
+          </div>
+          <div class="portrait-controls" role="group" aria-label="Portrait rendering">
+            <button type="button" data-mode="photo" aria-pressed="true">Photo</button>
+            <button type="button" data-mode="ascii" aria-pressed="false" disabled>ASCII</button>
+          </div>
+          <p class="study-hint">Tap to switch. Hover the portrait to peek.</p>
+        </figure>
+        <div class="hero-support"><p class="client-proof cap">Work delivered for clients in Singapore and Australia</p></div>
+      </div>
+    </div>
+  </header>
+  <script>
+    const frame = document.querySelector('.hero-portrait-frame');
+    const portrait = document.querySelector('#portrait');
+    const canvas = frame.querySelector('canvas');
+    const buttons = [...document.querySelectorAll('[data-mode]')];
+    const hover = matchMedia('(hover:hover) and (pointer:fine)');
+    let selected = 'photo';
+    let ready = false;
+    let scheduled;
+    function show(mode) { frame.dataset.render = ready ? mode : 'photo'; }
+    function render() {
+      if (!portrait.complete || !portrait.naturalWidth) return;
+      const box = frame.getBoundingClientRect();
+      const imageBox = portrait.getBoundingClientRect();
+      if (!box.width || !box.height) return;
+      const columns = Math.round(Math.min(112, Math.max(52, box.width / 4.4)));
+      const cellWidth = box.width / columns;
+      const cellHeight = cellWidth * 1.65;
+      const rows = Math.ceil(box.height / cellHeight);
+      const sample = document.createElement('canvas');
+      sample.width = columns; sample.height = rows;
+      const input = sample.getContext('2d', {willReadFrequently:true});
+      input.fillStyle = '#f7f7f5'; input.fillRect(0,0,columns,rows);
+      const isCover = getComputedStyle(portrait).objectFit === 'cover';
+      const scale = (isCover ? Math.max : Math.min)(imageBox.width / portrait.naturalWidth, imageBox.height / portrait.naturalHeight);
+      const drawWidth = portrait.naturalWidth * scale;
+      const drawHeight = portrait.naturalHeight * scale;
+      const x = imageBox.left - box.left + (imageBox.width - drawWidth) * 0.5;
+      const y = imageBox.top - box.top + (imageBox.height - drawHeight) * (isCover ? 0.42 : 1);
+      input.drawImage(portrait, x / box.width * columns, y / box.height * rows, drawWidth / box.width * columns, drawHeight / box.height * rows);
+      const pixels = input.getImageData(0,0,columns,rows).data;
+      const dpr = Math.min(devicePixelRatio || 1, 2);
+      canvas.width = Math.round(box.width * dpr); canvas.height = Math.round(box.height * dpr);
+      const output = canvas.getContext('2d');
+      output.scale(dpr,dpr);
+      output.fillStyle = '#f7f7f5'; output.fillRect(0,0,box.width,box.height);
+      output.fillStyle = '#243b2b';
+      output.font = `${cellHeight * 0.94}px "Courier New", monospace`;
+      output.textAlign = 'center'; output.textBaseline = 'middle';
+      const ramp = '@%#*+=-:. ';
+      for (let row = 0; row < rows; row++) {
+        for (let column = 0; column < columns; column++) {
+          const offset = (row * columns + column) * 4;
+          const luminance = (pixels[offset]*0.2126 + pixels[offset+1]*0.7152 + pixels[offset+2]*0.0722) / 255;
+          const tone = Math.max(0, Math.min(1, (luminance - 0.04) / 0.89));
+          const glyph = ramp[Math.round(tone * (ramp.length-1))];
+          if (glyph !== ' ') output.fillText(glyph,(column+0.5)*cellWidth,(row+0.5)*cellHeight);
+        }
+      }
+      ready = true; buttons[1].disabled = false; show(selected);
+    }
+    buttons.forEach(button => button.addEventListener('click', () => {
+      selected = button.dataset.mode;
+      buttons.forEach(item => item.setAttribute('aria-pressed',String(item === button)));
+      show(selected);
+    }));
+    frame.addEventListener('pointerenter', () => { if (hover.matches) show('ascii'); });
+    frame.addEventListener('pointerleave', () => show(selected));
+    portrait.addEventListener('load', render);
+    new ResizeObserver(() => { cancelAnimationFrame(scheduled); scheduled = requestAnimationFrame(render); }).observe(frame);
+    render();
+  </script>
+</body>
+</html>

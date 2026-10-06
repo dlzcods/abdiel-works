@@ -216,6 +216,17 @@ a { color: inherit; }
     padding-top: 0.55rem;
     border-top: 1.5px solid var(--ink);
 }
+@media (min-width: 901px) {
+    .hero > .wrap { max-width: 1100px; }
+    .hero-intro-grid {
+        grid-template-columns: minmax(0, 1fr) clamp(17.5rem, 29vw, 23rem);
+        column-gap: clamp(2.5rem, 5vw, 4.5rem);
+    }
+    .hero h1 { max-width: 16ch; font-size: clamp(2.5rem, 4.2vw, 3.6rem); line-height: 1.12; }
+    .hero .h-line-2 { margin-top: 0.8rem; padding-top: 0.85rem; }
+    .hero .manifesto { margin-top: 1.75rem; line-height: 1.75; }
+    .hero .meta-row { margin-bottom: 2rem; }
+}
 .manifesto {
     margin-top: 1.4rem;
     max-width: 52ch;

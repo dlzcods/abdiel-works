@@ -91,7 +91,8 @@
 
   <link rel="preconnect" href="https://api.fontshare.com" />
   <link href="https://api.fontshare.com/v2/css?f[]=switzer@400,500,600,700&amp;display=swap" rel="stylesheet" />
-  <link rel="stylesheet" href="css/style.css?v=20260924b" />
+  <link rel="stylesheet" href="css/style.css?v=20261006c" />
+  <link rel="stylesheet" href="css/ascii.css?v=20261006b" />
 
   <script>document.documentElement.classList.add("js");</script>
 </head>
@@ -127,13 +128,13 @@
           <div class="hero-portrait-stage">
             <div class="hero-portrait-frame">
               <picture>
-                <source media="(max-width: 900px)" srcset="/assets/portrait/abdiel-speaking-cutout.webp" type="image/webp" />
-                <img src="/assets/portrait/abdiel-speaking.webp" width="720" height="901"
+                <img src="/assets/portrait/abdiel-speaking-cutout.webp" width="720" height="901"
                      alt="Muhammad Abdiel Al Hafiz speaking at a university session."
                      decoding="async" fetchpriority="high" />
               </picture>
+              <canvas class="ascii-layer" aria-hidden="true"></canvas>
+              <div class="hero-blur-bridge" aria-hidden="true"></div>
             </div>
-            <div class="hero-blur-bridge" aria-hidden="true"></div>
             <button class="human-mark" type="button" aria-label="Human owns the decision. Show reviewed state." hidden>
               <span class="human-mark-state human-mark-owner">Human<br>owns it</span>
               <span class="human-mark-state human-mark-reviewed" aria-hidden="true"><b>✓</b><br>reviewed</span>
@@ -202,7 +203,7 @@
         </div>
       </div>
 
-      <a class="scroll-cue cap reveal delay-3" href="#turn">Scroll ↓</a>
+      <div class="ascii-chapter-ripple" aria-hidden="true"><canvas></canvas></div>
     </div>
   </header>
 
@@ -378,8 +379,11 @@
               <div class="work-evidence-stack">
                 <div class="project-artifact">
                   <span class="artifact-head cap"><span>Concept visual</span><span>Not model output</span></span>
-                  <img src="assets/img-project/vision-model-training.jpg" width="1672" height="941" loading="lazy" decoding="async"
-                       alt="Illustration of image inputs and feature maps in a computer-vision workflow." />
+                  <div class="ascii-vision-frame">
+                    <img src="assets/img-project/vision-model-training.jpg" width="1672" height="941" loading="lazy" decoding="async"
+                         alt="Illustration of image inputs and feature maps in a computer-vision workflow." />
+                    <canvas class="ascii-layer" aria-hidden="true"></canvas>
+                  </div>
                 </div>
                 <aside class="evidence" aria-label="Vision model evaluation record">
                   <div><span>Dataset</span><strong>4,217 images</strong></div>
@@ -942,6 +946,7 @@
 
   <script src="js/board.js?v=20260819a" defer></script>
   <script src="js/main.js?v=20260913g" defer></script>
+  <script src="js/ascii.js?v=20261006b" defer></script>
   <script src="js/contact.js?v=20260808a" defer></script>
   <!-- Cloudflare Web Analytics -->
   <script

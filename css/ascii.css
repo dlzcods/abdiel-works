@@ -1,0 +1,23 @@
+.hero-portrait-frame { position: relative; background: transparent; }
+.hero-portrait-frame img { object-fit: contain; object-position: center bottom; }
+.ascii-layer { position: absolute; inset: 0; display: block; width: 100%; height: 100%; opacity: 0; pointer-events: none; }
+.hero-portrait-frame picture { transition: opacity 650ms var(--ease); }
+.hero-portrait-frame .ascii-layer { transition: opacity 650ms var(--ease); }
+.hero-blur-bridge { display: block; position: absolute; z-index: 2; right: 0; left: 0; bottom: -1px; height: 21%; background: linear-gradient(to bottom, transparent, var(--paper) 90%); mask-image: linear-gradient(to bottom, transparent 30%, #000 90%); -webkit-mask-image: linear-gradient(to bottom, transparent 30%, #000 90%); backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px); pointer-events: none; }
+.hero-identity figcaption { position: relative; z-index: 3; }
+.hero-portrait-frame img, .hero-portrait-frame .ascii-layer { mask-image: linear-gradient(to bottom, #000 0 94%, transparent 100%); -webkit-mask-image: linear-gradient(to bottom, #000 0 94%, transparent 100%); }
+.ascii-chapter-ripple { width: 100%; height: 64px; margin-top: 1.6rem; }
+.ascii-chapter-ripple canvas { display: block; width: 100%; height: 100%; }
+.ascii-vision-frame { position: relative; width: 100%; aspect-ratio: 1280 / 726; overflow: hidden; }
+.ascii-vision-frame img { width: 100%; height: 100%; object-fit: cover; }
+@media (max-width: 900px) {
+  .hero-portrait-frame { position: absolute; }
+  .hero-portrait-frame img { animation: none; }
+  .hero-blur-bridge { bottom: -3px; height: clamp(3.75rem, 17vw, 5.5rem); background: linear-gradient(to bottom, transparent, var(--paper) 60%); mask-image: linear-gradient(to bottom, transparent, #000 55%); -webkit-mask-image: linear-gradient(to bottom, transparent, #000 55%); }
+  .hero-identity figcaption { position: absolute; }
+  .ascii-chapter-ripple { height: 48px; margin-top: 1rem; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .hero-portrait-frame picture, .hero-portrait-frame .ascii-layer { transition: none; }
+  .ascii-chapter-ripple { display: none; }
+}
