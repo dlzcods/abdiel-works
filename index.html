@@ -91,8 +91,10 @@
 
   <link rel="preconnect" href="https://api.fontshare.com" />
   <link href="https://api.fontshare.com/v2/css?f[]=switzer@400,500,600,700&amp;display=swap" rel="stylesheet" />
-  <link rel="stylesheet" href="css/style.css?v=20261006c" />
+  <link rel="stylesheet" href="css/style.css?v=20261007b" />
   <link rel="stylesheet" href="css/ascii.css?v=20261006b" />
+  <link rel="stylesheet" href="css/project-scenes.css?v=20261007a" />
+  <link rel="stylesheet" href="css/field-record.css?v=20261007a" />
 
   <script>document.documentElement.classList.add("js");</script>
 </head>
@@ -326,17 +328,12 @@
           Three systems, one recurring question: where does the output stop being trustworthy?
         </p>
 
-        <div class="work-ledger reveal">
-          <details class="row work-record">
-            <summary>
-              <span class="work-index cap">01 / Published research</span>
-              <span class="work-heading">
-                <span class="row-title">When two LLM judges disagreed</span>
-                <span class="work-thesis">A score is only useful when it survives being repeated.</span>
-              </span>
-              <span class="work-toggle cap" aria-hidden="true"></span>
-            </summary>
-            <div class="row-body work-body">
+        <div class="portfolio-scenes independent-scenes">
+          <article class="portfolio-scene reveal"><div class="scene-visual" data-scene="judges"><img src="assets/project-scenes/judges.jpg" width="1536" height="1024" loading="lazy" decoding="async" alt="Two robot judges consider the same essay and hold different score sheets."><canvas aria-hidden="true"></canvas></div><div class="scene-copy"><p class="cap">01 · Published research · LLM evaluation</p><h3>When two LLM judges disagreed</h3><p class="scene-description">The same essay. Two judges. Different scores. I examined whether those ratings held up across repeated runs, and where reliability differed between models.</p><span class="scene-proof">150 essays · 2 models × 5 runs</span><button type="button" class="scene-link" data-project-dialog="judges-detail" aria-haspopup="dialog">View project ↗</button></div></article>
+          <article class="portfolio-scene reveal"><div class="scene-visual" data-scene="vision"><img src="assets/project-scenes/vision.jpg" width="1536" height="1024" loading="lazy" decoding="async" alt="An image passes through a scanner and features are compared before an output is reviewed."><canvas aria-hidden="true"></canvas></div><div class="scene-copy"><p class="cap">02 · Computer vision · Model training</p><h3>Accuracy was not the final review</h3><p class="scene-description">Overall accuracy reached 90.64%. Glaucoma recall was 80.33%. Reviewing each class showed what the headline average could hide.</p><span class="scene-proof">EfficientNetB0 · 4,217 images · research experiment</span><button type="button" class="scene-link" data-project-dialog="vision-detail" aria-haspopup="dialog">View project ↗</button></div></article>
+          <article class="portfolio-scene reveal"><div class="scene-visual" data-scene="awam"><img src="assets/project-scenes/awam.jpg" width="1536" height="1024" loading="lazy" decoding="async" alt="An open legal archive connects a question and answer to inspectable sources."><canvas aria-hidden="true"></canvas></div><div class="scene-copy"><p class="cap">03 · AWAM · Legal RAG prototype</p><h3>Answers need sources.</h3><p class="scene-description">A legal question should lead back to inspectable references. AWAM explores retrieval and answer generation, with the source corpus currently being rebuilt.</p><span class="scene-proof">Corpus rebuilding · not legal advice</span><button type="button" class="scene-link" data-project-dialog="awam-detail" aria-haspopup="dialog">View project ↗</button></div></article>
+        </div>
+        <dialog class="project-modal" id="judges-detail" aria-labelledby="judges-detail-title"><div class="project-modal-head"><h3 id="judges-detail-title">When two LLM judges disagreed</h3><button type="button" class="project-modal-close" aria-label="Close project details">Close ×</button></div><div class="row-body work-body">
               <div class="work-story prose">
                 <p><span class="sftl cap">Risk</span> Two LLM judges produced convincing essay scores, but repeating the judgment exposed different stability, bias, and review workload.</p>
                 <p><span class="sftl cap">Decision</span> I compared GPT OSS 120B and Qwen3-32B across five runs of 150 IELTS-like essays, then tested reliability, score variation, and confidence-based routing before deciding where human review still had to stay.</p>
@@ -360,18 +357,8 @@
                 <a href="https://github.com/dlzcods/llm-awe-reliability-fairness" target="_blank" rel="noopener">Inspect research repository ↗</a>
               </div>
             </div>
-          </details>
-
-          <details class="row work-record">
-            <summary>
-              <span class="work-index cap">02 / Vision</span>
-              <span class="work-heading">
-                <span class="row-title">Vision model training: accuracy was not the final review</span>
-                <span class="work-thesis">90.64% looked good. Glaucoma recall told us where it was not enough.</span>
-              </span>
-              <span class="work-toggle cap" aria-hidden="true"></span>
-            </summary>
-            <div class="row-body work-body">
+          </dialog>
+        <dialog class="project-modal" id="vision-detail" aria-labelledby="vision-detail-title"><div class="project-modal-head"><h3 id="vision-detail-title">Accuracy was not the final review</h3><button type="button" class="project-modal-close" aria-label="Close project details">Close ×</button></div><div class="row-body work-body">
               <div class="work-story prose">
                 <p><span class="sftl cap">Risk</span> Overall accuracy reached 90.64%, but that average hid glaucoma recall at 80.33%.</p>
                 <p><span class="sftl cap">Decision</span> I fine-tuned EfficientNetB0 and reviewed precision and recall by class. It was a model experiment, not a clinically validated system.</p>
@@ -397,18 +384,8 @@
                 <a href="https://github.com/dlzcods/eye-disease-classification/blob/main/notebook/eye_diseases_classification_4x.ipynb" target="_blank" rel="noopener">Read training notebook ↗</a>
               </div>
             </div>
-          </details>
-
-          <details class="row work-record">
-            <summary>
-              <span class="work-index cap">03 / Language</span>
-              <span class="work-heading">
-                <span class="row-title">AWAM: legal questions need sources, not confidence</span>
-                <span class="work-thesis">Accessible Wisdom for Law &amp; Advocacy Matters</span>
-              </span>
-              <span class="work-toggle cap" aria-hidden="true"></span>
-            </summary>
-            <div class="row-body work-body">
+          </dialog>
+        <dialog class="project-modal" id="awam-detail" aria-labelledby="awam-detail-title"><div class="project-modal-head"><h3 id="awam-detail-title">Answers need sources.</h3><button type="button" class="project-modal-close" aria-label="Close project details">Close ×</button></div><div class="row-body work-body">
               <div class="work-story prose">
                 <p><span class="sftl cap">Risk</span> A legal answer can sound useful while resting on a source the person reading it cannot inspect.</p>
                 <p><span class="sftl cap">Decision</span> AWAM maps everyday questions into legal language, retrieves cited material, and leaves the final judgment outside the model. I am rebuilding the corpus around official and permission-reviewed materials before reopening it.</p>
@@ -435,8 +412,7 @@
                 <a href="https://acsit.org/index.php/jiite/article/view/113" target="_blank" rel="noopener">Read published research ↗</a>
               </div>
             </div>
-          </details>
-        </div>
+          </dialog>
 
         <div class="research-note reveal">
           <span class="work-index cap">Research note / Explainability</span>
@@ -464,18 +440,8 @@
           <p>These records describe the delivery systems I owned as Project Manager and their status as of September 2026.</p>
         </div>
 
-        <div class="work-ledger delivery-ledger reveal">
-          <details class="row work-record delivery-record">
-            <summary>
-              <span class="work-index cap">01 / Completed</span>
-              <span class="work-heading">
-                <span class="row-title">Creator Operations Workspace</span>
-                <span class="work-thesis">One shared view of creator context before selection and briefing.</span>
-                <span class="delivery-period cap">May - Sep 2026 · 700+ talent profiles</span>
-              </span>
-              <span class="work-toggle cap" aria-hidden="true"></span>
-            </summary>
-            <div class="row-body delivery-body">
+        <div class="portfolio-scenes client-scenes">
+          <article class="portfolio-scene client-scene reveal"><div class="scene-visual" data-scene="creator"><img src="assets/project-scenes/creator.jpg" width="1536" height="1024" loading="lazy" decoding="async" alt="Team members organize creator profiles and contact ownership in a shared workspace."><canvas aria-hidden="true"></canvas></div><div class="scene-copy"><p class="cap">01 · Completed · May–September 2026</p><h3>Creator Operations Workspace</h3><span class="scene-proof">700+ talent profiles</span><div class="row-body delivery-body">
               <div class="delivery-story prose">
                 <p>Built from zero to give talent and commercial teams one shared view of creator context, including rate cards, niche information, contact ownership, and follow-up history before selection and briefing.</p>
                 <section class="delivery-led" aria-labelledby="creator-led">
@@ -498,19 +464,8 @@
                 </ol>
               </aside>
             </div>
-          </details>
-
-          <details class="row work-record delivery-record">
-            <summary>
-              <span class="work-index cap">02 / Completed</span>
-              <span class="work-heading">
-                <span class="row-title">Human-Governed Assessment Advisory Platform</span>
-                <span class="work-thesis">Structured assessment support without automatic hiring decisions.</span>
-                <span class="delivery-period cap">Jun - Sep 2026 · Co-designed with 2 HR experts</span>
-              </span>
-              <span class="work-toggle cap" aria-hidden="true"></span>
-            </summary>
-            <div class="row-body delivery-body">
+          </div></article>
+          <article class="portfolio-scene client-scene reveal"><div class="scene-visual" data-scene="assessment"><img src="assets/project-scenes/assessment.jpg" width="1536" height="1024" loading="lazy" decoding="async" alt="Two HR experts review advisory guidance from an AI assistant."><canvas aria-hidden="true"></canvas></div><div class="scene-copy"><p class="cap">02 · Completed · June–September 2026</p><h3>Human-Governed Assessment Advisory Platform</h3><span class="scene-proof">Co-designed with 2 HR experts</span><div class="row-body delivery-body">
               <div class="delivery-story prose">
                 <p>A human-in-the-loop assessment advisory platform that combines structured scoring with LLM-assisted narrative guidance, without treating AI output as an automatic hiring decision.</p>
                 <section class="delivery-led" aria-labelledby="assessment-led">
@@ -534,19 +489,8 @@
                 </ol>
               </aside>
             </div>
-          </details>
-
-          <details class="row work-record delivery-record">
-            <summary>
-              <span class="work-index cap">03 / In UAT</span>
-              <span class="work-heading">
-                <span class="row-title">Investigation Casework and Document Intelligence Platform</span>
-                <span class="work-thesis">Traceable case context, assisted drafting, and investigator review in one workflow.</span>
-                <span class="delivery-period cap">Jul - present · 3,100+ pages in a growing RAG reference corpus</span>
-              </span>
-              <span class="work-toggle cap" aria-hidden="true"></span>
-            </summary>
-            <div class="row-body delivery-body">
+          </div></article>
+          <article class="portfolio-scene client-scene reveal"><div class="scene-visual" data-scene="investigation"><img src="assets/project-scenes/investigation.jpg" width="1536" height="1024" loading="lazy" decoding="async" alt="An investigator reviews a draft against case material, transcripts, and reference sources."><canvas aria-hidden="true"></canvas></div><div class="scene-copy"><p class="cap">03 · In UAT · July 2026–present</p><h3>Investigation Casework and Document Intelligence Platform</h3><span class="scene-proof">3,100+ pages in a growing RAG reference corpus</span><div class="row-body delivery-body">
               <div class="delivery-story prose">
                 <p>A secure casework flow that combines RAG retrieval, LLM-assisted drafting, and investigator review to bring case material, interview context, and document preparation into one traceable workspace.</p>
                 <section class="delivery-led" aria-labelledby="casework-led">
@@ -570,7 +514,7 @@
                 </ol>
               </aside>
             </div>
-          </details>
+          </div></article>
         </div>
 
         <div class="gate reveal">
@@ -590,18 +534,8 @@
           Competitions tested the team. Invited sessions tested whether I could explain the decisions without hiding behind model jargon.
         </p>
 
-        <div class="work-ledger field-ledger reveal">
-          <details class="row work-record field-entry championship-entry">
-            <summary>
-              <span class="work-index cap">Team execution</span>
-              <span class="work-heading">
-                <span class="row-title">Three placements with Jaya Koding</span>
-                <span class="work-thesis">Two first places. One second place. One team shipping against the clock.</span>
-              </span>
-              <span class="work-toggle cap" aria-hidden="true"></span>
-            </summary>
-            <div class="row-body field-body championship-events">
-              <article class="speaker-event championship-event">
+        <div class="photo-field-record">
+<section class="photo-field-group" aria-labelledby="competition-record-title"><header class="photo-field-head reveal"><div><p class="cap">Team execution</p><h3 id="competition-record-title">Three placements with Jaya Koding</h3></div><p>Two first places. One second place. One team shipping against the clock.</p></header><div class="photo-field-events"><article class="speaker-event reveal championship-event">
                 <div class="speaker-carousel" data-carousel aria-label="FAST Programming Problem Solving 2024 photographs" aria-roledescription="carousel">
                   <div class="speaker-viewport">
                     <div class="speaker-track">
@@ -644,8 +578,7 @@
                   <a href="https://www.linkedin.com/feed/update/urn:li:activity:7263893773787541504/" target="_blank" rel="noopener">Read story ↗</a>
                 </div>
               </article>
-
-              <article class="speaker-event championship-event">
+<article class="speaker-event reveal championship-event">
                 <div class="speaker-carousel" data-carousel aria-label="INVFEST X ISF 9.0 photographs" aria-roledescription="carousel">
                   <div class="speaker-viewport">
                     <div class="speaker-track">
@@ -674,8 +607,7 @@
                   <a href="https://www.linkedin.com/feed/update/urn:li:activity:7282569012184563712/" target="_blank" rel="noopener">Read story ↗</a>
                 </div>
               </article>
-
-              <article class="speaker-event championship-event">
+<article class="speaker-event reveal championship-event">
                 <div class="speaker-carousel" data-carousel aria-label="PROXOCORIS International 2025 photographs" aria-roledescription="carousel">
                   <div class="speaker-viewport">
                     <div class="speaker-track">
@@ -703,22 +635,8 @@
                   <span>Klabat University · North Sulawesi</span>
                   <a href="https://www.linkedin.com/feed/update/urn:li:activity:7319542999284072449/" target="_blank" rel="noopener">Read story ↗</a>
                 </div>
-              </article>
-            </div>
-          </details>
-
-          <details class="row work-record field-entry speaker-entry">
-            <summary>
-              <span class="work-index cap">Public communication</span>
-              <span class="work-heading">
-                <span class="row-title">Three invited sessions, one recurring question</span>
-                <span class="work-thesis">How do people decide what to trust when AI is involved?</span>
-                <span class="work-proof cap">3 sessions · the questions ran the room</span>
-              </span>
-              <span class="work-toggle cap" aria-hidden="true"></span>
-            </summary>
-            <div class="row-body field-body speaker-events">
-              <article class="speaker-event">
+              </article></div></section>
+<section class="photo-field-group" aria-labelledby="speaking-record-title"><header class="photo-field-head reveal"><div><p class="cap">Public communication</p><h3 id="speaking-record-title">Three invited sessions, one recurring question</h3></div><p>How do people decide what to trust when AI is involved?</p></header><div class="photo-field-events"><article class="speaker-event reveal">
                 <div class="speaker-carousel" data-carousel aria-label="SMP Negeri 1 Pengadegan AI and feed literacy session photographs" aria-roledescription="carousel">
                   <div class="speaker-viewport">
                     <div class="speaker-track">
@@ -755,8 +673,7 @@
                   <a href="https://www.linkedin.com/posts/muhammad-abdiel-al-hafiz_kak-kenapa-fyp-tiktok-kadang-isinya-aneh-aneh-ugcPost-7495054649398341632-WFgs/" target="_blank" rel="noopener">Read story ↗</a>
                 </div>
               </article>
-
-              <article class="speaker-event">
+<article class="speaker-event reveal">
                 <div class="speaker-carousel" data-carousel aria-label="Soedirman Digital School session photographs" aria-roledescription="carousel">
                   <div class="speaker-viewport">
                     <div class="speaker-track">
@@ -792,8 +709,7 @@
                   <a href="https://www.linkedin.com/posts/muhammad-abdiel-al-hafiz_sabtu-lalu-saya-mewakili-purwokerto-dev-activity-7392744114884304897-ZOh5" target="_blank" rel="noopener">Read story ↗</a>
                 </div>
               </article>
-
-              <article class="speaker-event">
+<article class="speaker-event reveal">
                 <div class="speaker-carousel" data-carousel aria-label="Software Engineering Event 9 session photographs" aria-roledescription="carousel">
                   <div class="speaker-viewport">
                     <div class="speaker-track">
@@ -828,9 +744,7 @@
                   <span>Software Engineering Event 9th · Telkom University Purwokerto</span>
                   <a href="https://www.linkedin.com/posts/muhammad-abdiel-al-hafiz_kak-belajar-ai-dimana-abis-berapa-juta-activity-7407214675001630720-2gFX" target="_blank" rel="noopener">Read story ↗</a>
                 </div>
-              </article>
-            </div>
-          </details>
+              </article></div></section>
         </div>
 
         <div class="gate reveal">
@@ -944,6 +858,8 @@
     </footer>
   </main>
 
+  <script src="js/project-scene-motion.js?v=20261007d" defer></script>
+  <script src="js/project-details.js?v=20261007a" defer></script>
   <script src="js/board.js?v=20260819a" defer></script>
   <script src="js/main.js?v=20260913g" defer></script>
   <script src="js/ascii.js?v=20261006b" defer></script>

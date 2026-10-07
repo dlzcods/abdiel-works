@@ -1,0 +1,51 @@
+.block > .wrap, .foot > .wrap { max-width: 1100px; }
+.portfolio-scenes { display: grid; gap: clamp(48px, 7vw, 88px); margin-top: 3rem; }
+.portfolio-scene { display: grid; grid-template-columns: minmax(0,1.12fr) minmax(0,1fr); gap: clamp(28px,4vw,52px); align-items: center; padding-bottom: clamp(40px,5vw,64px); border-bottom: 1px solid var(--line); }
+.portfolio-scene:nth-child(even) .scene-visual { order: 2; }
+.portfolio-scene:nth-child(even) .scene-copy { order: 1; }
+.scene-visual { position: relative; aspect-ratio: 3/2; width: 100%; overflow: hidden; }
+.scene-visual img,.scene-visual canvas { position: absolute; inset: 0; display: block; width: 100%; height: 100%; object-fit: contain; }
+.scene-visual img { mix-blend-mode: multiply; }
+.scene-visual canvas { opacity: 0; pointer-events: none; }
+.scene-visual[data-ready=true] canvas { opacity: 1; }
+.scene-visual[data-ready=true] img { opacity: 0; }
+.scene-copy { min-width: 0; }
+.scene-copy > .cap { color: var(--mid); font-size: .65rem; line-height: 1.7; }
+.scene-copy > h3 { margin: 18px 0; font-size: clamp(27px,3.2vw,40px); font-weight: 500; letter-spacing: -.025em; line-height: 1.16; }
+.scene-description { color: var(--mid); font-size: 1rem; line-height: 1.7; max-width: 44ch; }
+.scene-proof { display: block; color: var(--ink); font: .7rem/1.8 var(--mono); margin-top: 22px; }
+.scene-link { display: inline-block; margin-top: 22px; padding: 6px 0; border: 0; border-radius: 0; background: transparent; color: var(--ink); font: .85rem/1.6 var(--sans); text-decoration: underline; text-underline-offset: 5px; cursor: pointer; }
+.scene-link:focus-visible,.project-modal-close:focus-visible { outline: 2px solid var(--active); outline-offset: 4px; }
+.client-scene { align-items: start; }
+.client-scene .scene-visual { position: sticky; top: 100px; margin-top: 40px; }
+.client-scene .delivery-body { display: block; padding: 24px 0 0; }
+.client-scene .delivery-story > p:first-child { color: var(--mid); font-size: .95rem; line-height: 1.7; }
+.client-scene .delivery-led { margin-top: 24px; }
+.client-scene .delivery-led h3 { font-size: .65rem; }
+.client-scene .delivery-led li { font-size: .9rem; line-height: 1.65; }
+.client-scene .delivery-impact { font-size: .9rem; line-height: 1.65; }
+.client-scene .delivery-flow { margin-top: 24px; border: 0; }
+.client-scene .delivery-flow > .cap { border: 0; color: var(--mid); font-size: .65rem; }
+.client-scene .delivery-flow ol { display: flex; flex-wrap: wrap; gap: 6px 8px; }
+.client-scene .delivery-flow li { padding: 0; border: 0; font-size: .75rem; }
+.client-scene .delivery-flow li::before { display: none; }
+.client-scene .delivery-flow li:not(:last-child)::after { content: '→'; display: inline; position: static; width: auto; height: auto; margin-left: 8px; background: none; }
+.project-modal { width: min(960px,calc(100% - 32px)); max-height: calc(100dvh - 48px); margin: auto; padding: clamp(20px,4vw,40px); border: 1px solid var(--line); background: var(--paper); color: var(--ink); overscroll-behavior: contain; }
+.project-modal::backdrop { background: rgb(17 17 17 / .55); }
+html:has(.project-modal[open]) { overflow: hidden; }
+.project-modal-head { display: flex; align-items: start; justify-content: space-between; gap: 20px; border-bottom: 1px solid var(--line); padding-bottom: 20px; }
+.project-modal-head h3 { font-size: clamp(24px,3vw,36px); line-height: 1.2; font-weight: 500; }
+.project-modal-close { flex: 0 0 auto; border: 0; padding: 8px 0 8px 8px; background: transparent; color: var(--ink); cursor: pointer; font: .75rem/1.5 var(--mono); }
+.project-modal .work-body { display: grid; }
+@media(max-width:760px) {
+  .portfolio-scenes { gap: 44px; margin-top: 2rem; }
+  .portfolio-scene { grid-template-columns: 1fr; gap: 24px; padding-bottom: 40px; }
+  .portfolio-scene .scene-visual,.portfolio-scene .scene-copy { order: initial !important; }
+  .scene-visual { max-width: 560px; justify-self: center; }
+  .scene-copy > h3 { font-size: 30px; }
+  .scene-description { font-size: .95rem; }
+  .client-scene .scene-visual { position: relative; top: auto; margin-top: 0; }
+  .client-scene .delivery-led li { font-size: .88rem; }
+  .project-modal { max-height: calc(100dvh - 24px); }
+  .project-modal .work-body { grid-template-columns: 1fr; }
+}

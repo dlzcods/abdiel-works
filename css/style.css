@@ -179,7 +179,9 @@ a { color: inherit; }
 .hero { padding: 3rem 0 3.6rem; }
 .meta-row {
     display: flex;
-    justify-content: flex-end;
+    justify-content: center;
+    width: clamp(12rem, 22vw, 17.5rem);
+    margin-left: auto;
     gap: 1rem;
     margin-bottom: 2.6rem;
 }
@@ -225,7 +227,7 @@ a { color: inherit; }
     .hero h1 { max-width: 16ch; font-size: clamp(2.5rem, 4.2vw, 3.6rem); line-height: 1.12; }
     .hero .h-line-2 { margin-top: 0.8rem; padding-top: 0.85rem; }
     .hero .manifesto { margin-top: 1.75rem; line-height: 1.75; }
-    .hero .meta-row { margin-bottom: 2rem; }
+    .hero .meta-row { width: clamp(17.5rem, 29vw, 23rem); margin-bottom: 2rem; }
 }
 .manifesto {
     margin-top: 1.4rem;
@@ -282,7 +284,7 @@ a { color: inherit; }
     width: 100%;
     margin: 0.2rem 0 0;
     padding-top: 0.7rem;
-    border-top: 2px solid var(--ink);
+    border-top: 0;
 }
 .hero-portrait-stage { position: relative; }
 .hero-blur-bridge { display: none; }
@@ -330,14 +332,7 @@ a { color: inherit; }
     font-weight: 600;
 }
 .hero-identity figcaption strong::after {
-    position: absolute;
-    bottom: 0;
-    left: 50%;
-    width: 72%;
-    height: 1px;
-    background: currentColor;
-    content: "";
-    transform: translateX(-50%);
+    content: none;
 }
 .human-mark { display: none; }
 .human-mark[hidden] { display: none !important; }
@@ -1479,6 +1474,7 @@ html:not(.js) .gate-dot { opacity: 1; transform: scale(1); }
     .hero { padding: 2.2rem 0 2.8rem; }
     .meta-row {
         justify-content: center;
+        width: 100%;
         margin-bottom: 2.4rem;
         text-align: center;
     }

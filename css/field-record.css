@@ -1,0 +1,26 @@
+.photo-field-record { margin-top: 4rem; }
+.photo-field-group { margin-bottom: 100px; }
+.photo-field-group:last-child { margin-bottom: 0; }
+.photo-field-head { display: grid; grid-template-columns: 1.8fr 1fr; gap: 48px; align-items: end; margin-bottom: 40px; padding-top: 24px; border-top: 1px solid var(--line); }
+.photo-field-head h3 { font-size: clamp(28px,3.4vw,42px); font-weight: 500; line-height: 1.18; letter-spacing: -.025em; margin: 14px 0 0; }
+.photo-field-head > p { font-size: 15px; line-height: 1.7; color: var(--mid); }
+.photo-field-events { display: grid; gap: 72px; }
+.photo-field-events .speaker-event { grid-template-columns: minmax(0,1.7fr) minmax(0,1fr); gap: 42px; align-items: center; padding: 0; border: 0; }
+.photo-field-events .speaker-viewport { border: 0; border-radius: 8px; }
+.photo-field-events .speaker-slide img { filter: none; }
+.photo-field-events .speaker-copy { gap: 13px; padding: 0; }
+.photo-field-events .speaker-copy strong { font-size: clamp(23px,2.2vw,30px); font-weight: 500; letter-spacing: -.025em; line-height: 1.25; }
+.photo-field-events .speaker-copy span { font-size: 14px; line-height: 1.65; }
+.photo-field-events .speaker-copy time,.photo-field-events .speaker-copy .speaker-kicker { font-size: 11px; color: var(--mid); }
+.photo-field-events .speaker-copy a { font-family: var(--sans); font-size: 13px; text-transform: none; letter-spacing: 0; margin-top: 9px; }
+@media(max-width:760px) {
+  .photo-field-record { margin-top: 3rem; }
+  .photo-field-head { display: block; margin-bottom: 28px; }
+  .photo-field-head > p { margin-top: 18px; max-width: 42ch; }
+  .photo-field-events { gap: 48px; }
+  .photo-field-events .speaker-event { grid-template-columns: 1fr; gap: 22px; }
+  .photo-field-events .speaker-copy { gap: 9px; }
+  .photo-field-events .speaker-copy strong { font-size: 25px; }
+  .photo-field-group { margin-bottom: 72px; }
+  .photo-field-events .speaker-viewport { border-radius: 6px; }
+}
