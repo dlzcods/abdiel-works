@@ -1,0 +1,95 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="robots" content="noindex"><title>Abdiel · Compact mobile hero preview</title>
+<link href="https://api.fontshare.com/v2/css?f[]=switzer@400,500,600,700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/style.css?v=20261007b"><link rel="stylesheet" href="css/ascii.css">
+<style>
+.reveal{opacity:1;transform:none}
+body{margin:0;padding:0}
+.preview-nav{padding:16px 24px;display:flex;justify-content:space-between;border-bottom:1px solid var(--line)}
+.preview-nav a{color:var(--mid);text-decoration:none}
+.hero{padding:28px 0 48px}
+.hero>.wrap{max-width:1100px}
+@media(max-width:900px){
+.hero-intro-grid{display:flex;flex-direction:column;gap:0}
+.hero-copy{display:contents}
+.hero h1{display:block;order:0;width:100%;max-width:19ch;margin:0 auto;font-size:clamp(29px,7.9vw,43px);line-height:1.1;text-align:center}
+.hero .h-line{display:block;max-width:none}
+.hero .h-line-2{margin:12px 0 0;padding:0;border:0;max-width:none}
+.hero .meta-row{width:100%;margin:0 0 24px;font-size:10px}
+.hero-identity{order:1;margin:24px auto 0;width:min(100%,390px)}
+.hero-portrait-stage{height:auto;overflow:visible}
+.hero-portrait-frame{position:relative;inset:auto;height:clamp(290px,91vw,365px);width:100%;background:transparent}
+.hero-portrait-frame picture{position:relative;inset:auto}
+.hero-portrait-frame img{position:absolute;left:50%;bottom:-20px;width:auto;height:calc(100% + 16px);max-width:none;transform:translateX(-50%);object-fit:contain;animation:none}
+.hero-blur-bridge{height:64px}
+.hero-identity figcaption{position:relative;inset:auto;padding:14px 0 0;text-align:center;font-size:10px}
+.hero-identity figcaption strong{font-size:clamp(10px,2.9vw,12px);padding:0}
+.hero-identity figcaption strong::after{content:none}
+.hero .manifesto{order:2;max-width:38ch;margin:28px auto 0;text-align:left;font-size:15px;line-height:1.65;width:100%}
+.hero-support{order:3;width:100%}
+.client-proof{margin-top:24px;padding-top:16px;font-size:10px;line-height:1.6;width:100%;text-align:left;border-color:var(--line)}
+}
+</style></head><body><nav class="preview-nav cap"><span>Abdiel · 2026</span><a href="/#hero">Original ↗</a></nav>
+  <header class="block hero" id="hero">
+    <div class="wrap">
+      <div class="meta-row cap reveal">
+        <span>AI Project Manager · IDN / SEA</span>
+      </div>
+
+      <div class="hero-intro-grid">
+        <div class="hero-copy">
+          <h1>
+            <span class="h-line reveal">Systems that don't hallucinate.</span>
+            <span class="h-line h-line-2 reveal delay-1">Teams that don't either.</span>
+          </h1>
+          <p class="manifesto reveal delay-2">
+            At <a href="https://perfect10.id/about" target="_blank" rel="noopener">PERFECT10 AI ↗</a>,
+            I manage teams building RAG, vision, and evaluation systems, backed by two years in AI/ML
+            engineering. AI drafts, humans own decisions, and nothing ships without evidence.
+          </p>
+        </div>
+
+        <figure class="hero-identity reveal delay-2">
+          <div class="hero-portrait-stage">
+            <div class="hero-portrait-frame">
+              <picture>
+                <img src="/assets/portrait/abdiel-speaking-cutout.webp" width="720" height="901"
+                     alt="Muhammad Abdiel Al Hafiz speaking at a university session."
+                     decoding="async" fetchpriority="high" />
+              </picture>
+              <canvas class="ascii-layer" aria-hidden="true"></canvas>
+              <div class="hero-blur-bridge" aria-hidden="true"></div>
+            </div>
+            <button class="human-mark" type="button" aria-label="Human owns the decision. Show reviewed state." hidden>
+              <span class="human-mark-state human-mark-owner">Human<br>owns it</span>
+              <span class="human-mark-state human-mark-reviewed" aria-hidden="true"><b>✓</b><br>reviewed</span>
+            </button>
+            <figcaption>
+              <strong>Muhammad Abdiel Al Hafiz</strong>
+            </figcaption>
+          </div>
+        </figure>
+
+        <div class="hero-support">
+          <p class="client-proof cap reveal delay-3">
+            Work delivered for clients in Singapore and Australia
+          </p>
+
+          <!--<div class="hero-spine reveal delay-3" aria-label="Delivery approach">
+            <div>
+              <strong>Scope</strong>
+              <span>What needs deciding</span>
+            </div>
+            <div>
+              <strong>Risk</strong>
+              <span>What stays visible</span>
+            </div>
+            <div>
+              <strong>Handoff</strong>
+              <span>What the team carries</span>
+            </div>
+          </div>-->
+        </div>
+
+</div></header>
+<script src="js/ascii.js"></script></body></html>
