@@ -16,6 +16,7 @@ const entries = [
   "assets/portrait",
   "assets/championships-web",
   "assets/speaker-web",
+  "assets/project-scenes",
 ];
 
 await rm(output, { recursive: true, force: true });
