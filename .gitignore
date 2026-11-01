@@ -1,21 +1,20 @@
+# Only site/ is the deployable website. Everything else in this folder is a private workspace.
+content/
+inspirations/
+notes/
+.claude/
+.DS_Store
+
+# site build + tooling output
 node_modules/
 dist/
-docs/
 .next/
 .sites-public/
 .wrangler/
-.DS_Store
+.openai/
 *.tgz
 *.tsbuildinfo
-.claude/
-.openai/
-content-research/
-skills/
-GITHUB_PROFILE_README*.md
-GITHUB_PROFILE_ACTIONS.md
-COPY.md
-assets/github-readme/
-scripts/generate-readme-loop.mjs
-assets/banner-concepts
-cv/
-tmp/
+site/docs/
+site/assets/github-readme/
+site/assets/banner-concepts
+site/scripts/generate-readme-loop.mjs

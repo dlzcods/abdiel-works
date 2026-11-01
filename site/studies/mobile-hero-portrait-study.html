@@ -1,7 +1,7 @@
 <!doctype html>
-<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="robots" content="noindex"><title>Abdiel · Compact mobile hero preview</title>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="robots" content="noindex"><title>Abdiel · C · Portrait first</title>
 <link href="https://api.fontshare.com/v2/css?f[]=switzer@400,500,600,700&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="css/style.css?v=20261007b"><link rel="stylesheet" href="css/ascii.css">
+<link rel="stylesheet" href="../css/style.css?v=20261007b"><link rel="stylesheet" href="../css/ascii.css">
 <style>
 .reveal{opacity:1;transform:none}
 body{margin:0;padding:0}
@@ -29,7 +29,39 @@ body{margin:0;padding:0}
 .hero-support{order:3;width:100%}
 .client-proof{margin-top:24px;padding-top:16px;font-size:10px;line-height:1.6;width:100%;text-align:left;border-color:var(--line)}
 }
-</style></head><body><nav class="preview-nav cap"><span>Abdiel · 2026</span><a href="/#hero">Original ↗</a></nav>
+@media(max-width:900px){
+body{overflow-x:hidden}
+.hero{padding:24px 0 40px}
+.hero>.wrap{padding-inline:22px}
+.hero .meta-row{font-size:9px;letter-spacing:.07em;margin-bottom:22px}
+.hero h1,.hero .h-line,.hero .h-line-2{font-size:clamp(30px,9vw,38px);font-weight:500;line-height:1.06;letter-spacing:-.045em}
+.hero h1{display:contents}
+.hero .h-line{margin:0}
+.hero .h-line-2{margin:0}
+.hero-intro-grid{display:grid;grid-template-columns:1fr;gap:0}
+.hero .h-line{grid-area:first}
+.hero .h-line-2{grid-area:second}
+.hero-identity{grid-area:identity;width:100%;margin:20px 0 0}
+.hero .manifesto{grid-area:description;line-height:1.65;font-size:15px;margin:26px 0 0;text-align:left}
+.hero-support{grid-area:proof}
+.hero-portrait-stage{overflow:visible}
+.hero-portrait-frame{overflow:hidden;height:330px}
+.hero-portrait-frame img{height:calc(100% + 54px);bottom:-38px}
+.hero-blur-bridge{height:52px}
+.hero-identity figcaption{padding:12px 0 0;line-height:1.4}
+.hero-identity figcaption strong{font-size:10px;letter-spacing:.055em}
+.preview-nav{padding:15px 22px;font-size:10px}
+.client-proof{font-size:9px;margin-top:24px;padding-top:16px}
+
+.hero-intro-grid{grid-template-areas:"identity" "first" "second" "description" "proof"}
+.hero .meta-row{margin-bottom:8px}
+.hero-identity{margin:0 0 26px}
+.hero-portrait-frame{height:clamp(250px,73vw,295px)}
+.hero-portrait-frame img{height:calc(100% + 50px);bottom:-33px}
+.hero .h-line,.hero .h-line-2{text-align:left;width:100%;max-width:none}
+.hero .h-line-2{margin-top:10px}
+.hero .manifesto{margin-top:22px}
+}</style></head><body><nav class="preview-nav cap"><span>Abdiel · 2026</span><a href="mobile-hero-options.html">Compare ↗</a></nav>
   <header class="block hero" id="hero">
     <div class="wrap">
       <div class="meta-row cap reveal">
@@ -91,5 +123,6 @@ body{margin:0;padding:0}
           </div>-->
         </div>
 
-</div></header>
-<script src="js/ascii.js"></script></body></html>
+</div></div></header>
+<script src="../js/ascii.js"></script></body></html>
+
