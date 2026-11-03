@@ -67,3 +67,11 @@ A wide editorial illustration for a personal project about training a computer v
 ## AWAM prompt
 
 A wide editorial illustration for a legal RAG research prototype: one question sheet on the left, an open law archive book at center, and a short answer sheet on the right connected by thin solid threads to three source-document tabs in the book. The connection to source documents is the main visual story. Use a small abstract question mark on the question sheet, blank horizontal lines on documents, no readable law text. Strong readable silhouettes and large shapes with ample negative space. Charcoal black ink, warm off-white background #f7f7f5, tiny muted green accents. Refined flat illustration with slight print texture, clean modern composition matching the AI courtroom and vision scanner illustrations. Landscape 3:2. NO other words, letters, numbers, logos, neon, glossy 3D, watermark.
+
+## Inference scene (on-premise regulation and financial analysis assistant)
+
+`inference-input.jpg` → `inference-serve.jpg` → `inference.jpg` (idle server and documents, parallel token streams to the screen, ratio chart and gauge under human review).
+
+Drawn as vector frames (SVG rendered to JPG) rather than with the image-generation tool, tuned for the ASCII treatment: dark rack, monitor, books and reviewer silhouette on #f7f7f5, mid-gray desk, muted-green accents. To swap in a generated illustration later, keep the same three-frame order and 3:2 framing.
+
+Prompt for a generated replacement: Create a FINAL REVIEW scene for an on-premise regulation and financial analysis assistant. A dark server rack with small green status lights on the left feeds many thin parallel streams into a large monitor. The monitor shows a blank question bubble, a short answer card, a simple bar chart with one muted-green bar, and a half-circle ratio gauge. One ordinary person seen from behind sits at the desk and points at the chart. A stack of reference books with a small plant on the right; a financial statement sheet on the desk. Landscape 3:2 editorial illustration, charcoal black ink on warm off-white #f7f7f5, restrained muted-green accents, slight print texture, simple strong silhouettes and large shapes readable as ASCII. Same visual family as the other scenes. No readable text, numbers, logos, glossy 3D, neon, real company interfaces or watermarks.

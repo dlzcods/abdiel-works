@@ -5,7 +5,8 @@
     awam: ['awam-pages.jpg', 'awam-focus.jpg', 'awam.jpg'],
     creator: ['creator-input.jpg', 'creator-organize.jpg', 'creator.jpg'],
     assessment: ['assessment-input.jpg', 'assessment-guidance.jpg', 'assessment.jpg'],
-    investigation: ['investigation-input.jpg', 'investigation-draft.jpg', 'investigation.jpg']
+    investigation: ['investigation-input.jpg', 'investigation-draft.jpg', 'investigation.jpg'],
+    inference: ['inference-input.jpg', 'inference-serve.jpg', 'inference.jpg']
   };
   const reduced = matchMedia('(prefers-reduced-motion: reduce)');
   const ramp = '@#W%*+=:. ';
