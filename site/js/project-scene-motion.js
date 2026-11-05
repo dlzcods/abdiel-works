@@ -16,15 +16,16 @@
   for (const element of document.querySelectorAll('.scene-visual')) {
     const canvas = element.querySelector('canvas');
     const scene = { element, visible: false, ready: false, start: 0, signature: '' };
-    const pictures = frames[element.dataset.scene].map(file => {
-      const image = new Image();
-      return image;
-    });
+    const pictures = frames[element.dataset.scene].map(() => new Image());
     let loaded = false;
+    // ASCII only samples ~150 columns, so the 640px WebP is plenty and keeps mobile loads small
     scene.load = () => {
       if (loaded) return;
       loaded = true;
-      pictures.forEach((image, index) => { image.src = `assets/project-scenes/${frames[element.dataset.scene][index]}`; });
+      pictures.forEach((image, index) => {
+        image.decoding = 'async';
+        image.src = `assets/project-scenes/${frames[element.dataset.scene][index].replace('.jpg', '-640.webp')}`;
+      });
     };
     let caches = [], context, width, height;
     function prepare() {
@@ -113,6 +114,24 @@
     schedule();
   }, { threshold: .1 });
   scenes.forEach(scene => observer.observe(scene.element));
+  // start downloading frames well before a scene scrolls into view
+  const preloader = new IntersectionObserver(entries => {
+    for (const entry of entries) if (entry.isIntersecting) {
+      scenes.find(item => item.element === entry.target).load();
+      preloader.unobserve(entry.target);
+    }
+  }, { rootMargin: '1200px 0px' });
+  scenes.forEach(scene => preloader.observe(scene.element));
+  // hidden tab panels never intersect, so warm them up when a tab is about to be chosen
+  for (const tab of document.querySelectorAll('.work-tab')) {
+    const warm = () => {
+      const panel = document.getElementById(tab.getAttribute('aria-controls'));
+      scenes.forEach(scene => { if (panel?.contains(scene.element)) scene.load(); });
+    };
+    ['pointerenter', 'pointerdown', 'touchstart', 'focus'].forEach(type => tab.addEventListener(type, warm, { passive: true }));
+  }
+  const idle = window.requestIdleCallback || (callback => setTimeout(callback, 1500));
+  addEventListener('load', () => idle(() => scenes.forEach(scene => scene.load())), { once: true });
   document.addEventListener('visibilitychange', () => { cancelAnimationFrame(request); request = 0; schedule(); });
   reduced.addEventListener('change', () => { scenes.forEach(scene => scene.signature = ''); schedule(); });
 })();
