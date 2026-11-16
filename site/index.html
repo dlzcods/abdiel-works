@@ -347,27 +347,27 @@
         </div>
 
         <div class="portfolio-scenes client-scenes">
-          <article class="portfolio-scene client-scene reveal"><div class="scene-visual" data-scene="inference"><img src="assets/project-scenes/inference-1200.webp" srcset="assets/project-scenes/inference-640.webp 640w, assets/project-scenes/inference-1200.webp 1200w" sizes="(max-width: 900px) 92vw, 46vw" width="1536" height="1024" loading="lazy" decoding="async" alt="A GPU server streams answers to a screen showing a financial ratio chart while a person reviews the result."><canvas aria-hidden="true"></canvas></div><div class="scene-copy"><p class="cap">01 · In development · September 2026–present</p><h3>On-Premise Regulation and Financial Analysis Assistant</h3><span class="scene-proof">2× throughput on one GPU · answer accuracy 83% → 92%</span><div class="row-body delivery-body">
+          <article class="portfolio-scene client-scene reveal"><div class="scene-visual" data-scene="inference"><img src="assets/project-scenes/inference.svg" width="1536" height="1024" loading="lazy" decoding="async" alt="A robot head with three tiers of thinking reads a pie chart, a bar chart, and a line chart, and turns them into a lit lightbulb insight."><canvas aria-hidden="true"></canvas></div><div class="scene-copy"><p class="cap">01 · In development · September 2026–present</p><h3>On-Premise Regulation and Financial Analysis Assistant</h3><span class="scene-proof">2× throughput on one GPU · answer accuracy 83% → 92%</span><div class="row-body delivery-body">
               <div class="delivery-story prose">
                 <p>An on-premise assistant for regulation lookup and company financial-health analysis. The data stays on the client's infrastructure, so the language model, embedding, and OCR services run on hardware the team deploys and tunes itself.</p>
                 <section class="delivery-led" aria-labelledby="inference-led">
                   <h3 id="inference-led" class="cap">What I led and built</h3>
                   <ul>
-                    <li>Led scope, client presentations, and meeting minutes on schedule through development.</li>
+                    <!-- <li>Led scope, client presentations, and meeting minutes on schedule through development.</li> -->
                     <li>Deployed and tuned a 35B MoE model on SGLang on a single GPU. At 64 concurrent users, throughput went from 1,997 to 3,959 tokens/s and time to first token from 682 to 95 ms, with no accuracy loss.</li>
-                    <li>Designed the financial-analysis agent harness and a deterministic financial-ratio tool. Answer accuracy rose from 83% to 92%, liquidity-ratio accuracy from 50% to 100%, and latency dropped from 38 to 20 seconds.</li>
-                    <li>Set up OCR and embedding services behind an OpenAI-compatible FastAPI gateway that passed 11 of 11 SDK compatibility checks.</li>
+                    <li>Built the financial-analysis agent harness and a deterministic ratio tool, which lifted answer accuracy from 83% to 92% and cut latency by 47%. Liquidity ratios, the weakest area before, now come out right 98% of the time.</li>
+                    <li>Designed the regulation agent harness over 6,500+ pages of regulation, with article search that follows the legal hierarchy. Gave the AI a way to find replacement and repealed articles across thousands of pages, so superseded provisions are not answered as in force. Managed the context layer, with FAQs, complaints, and call-center data in three tiers, plus abbreviation definitions and clarifying questions, so the model has less room to guess.</li>
                   </ul>
                 </section>
-                <p class="delivery-impact"><span class="cap">Measured impact</span> Financial ratios come from a deterministic tool instead of the model, so the numbers people review can be reproduced.</p>
+                <p class="delivery-impact"><span class="cap">Measured impact</span> Financial ratios come from a deterministic tool, and regulation answers come from article search that respects hierarchy and status, so both can be traced and reproduced.</p>
               </div>
               <aside class="delivery-flow" aria-label="On-Premise Regulation and Financial Analysis Assistant operating flow">
                 <span class="cap">Operating flow</span>
                 <ol>
                   <li>Regulation and financial documents</li>
                   <li>OCR and embedding</li>
-                  <li>Retrieval and agent harness</li>
-                  <li>Deterministic ratio tool</li>
+                  <li>Retrieval by hierarchy and in-force status</li>
+                  <li>Agent harness with managed context and deterministic ratio tool</li>
                   <li>Answer for review</li>
                 </ol>
               </aside>
@@ -902,7 +902,7 @@
   </main>
 
   <script src="js/work-tabs.js?v=20261103a" defer></script>
-  <script src="js/project-scene-motion.js?v=20261104b" defer></script>
+  <script src="js/project-scene-motion.js?v=20261116a" defer></script>
   <script src="js/project-details.js?v=20261007a" defer></script>
   <script src="js/board.js?v=20260819a" defer></script>
   <script src="js/main.js?v=20260913g" defer></script>

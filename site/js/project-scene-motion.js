@@ -6,7 +6,7 @@
     creator: ['creator-input.jpg', 'creator-organize.jpg', 'creator.jpg'],
     assessment: ['assessment-input.jpg', 'assessment-guidance.jpg', 'assessment.jpg'],
     investigation: ['investigation-input.jpg', 'investigation-draft.jpg', 'investigation.jpg'],
-    inference: ['inference-input.jpg', 'inference-serve.jpg', 'inference.jpg']
+    inference: ['inference-input.svg', 'inference-serve.svg', 'inference.svg']
   };
   const reduced = matchMedia('(prefers-reduced-motion: reduce)');
   const ramp = '@#W%*+=:. ';
@@ -24,7 +24,8 @@
       loaded = true;
       pictures.forEach((image, index) => {
         image.decoding = 'async';
-        image.src = `assets/project-scenes/${frames[element.dataset.scene][index].replace('.jpg', '-640.webp')}`;
+        const file = frames[element.dataset.scene][index];
+        image.src = `assets/project-scenes/${file.endsWith('.svg') ? file : file.replace('.jpg', '-640.webp')}`;
       });
     };
     let caches = [], context, width, height;
