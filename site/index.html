@@ -94,7 +94,7 @@
   <link rel="stylesheet" href="css/style.css?v=20261007b" />
   <link rel="stylesheet" href="css/ascii.css?v=20261006b" />
   <link rel="stylesheet" href="css/mobile-hero.css?v=20261007b" />
-  <link rel="stylesheet" href="css/project-scenes.css?v=20261007a" />
+  <link rel="stylesheet" href="css/project-scenes.css?v=20261121a" />
   <link rel="stylesheet" href="css/field-record.css?v=20261007a" />
 
   <script>document.documentElement.classList.add("js");</script>
@@ -347,44 +347,69 @@
         </div>
 
         <div class="portfolio-scenes client-scenes">
-          <article class="portfolio-scene client-scene reveal"><div class="scene-visual" data-scene="inference"><img src="assets/project-scenes/inference-1200.webp" srcset="assets/project-scenes/inference-640.webp 640w, assets/project-scenes/inference-1200.webp 1200w" sizes="(max-width: 900px) 92vw, 46vw" width="1536" height="1024" loading="lazy" decoding="async" alt="An engineer presents a financial ratio board with charts while a robot assistant checks items off on a clipboard."><canvas aria-hidden="true"></canvas></div><div class="scene-copy"><p class="cap">01 · In development · September 2026–present</p><h3>On-Premise Regulation and Financial Analysis Assistant</h3><span class="scene-proof">2× throughput on one GPU · answer accuracy 83% → 92%</span><div class="row-body delivery-body">
-              <div class="delivery-story prose">
-                <p>An on-premise assistant for regulation lookup and company financial-health analysis. The data stays on the client's infrastructure, so the language model, embedding, and OCR services run on hardware the team deploys and tunes itself.</p>
-                <section class="delivery-led" aria-labelledby="inference-led">
-                  <h3 id="inference-led" class="cap">What I led and built</h3>
-                  <ul>
-                    <!-- <li>Led scope, client presentations, and meeting minutes on schedule through development.</li> -->
-                    <li>Deployed and tuned a 35B MoE model on SGLang on a single GPU. At 64 concurrent users, throughput went from 1,997 to 3,959 tokens/s and time to first token from 682 to 95 ms, with no accuracy loss.</li>
-                    <li>Built the financial-analysis agent harness and a deterministic ratio tool, which lifted answer accuracy from 83% to 92% and cut latency by 47%. Liquidity ratios, the weakest area before, now come out right 98% of the time.</li>
-                    <li>Built the regulation harness to search 6,500+ pages before answering, keep candidates from each level in the legal hierarchy, and account for amended or repealed provisions. In a 62-question benchmark scored by an LLM against reference answers, shortening the titles used for reranking raised answer correctness from 90% to 94%.</li>
-                  </ul>
-                </section>
-                <p class="delivery-impact"><span class="cap">Measured impact</span> Financial ratios come from a deterministic tool, and regulation answers come from article search that respects hierarchy and status, so both can be traced and reproduced.</p>
-              </div>
-              <aside class="delivery-flow" aria-label="On-Premise Regulation and Financial Analysis Assistant operating flow">
-                <span class="cap">Operating flow</span>
-                <ol>
-                  <li>Regulation and financial documents</li>
-                  <li>OCR and embedding</li>
-                  <li>Retrieval by hierarchy and in-force status</li>
-                  <li>Agent harness with managed context and deterministic ratio tool</li>
-                  <li>Answer for review</li>
-                </ol>
-              </aside>
+          <article class="portfolio-scene client-scene inference-preview reveal" id="on-premise-project">
+            <div class="scene-copy case-heading">
+              <p class="cap">01 · In development · September 2026–present</p>
+              <h3>On-premise regulation and financial analysis assistant</h3>
             </div>
-          </div></article>
-          <article class="portfolio-scene client-scene reveal"><div class="scene-visual" data-scene="creator"><img src="assets/project-scenes/creator-1200.webp" srcset="assets/project-scenes/creator-640.webp 640w, assets/project-scenes/creator-1200.webp 1200w" sizes="(max-width: 900px) 92vw, 46vw" width="1536" height="1024" loading="lazy" decoding="async" alt="Team members organize creator profiles and contact ownership in a shared workspace."><canvas aria-hidden="true"></canvas></div><div class="scene-copy"><p class="cap">02 · Completed · May–September 2026</p><h3>Creator Operations Workspace</h3><span class="scene-proof">700+ talent profiles</span><div class="row-body delivery-body">
+            <div class="scene-visual" data-scene="inference">
+              <img src="assets/project-scenes/inference-1200.webp"
+                   srcset="assets/project-scenes/inference-640.webp 640w, assets/project-scenes/inference-1200.webp 1200w"
+                   sizes="(max-width: 760px) 92vw, 46vw" width="1536" height="1024" loading="lazy" decoding="async"
+                   alt="An engineer presents a financial ratio board with charts while a robot assistant checks items off on a clipboard.">
+              <canvas aria-hidden="true"></canvas>
+            </div>
+            <div class="scene-copy case-summary">
+              <p class="scene-description">The assistant retrieves regulatory provisions and analyzes financial statements without moving client data off its own infrastructure.</p>
+              <div class="case-evidence" role="group" aria-label="Regulation retrieval benchmark results">
+                <div><strong>94%</strong><span>correct answers in the regulation benchmark<br><b>up from 90%</b></span></div>
+                <div><strong>55/62</strong><span>questions answered correctly<br>on both runs</span></div>
+                <div><strong>4 → 2.5</strong><span>median rank of the expected article<br>across 56 replayed searches</span></div>
+              </div>
+              <section class="delivery-led" aria-labelledby="inference-led">
+                <h4 id="inference-led" class="cap">What I led and built</h4>
+                <ul>
+                  <li>Built the regulation harness to retrieve articles from 6,500+ pages, preserve candidates from each regulatory level, and account for amended or repealed provisions. For the benchmark, an LLM scored two responses per question against reference answers across 62 questions.</li>
+                  <li>Built a rule-based tool for calculating financial ratios. In a separate financial-answer evaluation, accuracy rose from 83% to 92% and response latency fell 47%.</li>
+                  <li>Tuned model serving on one GPU. In a load test with 64 concurrent users, throughput rose from 1,997 to 3,959 tokens per second.</li>
+                </ul>
+              </section>
+              <section class="regulation-search" id="regulation-search" aria-labelledby="regulation-search-title">
+                <h4 class="cap" id="regulation-search-title">How regulation search works</h4>
+                <dl>
+                  <div>
+                    <dt>Exact article</dt>
+                    <dd>If the question names a regulation and article, retrieve that article directly when available.</dd>
+                  </div>
+                  <div>
+                    <dt>Topic search</dt>
+                    <dd>Search each regulatory level separately. Combine keyword and semantic matches, group them by article, then rank them together and return up to 30 articles.</dd>
+                  </div>
+                  <div>
+                    <dt>Unavailable source</dt>
+                    <dd>If the named regulation isn’t in the corpus, say so.</dd>
+                  </div>
+                </dl>
+                <p>The model receives the article text, its status, and any available explanations, annexes, or replacement provisions.</p>
+              </section>
+            </div>
+          </article>
+          <article class="portfolio-scene client-scene reveal"><div class="scene-visual" data-scene="creator"><img src="assets/project-scenes/creator-1200.webp" srcset="assets/project-scenes/creator-640.webp 640w, assets/project-scenes/creator-1200.webp 1200w" sizes="(max-width: 900px) 92vw, 46vw" width="1536" height="1024" loading="lazy" decoding="async" alt="Team members organize creator profiles and contact ownership in a shared workspace."><canvas aria-hidden="true"></canvas></div><div class="scene-copy"><p class="cap">02 · Completed · May–September 2026</p><h3>Creator Operations Workspace</h3><div class="row-body delivery-body">
               <div class="delivery-story prose">
-                <p>Built from zero to give talent and commercial teams one shared view of creator context, including rate cards, niche information, contact ownership, and follow-up history before selection and briefing.</p>
+                <p>To prepare a creator review, teams used to collect screenshots from social profiles and analytics dashboards one by one. The workspace brings profiles, analytics, and AI-generated insights into one dashboard.</p>
+                <div class="case-evidence case-evidence--two" id="client-evidence" role="group" aria-label="Creator workspace scale and time savings">
+                  <div><strong>700+</strong><span>talent profiles</span></div>
+                  <div><strong>95%</strong><span>less time spent preparing creator reviews</span></div>
+                </div>
                 <section class="delivery-led" aria-labelledby="creator-led">
                   <h3 id="creator-led" class="cap">What I led</h3>
                   <ul>
-                    <li>Defined the operating model for rate cards, niche information, contact persons, and ownership across teams.</li>
-                    <li>Coordinated product requirements, engineering delivery, stakeholder feedback, and UAT from the first end-to-end workflow onward.</li>
-                    <li>Structured role boundaries and validation rules so operational responsibility remains clear across the workflow.</li>
+                    <li>Defined what teams record for each creator, including rates, content niches, and who owns the next follow-up.</li>
+                    <li>Led requirements, engineering coordination, and user acceptance testing for the creator review workflow.</li>
+                    <li>Set rules for who can update creator records and what information must be captured before a review.</li>
                   </ul>
                 </section>
-                <p class="delivery-impact"><span class="cap">Designed impact</span> Teams can review the information needed for talent decisions in one workspace instead of reconciling scattered references.</p>
+                <p class="delivery-impact"><span class="cap">Designed impact</span> Talent and commercial teams can review the same creator record before shortlisting or briefing.</p>
               </div>
               <aside class="delivery-flow" aria-label="Creator Operations Workspace operating flow">
                 <span class="cap">Operating flow</span>
@@ -397,19 +422,23 @@
               </aside>
             </div>
           </div></article>
-          <article class="portfolio-scene client-scene reveal"><div class="scene-visual" data-scene="assessment"><img src="assets/project-scenes/assessment-1200.webp" srcset="assets/project-scenes/assessment-640.webp 640w, assets/project-scenes/assessment-1200.webp 1200w" sizes="(max-width: 900px) 92vw, 46vw" width="1536" height="1024" loading="lazy" decoding="async" alt="Two HR experts review advisory guidance from an AI assistant."><canvas aria-hidden="true"></canvas></div><div class="scene-copy"><p class="cap">03 · Completed · June–September 2026</p><h3>Human-Governed Assessment Advisory Platform</h3><span class="scene-proof">Co-designed with 2 HR experts</span><div class="row-body delivery-body">
+          <article class="portfolio-scene client-scene reveal"><div class="scene-visual" data-scene="assessment"><img src="assets/project-scenes/assessment-1200.webp" srcset="assets/project-scenes/assessment-640.webp 640w, assets/project-scenes/assessment-1200.webp 1200w" sizes="(max-width: 900px) 92vw, 46vw" width="1536" height="1024" loading="lazy" decoding="async" alt="Two HR experts review advisory guidance from an AI assistant."><canvas aria-hidden="true"></canvas></div><div class="scene-copy"><p class="cap">03 · Completed · June–September 2026</p><h3>Human-Governed Assessment Advisory Platform</h3><div class="row-body delivery-body">
               <div class="delivery-story prose">
-                <p>A human-in-the-loop assessment advisory platform that combines structured scoring with LLM-assisted narrative guidance, without treating AI output as an automatic hiring decision.</p>
+                <p>The platform scores OCEAN and DISC responses using defined rules, then uses an LLM to draft an interpretation for HR review. It does not make hiring decisions.</p>
+                <div class="case-evidence case-evidence--two" id="assessment-evidence" role="group" aria-label="Reported assessment reliability">
+                  <div><strong>0.734–<wbr>0.827</strong><span>OCEAN · reported reliability across dimensions</span></div>
+                  <div><strong>0.795–<wbr>0.868</strong><span>DISC · reported reliability across dimensions</span></div>
+                </div>
                 <section class="delivery-led" aria-labelledby="assessment-led">
                   <h3 id="assessment-led" class="cap">What I led</h3>
                   <ul>
-                    <li>Coordinated assessment scoring mechanics and interpretation rules with two HR experts.</li>
-                    <li>Defined boundaries for reverse-scored items, multi-trait inputs, readiness context, and narrative language.</li>
-                    <li>Shaped LLM narrative guardrails so outputs remain constructive, contextual, and advisory rather than judgmental.</li>
-                    <li>Kept HR review as the decision boundary across the assessment workflow.</li>
+                    <li>Worked with two HR experts to define scoring and interpretation rules.</li>
+                    <li>Defined how reverse-scored items and responses that contribute to multiple traits affect the assessment scores.</li>
+                    <li>Set limits on what the generated report could infer from scores and readiness information.</li>
+                    <li>Kept interpretation and hiring decisions with HR.</li>
                   </ul>
                 </section>
-                <p class="delivery-impact"><span class="cap">Designed impact</span> HR teams receive a clearer basis for discussing candidate context while final judgment stays with people.</p>
+                <p class="delivery-impact"><span class="cap">Designed impact</span> HR can use the scores and drafted interpretation as a starting point for a candidate discussion.</p>
               </div>
               <aside class="delivery-flow" aria-label="Human-Governed Assessment Advisory Platform operating flow">
                 <span class="cap">Operating flow</span>
@@ -422,18 +451,23 @@
               </aside>
             </div>
           </div></article>
-          <article class="portfolio-scene client-scene reveal"><div class="scene-visual" data-scene="investigation"><img src="assets/project-scenes/investigation-1200.webp" srcset="assets/project-scenes/investigation-640.webp 640w, assets/project-scenes/investigation-1200.webp 1200w" sizes="(max-width: 900px) 92vw, 46vw" width="1536" height="1024" loading="lazy" decoding="async" alt="An investigator reviews a draft against case material, transcripts, and reference sources."><canvas aria-hidden="true"></canvas></div><div class="scene-copy"><p class="cap">04 · In UAT · July 2026–present</p><h3>Investigation Casework and Document Intelligence Platform</h3><span class="scene-proof">3,100+ pages in a growing RAG reference corpus</span><div class="row-body delivery-body">
+          <article class="portfolio-scene client-scene reveal"><div class="scene-visual" data-scene="investigation"><img src="assets/project-scenes/investigation-1200.webp" srcset="assets/project-scenes/investigation-640.webp 640w, assets/project-scenes/investigation-1200.webp 1200w" sizes="(max-width: 900px) 92vw, 46vw" width="1536" height="1024" loading="lazy" decoding="async" alt="An investigator reviews a draft against case material, transcripts, and reference sources."><canvas aria-hidden="true"></canvas></div><div class="scene-copy"><p class="cap">04 · In UAT · July 2026–present</p><h3>Investigation Casework and Document Intelligence Platform</h3><div class="row-body delivery-body">
               <div class="delivery-story prose">
-                <p>A secure casework flow that combines RAG retrieval, LLM-assisted drafting, and investigator review to bring case material, interview context, and document preparation into one traceable workspace.</p>
+                <p>Investigators can review interview transcripts, case materials, and draft documents in one workspace, checking them against retrieved reference material before drawing conclusions.</p>
+                <div class="case-evidence" role="group" aria-label="Casework scope and transcription testing">
+                  <div><strong>3,100+</strong><span>pages in the retrieval corpus</span></div>
+                  <div><strong>33</strong><span>documents in the readiness model</span></div>
+                  <div><strong>2</strong><span>regional languages included in transcription tests: Javanese and Sundanese</span></div>
+                </div>
                 <section class="delivery-led" aria-labelledby="casework-led">
                   <h3 id="casework-led" class="cap">What I led</h3>
                   <ul>
-                    <li>Defined the Bedah Perkara workflow for connected facts, timelines, chronologies, relevant legal references, and document readiness.</li>
-                    <li>Coordinated requirements for live transcription, an AI-assisted interview agent with context-following question suggestions, document drafting, validation, and activity logs.</li>
-                    <li>Set human review, access, and traceability requirements so investigators retain responsibility for conclusions and every AI-assisted output remains reviewable.</li>
+                    <li>Defined the case review workflow (Bedah Perkara) to flag inconsistent accounts, missing evidence, and potentially relevant provisions, and to show which documents are still needed.</li>
+                    <li>Coordinated requirements for live transcription, follow-up questions suggested during interviews, and document drafting and validation.</li>
+                    <li>Set access, activity logging, and review requirements so investigators can check AI-assisted output and remain responsible for conclusions.</li>
                   </ul>
                 </section>
-                <p class="delivery-impact"><span class="cap">Designed impact</span> The workflow is structured to return more investigator time to case analysis while reducing manual document friction.</p>
+                <p class="delivery-impact"><span class="cap">Designed impact</span> Investigators can review evidence gaps and document readiness alongside the case timeline before deciding what to pursue next.</p>
               </div>
               <aside class="delivery-flow" aria-label="Investigation Casework and Document Intelligence Platform operating flow">
                 <span class="cap">Operating flow</span>
@@ -462,14 +496,14 @@
         </p>
 
         <div class="portfolio-scenes independent-scenes">
-          <article class="portfolio-scene reveal"><div class="scene-visual" data-scene="judges"><img src="assets/project-scenes/judges-1200.webp" srcset="assets/project-scenes/judges-640.webp 640w, assets/project-scenes/judges-1200.webp 1200w" sizes="(max-width: 900px) 92vw, 46vw" width="1536" height="1024" loading="lazy" decoding="async" alt="Two robot judges consider the same essay and hold different score sheets."><canvas aria-hidden="true"></canvas></div><div class="scene-copy"><p class="cap">01 · Published research · LLM evaluation</p><h3>When two LLM judges disagreed</h3><p class="scene-description">The same essay. Two judges. Different scores. I examined whether those ratings held up across repeated runs, and where reliability differed between models.</p><span class="scene-proof">150 essays · 2 models × 5 runs</span><button type="button" class="scene-link" data-project-dialog="judges-detail" aria-haspopup="dialog">View project ↗</button></div></article>
-          <article class="portfolio-scene reveal"><div class="scene-visual" data-scene="vision"><img src="assets/project-scenes/vision-1200.webp" srcset="assets/project-scenes/vision-640.webp 640w, assets/project-scenes/vision-1200.webp 1200w" sizes="(max-width: 900px) 92vw, 46vw" width="1536" height="1024" loading="lazy" decoding="async" alt="An image passes through a scanner and features are compared before an output is reviewed."><canvas aria-hidden="true"></canvas></div><div class="scene-copy"><p class="cap">02 · Computer vision · Model training</p><h3>Accuracy was not the final review</h3><p class="scene-description">Overall accuracy reached 90.64%. Glaucoma recall was 80.33%. Reviewing each class showed what the headline average could hide.</p><span class="scene-proof">EfficientNetB0 · 4,217 images · research experiment</span><button type="button" class="scene-link" data-project-dialog="vision-detail" aria-haspopup="dialog">View project ↗</button></div></article>
-          <article class="portfolio-scene reveal"><div class="scene-visual" data-scene="awam"><img src="assets/project-scenes/awam-1200.webp" srcset="assets/project-scenes/awam-640.webp 640w, assets/project-scenes/awam-1200.webp 1200w" sizes="(max-width: 900px) 92vw, 46vw" width="1536" height="1024" loading="lazy" decoding="async" alt="An open legal archive connects a question and answer to inspectable sources."><canvas aria-hidden="true"></canvas></div><div class="scene-copy"><p class="cap">03 · AWAM · Legal RAG prototype</p><h3>Answers need sources.</h3><p class="scene-description">A legal question should lead back to inspectable references. AWAM explores retrieval and answer generation, with the source corpus currently being rebuilt.</p><span class="scene-proof">Corpus rebuilding · not legal advice</span><button type="button" class="scene-link" data-project-dialog="awam-detail" aria-haspopup="dialog">View project ↗</button></div></article>
+          <article class="portfolio-scene reveal"><div class="scene-visual" data-scene="judges"><img src="assets/project-scenes/judges-1200.webp" srcset="assets/project-scenes/judges-640.webp 640w, assets/project-scenes/judges-1200.webp 1200w" sizes="(max-width: 900px) 92vw, 46vw" width="1536" height="1024" loading="lazy" decoding="async" alt="Two robot judges consider the same essay and hold different score sheets."><canvas aria-hidden="true"></canvas></div><div class="scene-copy"><p class="cap">01 · Published research · LLM evaluation</p><h3>When two LLM judges disagreed</h3><p class="scene-description">I tested how consistently two language models scored the same 150 essays over five runs. One model was more consistent across runs, and I tested how confidence scores could guide which essays to send for human review.</p><span class="scene-proof">150 essays · 2 models × 5 runs</span><button type="button" class="scene-link" data-project-dialog="judges-detail" aria-haspopup="dialog">View project ↗</button></div></article>
+          <article class="portfolio-scene reveal"><div class="scene-visual" data-scene="vision"><img src="assets/project-scenes/vision-1200.webp" srcset="assets/project-scenes/vision-640.webp 640w, assets/project-scenes/vision-1200.webp 1200w" sizes="(max-width: 900px) 92vw, 46vw" width="1536" height="1024" loading="lazy" decoding="async" alt="An image passes through a scanner and features are compared before an output is reviewed."><canvas aria-hidden="true"></canvas></div><div class="scene-copy"><p class="cap">02 · Computer vision · Model training</p><h3>Accuracy was not the final review</h3><p class="scene-description">I fine-tuned EfficientNetB0 to classify eye diseases from fundus images. On a held-out set of 844 images, it reached 90.64% overall accuracy and 80.33% glaucoma recall.</p><span class="scene-proof">EfficientNetB0 · 4,217 images · research experiment</span><button type="button" class="scene-link" data-project-dialog="vision-detail" aria-haspopup="dialog">View project ↗</button></div></article>
+          <article class="portfolio-scene reveal"><div class="scene-visual" data-scene="awam"><img src="assets/project-scenes/awam-1200.webp" srcset="assets/project-scenes/awam-640.webp 640w, assets/project-scenes/awam-1200.webp 1200w" sizes="(max-width: 900px) 92vw, 46vw" width="1536" height="1024" loading="lazy" decoding="async" alt="An open legal archive connects a question and answer to inspectable sources."><canvas aria-hidden="true"></canvas></div><div class="scene-copy"><p class="cap">03 · AWAM · Legal RAG prototype</p><h3>Answers need sources.</h3><p class="scene-description">AWAM reformulated everyday questions for legal search and showed the sources used in its answers. The demo is offline while I rebuild the source corpus.</p><span class="scene-proof">Corpus rebuilding · not legal advice</span><button type="button" class="scene-link" data-project-dialog="awam-detail" aria-haspopup="dialog">View project ↗</button></div></article>
         </div>
         <dialog class="project-modal" id="judges-detail" aria-labelledby="judges-detail-title"><div class="project-modal-head"><h3 id="judges-detail-title">When two LLM judges disagreed</h3><button type="button" class="project-modal-close" aria-label="Close project details">Close ×</button></div><div class="row-body work-body">
               <div class="work-story prose">
-                <p><span class="sftl cap">Risk</span> Two LLM judges produced convincing essay scores, but repeating the judgment exposed different stability, bias, and review workload.</p>
-                <p><span class="sftl cap">Decision</span> I compared GPT OSS 120B and Qwen3-32B across five runs of 150 IELTS-like essays, then tested reliability, score variation, and confidence-based routing before deciding where human review still had to stay.</p>
+                <p><span class="sftl cap">Risk</span> Two models can disagree with each other, and either model can change its score when it reads the same essay again. Those are separate problems for reviewers.</p>
+                <p><span class="sftl cap">Decision</span> I compared GPT OSS 120B and Qwen3-32B on 150 IELTS-like essays across five runs per model. I measured score consistency and variation, then tested routing lower-confidence scores to human review.</p>
               </div>
               <div class="work-evidence-stack">
                 <a class="project-artifact" href="https://ejurnal.umri.ac.id/index.php/SEIS/article/view/11478" target="_blank" rel="noopener">
@@ -493,7 +527,7 @@
           </dialog>
         <dialog class="project-modal" id="vision-detail" aria-labelledby="vision-detail-title"><div class="project-modal-head"><h3 id="vision-detail-title">Accuracy was not the final review</h3><button type="button" class="project-modal-close" aria-label="Close project details">Close ×</button></div><div class="row-body work-body">
               <div class="work-story prose">
-                <p><span class="sftl cap">Risk</span> Overall accuracy reached 90.64%, but that average hid glaucoma recall at 80.33%.</p>
+                <p><span class="sftl cap">Risk</span> On 844 held-out images, the model reached 90.64% overall accuracy, but detected only 80.33% of the glaucoma cases in that test set.</p>
                 <p><span class="sftl cap">Decision</span> I fine-tuned EfficientNetB0 and reviewed precision and recall by class. It was a model experiment, not a clinically validated system.</p>
               </div>
               <div class="work-evidence-stack">
@@ -521,7 +555,7 @@
         <dialog class="project-modal" id="awam-detail" aria-labelledby="awam-detail-title"><div class="project-modal-head"><h3 id="awam-detail-title">Answers need sources.</h3><button type="button" class="project-modal-close" aria-label="Close project details">Close ×</button></div><div class="row-body work-body">
               <div class="work-story prose">
                 <p><span class="sftl cap">Risk</span> A legal answer can sound useful while resting on a source the person reading it cannot inspect.</p>
-                <p><span class="sftl cap">Decision</span> AWAM maps everyday questions into legal language, retrieves cited material, and leaves the final judgment outside the model. I am rebuilding the corpus around official and permission-reviewed materials before reopening it.</p>
+                <p><span class="sftl cap">Decision</span> The prototype rewrote everyday questions into legal search terms and cited the retrieved material so readers could inspect it. The demo is offline while I rebuild the corpus using official sources and materials reviewed for reuse.</p>
                 <div class="awam-current-state">
                   <span class="cap">Current state</span>
                   <strong>Sources stay inspectable. Answers stay provisional.</strong>
@@ -550,7 +584,7 @@
         <div class="research-note reveal">
           <span class="work-index cap">Research note / Explainability</span>
           <div>
-            <h3>What Grad-CAM showed me about Alzheimer's predictions</h3>
+            <h3>What Grad-CAM highlighted in an Alzheimer’s classification experiment</h3>
           </div>
           <a href="https://dev.to/dlzcods/how-grad-cam-helped-me-explain-alzheimers-predictions-14n3" target="_blank" rel="noopener">Read note ↗</a>
         </div>

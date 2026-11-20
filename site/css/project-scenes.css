@@ -84,3 +84,52 @@ html:has(.project-modal[open]) { overflow: hidden; }
     .work-tabs.is-ready .work-tab-indicator, .work-tab, .work-tab-count { transition: none; }
     .work-panel.is-entering { animation: none; }
 }
+
+/* Client-delivery evidence and regulation workflow */
+#on-premise-project, #regulation-search, #client-evidence, #assessment-evidence { scroll-margin-top: 64px; }
+.portfolio-scene.inference-preview {
+  grid-template-areas: "visual heading" "visual summary";
+  row-gap: 1rem;
+}
+.inference-preview .scene-visual { grid-area: visual; margin: 0; }
+.inference-preview .case-heading { grid-area: heading; }
+.inference-preview .case-summary { grid-area: summary; }
+.case-evidence {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  margin: 1.4rem 0 .6rem;
+  border-top: 1px solid var(--line);
+  border-bottom: 1px solid var(--line);
+}
+.case-evidence--two { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+.case-evidence > div { min-width: 0; padding: .9rem .75rem .9rem 0; }
+.case-evidence > div + div { padding-left: .85rem; border-left: 1px solid var(--line); }
+.case-evidence strong { display: block; font-size: clamp(1.2rem, 2.5vw, 1.8rem); line-height: 1.1; letter-spacing: -.04em; }
+.case-evidence span { display: block; margin-top: .45rem; color: var(--mid); font: .63rem/1.5 var(--mono); }
+.case-evidence span b { color: var(--ink); font-weight: 500; }
+.inference-preview .delivery-led h4 { font-size: .65rem; }
+.regulation-search { margin-top: 1.5rem; }
+.regulation-search h4 { font-size: .65rem; }
+.regulation-search dl { margin: .65rem 0; border-top: 1px solid var(--line); }
+.regulation-search dl > div {
+  display: grid;
+  grid-template-columns: minmax(0, 8.5rem) minmax(0, 1fr);
+  gap: .2rem 1rem;
+  padding: .65rem 0;
+  border-bottom: 1px solid var(--line);
+}
+.regulation-search dt { font-size: .85rem; font-weight: 600; }
+.regulation-search dd, .regulation-search > p {
+  margin: 0;
+  color: var(--mid);
+  font-size: .85rem;
+  line-height: 1.6;
+}
+@media (max-width: 480px) {
+  .case-evidence { grid-template-columns: minmax(0, 1fr); }
+  .case-evidence > div + div { padding-left: 0; border-left: 0; border-top: 1px solid var(--line); }
+  .regulation-search dl > div { grid-template-columns: minmax(0, 1fr); }
+}
+@media (max-width: 760px) {
+  .portfolio-scene.inference-preview { grid-template-areas: "heading" "visual" "summary"; }
+}
