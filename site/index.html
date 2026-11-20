@@ -347,7 +347,7 @@
         </div>
 
         <div class="portfolio-scenes client-scenes">
-          <article class="portfolio-scene client-scene reveal"><div class="scene-visual" data-scene="inference"><img src="assets/project-scenes/inference.svg" width="1536" height="1024" loading="lazy" decoding="async" alt="A robot head with three tiers of thinking reads a pie chart, a bar chart, and a line chart, and turns them into a lit lightbulb insight."><canvas aria-hidden="true"></canvas></div><div class="scene-copy"><p class="cap">01 · In development · September 2026–present</p><h3>On-Premise Regulation and Financial Analysis Assistant</h3><span class="scene-proof">2× throughput on one GPU · answer accuracy 83% → 92%</span><div class="row-body delivery-body">
+          <article class="portfolio-scene client-scene reveal"><div class="scene-visual" data-scene="inference"><img src="assets/project-scenes/inference-1200.webp" srcset="assets/project-scenes/inference-640.webp 640w, assets/project-scenes/inference-1200.webp 1200w" sizes="(max-width: 900px) 92vw, 46vw" width="1536" height="1024" loading="lazy" decoding="async" alt="An engineer presents a financial ratio board with charts while a robot assistant checks items off on a clipboard."><canvas aria-hidden="true"></canvas></div><div class="scene-copy"><p class="cap">01 · In development · September 2026–present</p><h3>On-Premise Regulation and Financial Analysis Assistant</h3><span class="scene-proof">2× throughput on one GPU · answer accuracy 83% → 92%</span><div class="row-body delivery-body">
               <div class="delivery-story prose">
                 <p>An on-premise assistant for regulation lookup and company financial-health analysis. The data stays on the client's infrastructure, so the language model, embedding, and OCR services run on hardware the team deploys and tunes itself.</p>
                 <section class="delivery-led" aria-labelledby="inference-led">
@@ -356,7 +356,7 @@
                     <!-- <li>Led scope, client presentations, and meeting minutes on schedule through development.</li> -->
                     <li>Deployed and tuned a 35B MoE model on SGLang on a single GPU. At 64 concurrent users, throughput went from 1,997 to 3,959 tokens/s and time to first token from 682 to 95 ms, with no accuracy loss.</li>
                     <li>Built the financial-analysis agent harness and a deterministic ratio tool, which lifted answer accuracy from 83% to 92% and cut latency by 47%. Liquidity ratios, the weakest area before, now come out right 98% of the time.</li>
-                    <li>Designed the regulation agent harness over 6,500+ pages of regulation, with article search that follows the legal hierarchy. Gave the AI a way to find replacement and repealed articles across thousands of pages, so superseded provisions are not answered as in force. Managed the context layer, with FAQs, complaints, and call-center data in three tiers, plus abbreviation definitions and clarifying questions, so the model has less room to guess.</li>
+                    <li>Built the regulation harness to search 6,500+ pages before answering, keep candidates from each level in the legal hierarchy, and account for amended or repealed provisions. In a 62-question benchmark scored by an LLM against reference answers, shortening the titles used for reranking raised answer correctness from 90% to 94%.</li>
                   </ul>
                 </section>
                 <p class="delivery-impact"><span class="cap">Measured impact</span> Financial ratios come from a deterministic tool, and regulation answers come from article search that respects hierarchy and status, so both can be traced and reproduced.</p>
@@ -902,7 +902,7 @@
   </main>
 
   <script src="js/work-tabs.js?v=20261103a" defer></script>
-  <script src="js/project-scene-motion.js?v=20261116a" defer></script>
+  <script src="js/project-scene-motion.js?v=20261120a" defer></script>
   <script src="js/project-details.js?v=20261007a" defer></script>
   <script src="js/board.js?v=20260819a" defer></script>
   <script src="js/main.js?v=20260913g" defer></script>
