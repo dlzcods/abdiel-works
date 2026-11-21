@@ -91,7 +91,7 @@
 
   <link rel="preconnect" href="https://api.fontshare.com" />
   <link href="https://api.fontshare.com/v2/css?f[]=switzer@400,500,600,700&amp;display=swap" rel="stylesheet" />
-  <link rel="stylesheet" href="css/style.css?v=20261007b" />
+  <link rel="stylesheet" href="css/style.css?v=20261121b" />
   <link rel="stylesheet" href="css/ascii.css?v=20261006b" />
   <link rel="stylesheet" href="css/mobile-hero.css?v=20261007b" />
   <link rel="stylesheet" href="css/project-scenes.css?v=20261121a" />
@@ -104,7 +104,7 @@
   <div class="progress-bar" aria-hidden="true"><span id="progress-fill"></span></div>
   <aside class="rail" aria-hidden="true">
     <span class="rail-word">Abdiel · 2026</span>
-    <span class="rail-status"><span class="dot"></span><span id="rail-count">0/6</span></span>
+    <span class="rail-status"><span class="dot"></span><span id="rail-count">0/4</span></span>
   </aside>
 
   <!-- ============ HERO ============ -->
@@ -831,101 +831,47 @@
       </div>
     </section>
 
-    <!-- ============ 05 WORKING FIT ============ -->
-    <section class="block chapter" id="working-fit">
-      <div class="wrap">
-        <p class="cap accent reveal">05 · Working fit</p>
-        <h2 class="reveal">Bring me in when output is moving faster than judgment.</h2>
-
-        <div class="fit-ledger reveal" aria-label="Conditions where working together is likely to be useful">
-          <div class="fit-row">
-            <span class="fit-index cap">01</span>
-            <p><strong>AI is already producing work.</strong> Nobody can clearly explain what is safe to ship.</p>
-          </div>
-          <div class="fit-row">
-            <span class="fit-index cap">02</span>
-            <p><strong>The feature can be built.</strong> Ownership between product, model, and human review is still unclear.</p>
-          </div>
-          <div class="fit-row">
-            <span class="fit-index cap">03</span>
-            <p><strong>The demo looks convincing.</strong> You want evidence before calling it done and can accept that GenAI may not be the right tool.</p>
-          </div>
-        </div>
-
-        <div class="gate reveal">
-          <span class="gate-line"></span>
-          <span class="gate-label">Working fit · clear</span>
-          <span class="gate-dot"></span>
-        </div>
-      </div>
-    </section>
-
-    <!-- ============ 06 MODEL CARD / CONTACT ============ -->
     <footer class="block chapter" id="contact">
       <div class="wrap">
-        <p class="cap accent reveal">06 · Contact</p>
-        <h2 class="reveal">Documented like everything else I ship.</h2>
-        <p class="contact-cta reveal">
-          Building with AI and want it to hold up under scrutiny? Talk to me.
-        </p>
+        <div class="contact-layout reveal">
+          <div>
+            <h2>Get in touch.</h2>
+            <p class="contact-cta">For AI projects, talks, and workshops.</p>
+            <p class="contact-form-note">For speaking invitations, include the date, audience, and format.</p>
+            <div class="contact-links">
+              <a href="https://www.linkedin.com/in/muhammad-abdiel-al-hafiz/" target="_blank" rel="noopener">LinkedIn ↗</a>
+              <a href="https://github.com/dlzcods" target="_blank" rel="noopener">GitHub ↗</a>
+            </div>
+          </div>
+          <form class="contact-form" id="contact-form" action="/api/contact" method="post" novalidate>
+            <div class="contact-fields">
+              <label>
+                <span class="cap">Your name</span>
+                <input name="name" type="text" autocomplete="name" maxlength="80" required />
+              </label>
+              <label>
+                <span class="cap">Your email</span>
+                <input name="email" type="email" autocomplete="email" maxlength="254" required />
+              </label>
+              <label class="contact-message">
+                <span class="cap">What would you like to talk about?</span>
+                <textarea name="message" rows="5" maxlength="3000" required></textarea>
+              </label>
+            </div>
 
-        <div class="spec reveal" hidden aria-hidden="true">
-          <div class="sl"><span class="k">role</span><span class="v">AI Project Manager @ PERFECT10 AI</span></div>
-          <div class="sl"><span class="k">training</span><span class="v">AI/ML engineer · 2 years</span></div>
-          <div class="sl"><span class="k">operating mode</span><span class="v">AI drafts · humans own decisions · evaluation decides</span></div>
-          <div class="sl"><span class="k">proof</span><span class="v">Singapore and Australia · 3 competition placements · published research · invited speaker</span></div>
-          <div class="sl"><span class="k">contact</span><span class="v">Brief form below · direct email kept off the page</span></div>
+            <label class="contact-honeypot" aria-hidden="true">
+              <span>Leave this empty</span>
+              <input name="website" type="text" tabindex="-1" autocomplete="off" />
+            </label>
+
+            <div class="contact-turnstile" id="contact-turnstile" aria-label="Spam protection"></div>
+            <div class="contact-form-actions">
+              <button class="contact-submit" type="submit">Send message <span aria-hidden="true">↗</span></button>
+              <p class="contact-status" id="contact-status" aria-live="polite"></p>
+            </div>
+          </form>
         </div>
-
-        <form class="contact-form reveal" id="contact-form" action="/api/contact" method="post" novalidate>
-          <div class="contact-form-head">
-            <p class="cap">Start a conversation</p>
-            <p>Tell me what you are building, where the uncertainty is, and what needs to be decided.</p>
-            <p class="contact-form-note">Organizing a talk or workshop? Use the same form. Include the date, audience, and format.</p>
-          </div>
-
-          <div class="contact-fields">
-            <label>
-              <span class="cap">Your name</span>
-              <input name="name" type="text" autocomplete="name" maxlength="80" required />
-            </label>
-            <label>
-              <span class="cap">Your email</span>
-              <input name="email" type="email" autocomplete="email" maxlength="254" required />
-            </label>
-            <label class="contact-message">
-              <span class="cap">What are you working on?</span>
-              <textarea name="message" rows="5" maxlength="3000" required></textarea>
-            </label>
-          </div>
-
-          <label class="contact-honeypot" aria-hidden="true">
-            <span>Leave this empty</span>
-            <input name="website" type="text" tabindex="-1" autocomplete="off" />
-          </label>
-
-          <div class="contact-turnstile" id="contact-turnstile" aria-label="Spam protection"></div>
-          <div class="contact-form-actions">
-            <button class="contact-submit" type="submit">Send the context <span aria-hidden="true">↗</span></button>
-            <p class="contact-status" id="contact-status" aria-live="polite"></p>
-          </div>
-        </form>
-
-        <div class="index-table contact-table reveal">
-          <a class="row row-link" href="https://www.linkedin.com/in/muhammad-abdiel-al-hafiz/" target="_blank" rel="noopener">
-            <span class="row-title">/in/muhammad-abdiel-al-hafiz</span>
-            <span class="row-tag cap">LinkedIn ↗</span>
-          </a>
-          <a class="row row-link" href="https://github.com/dlzcods" target="_blank" rel="noopener">
-            <span class="row-title">@dlzcods</span>
-            <span class="row-tag cap">GitHub ↗</span>
-          </a>
-        </div>
-
         <div class="site-foot reveal">
-          <div class="diff">
-            <div class="ad"><span class="mk">+</span>drafted by AI. argued with, corrected, and shipped by a human.</div>
-          </div>
           <div class="foot-line">
             <span>© 2026 <b>Muhammad Abdiel Al Hafiz</b></span>
             <span>abdiel.works</span>

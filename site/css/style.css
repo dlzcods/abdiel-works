@@ -1267,7 +1267,28 @@ html:not(.js) .gate-label { opacity: 1; }
 html.js .gate.passed .gate-dot,
 html:not(.js) .gate-dot { opacity: 1; transform: scale(1); }
 
-/* ============ Model card ============ */
+/* Contact ending */
+#contact { border-top: 0; padding-top: 0; }
+#contact > .wrap { max-width: 1100px; }
+.contact-layout {
+  display: grid;
+  grid-template-columns: minmax(0, .9fr) minmax(0, 1.1fr);
+  align-items: start;
+  gap: clamp(2rem, 7vw, 6rem);
+}
+#contact .contact-layout h2 { margin: 0 0 1rem; font-size: clamp(2.45rem, 6vw, 4.25rem); line-height: 1.04; }
+#contact .contact-cta { margin: 0 0 1rem; }
+#contact .contact-form { margin: 0; padding: 0; border: 0; }
+#contact .contact-links { display: flex; flex-wrap: wrap; gap: .5rem 1.3rem; margin-top: 1.35rem; }
+#contact .contact-links a { color: var(--ink); text-underline-offset: .24em; }
+#contact .site-foot { border-top: 1px solid var(--line); }
+#contact .foot-line { margin: 0; padding: 0; border: 0; }
+#contact input, #contact textarea { font-size: max(16px, .92rem); }
+@media (max-width: 760px) {
+  .contact-layout { grid-template-columns: 1fr; }
+  #contact .contact-fields { grid-template-columns: 1fr; }
+}
+
 .contact-cta {
     max-width: 52ch;
     font-size: 0.97rem;
