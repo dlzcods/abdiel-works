@@ -195,14 +195,11 @@ a { color: inherit; }
 .hero-intro-grid {
     display: grid;
     grid-template-columns: minmax(0, 1fr) clamp(12rem, 22vw, 17.5rem);
-    grid-template-areas:
-        "copy identity"
-        "support identity";
+    grid-template-areas: "copy identity";
     column-gap: clamp(2rem, 5vw, 4.25rem);
     align-items: start;
 }
 .hero-copy { grid-area: copy; min-width: 0; }
-.hero-support { grid-area: support; min-width: 0; }
 .hero h1 {
     font-size: clamp(2.1rem, 5.6vw, 3.6rem);
     line-height: 1.06;
@@ -242,13 +239,6 @@ a { color: inherit; }
     text-underline-offset: 0.18em;
 }
 .manifesto a:hover { text-decoration-thickness: 2px; }
-.client-proof {
-    width: fit-content;
-    margin-top: 1.25rem;
-    padding-top: 0.65rem;
-    border-top: 1px solid var(--ink);
-    color: var(--ink);
-}
 .hero-spine {
     display: grid;
     grid-template-columns: repeat(3, minmax(0, 1fr));
@@ -1506,8 +1496,7 @@ html:not(.js) .gate-dot { opacity: 1; transform: scale(1); }
             "first"
             "identity"
             "second"
-            "manifesto"
-            "support";
+            "manifesto";
         gap: 0;
     }
     .hero-copy,
@@ -1666,14 +1655,6 @@ html:not(.js) .gate-dot { opacity: 1; transform: scale(1); }
     }
     .human-mark.is-visible:not(:hover):not(:focus-visible):not(.is-reviewed) .human-mark-reviewed {
         animation: human-reviewed-cycle 5.2s ease-in-out infinite;
-    }
-    .hero-support {
-        grid-area: support;
-        text-align: center;
-    }
-    .client-proof {
-        margin: 1.9rem auto 0;
-        border-top: 0;
     }
     .hero-spine { text-align: left; }
     .chapter { padding: 3.4rem 0 2.6rem; }
